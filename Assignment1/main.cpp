@@ -699,13 +699,16 @@ void test7()
 int main()
 {
 	test2();
-	//test3();
+	test3();
 	test4();
 	test5();
 	test6();
 	test7();
 
-	MyString s1("TextTexttextTeTex");
-	s1.Interleave("1234");
-	cout << s1.GetCString() << endl;
+	MyString s1("");
+	s1.Interleave("");
+	//cout << s1.GetCString() << endl;
+
+	MyString s2(s1);
+	MyString s3 = s1 + s2;
 }

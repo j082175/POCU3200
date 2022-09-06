@@ -21,12 +21,16 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 	{
-		delete[] mString;
+		if (other.mString != nullptr)
+		{
+			delete[] mString;
 
-		mLength = strLen(other.mString);
+			mLength = other.mLength;
 
-		mString = new char[mLength + 1];
-		strCpy(mString, other.mString, mLength);
+			mString = new char[mLength + 1];
+			strCpy(mString, other.mString, mLength);
+		}
+
 	}
 
 	MyString::~MyString()
@@ -46,7 +50,7 @@ namespace assignment1
 
 	void MyString::Append(const char* s)
 	{
-		if (s == nullptr)
+		if (s == nullptr || strLen(s) == 0)
 		{
 			return;
 		}
@@ -208,7 +212,7 @@ namespace assignment1
 
 	void MyString::Interleave(const char* s)
 	{
-		if (s == nullptr)
+		if (s == nullptr || mString == nullptr || strLen(s) == 0)
 		{
 			return;
 		}
@@ -479,10 +483,13 @@ namespace assignment1
 	size_t MyString::strCat(char* dest, const char* source) const
 	{
 
-		while (*dest != '\0') {
+		while (*dest != '\0') 
+		{
 			dest++;
 		}
-		while (*source != '\0') {
+
+		while (*source != '\0') 
+		{
 			*dest = *source;
 			dest++;
 			source++;
