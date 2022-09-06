@@ -3,7 +3,7 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
-		:mString(nullptr)
+		: mString(nullptr)
 		, mLength(0)
 	{
 		if (s != nullptr)
@@ -16,7 +16,7 @@ namespace assignment1
 	}
 
 	MyString::MyString(const MyString& other)
-		:mLength(other.mLength)
+		: mLength(other.mLength)
 		, mString(nullptr)
 	{
 		if (other.mString != nullptr)
