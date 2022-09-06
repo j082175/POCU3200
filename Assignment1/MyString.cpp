@@ -4,7 +4,7 @@ namespace assignment1
 {
 	MyString::MyString(const char* s)
 		:mString(nullptr)
-		,mLength(0)
+		, mLength(0)
 	{
 		if (s != nullptr)
 		{
@@ -17,7 +17,7 @@ namespace assignment1
 
 	MyString::MyString(const MyString& other)
 		:mLength(other.mLength)
-		,mString(nullptr)
+		, mString(nullptr)
 	{
 		if (other.mString != nullptr)
 		{
@@ -479,12 +479,12 @@ namespace assignment1
 	size_t MyString::strCat(char* dest, const char* source) const
 	{
 
-		while (*dest != '\0') 
+		while (*dest != '\0')
 		{
 			dest++;
 		}
 
-		while (*source != '\0') 
+		while (*source != '\0')
 		{
 			*dest = *source;
 			dest++;
