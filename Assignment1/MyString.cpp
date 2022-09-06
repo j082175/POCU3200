@@ -1,4 +1,5 @@
 #include "MyString.h"
+#include <iostream>
 
 namespace assignment1
 {
@@ -52,13 +53,13 @@ namespace assignment1
 			return;
 		}
 
-
 		char* backup = new char[mLength + 1];
 		size_t backupLength = mLength;
 
 		strCpy(backup, mString, mLength);
 
 		delete[] mString;
+
 		mLength += strLen(s);
 		mString = new char[mLength + 1];
 		strCpy(mString, backup, backupLength);
@@ -83,6 +84,7 @@ namespace assignment1
 
 		const char* source = s;
 		const char* dest = mString;
+
 		int index = -1;
 		size_t sourceLength = strLen(source);
 		size_t sourceCount = 0;
@@ -144,9 +146,9 @@ namespace assignment1
 			return -1;
 		}
 
-
 		const char* source = s;
 		const char* dest = mString;
+
 		int index = -1;
 		size_t sourceLength = strLen(source);
 		size_t sourceCount = 0;
@@ -198,10 +200,7 @@ namespace assignment1
 				//return index;
 			}
 
-
-
 		}
-
 		return index;
 	}
 
@@ -212,17 +211,18 @@ namespace assignment1
 			return;
 		}
 
-
 		const char* source = s;
 		const char* str = mString;
-		size_t sourceLength = strLen(s);
 
-		char* dest = new char[mLength + sourceLength + 1];
+		size_t sourceLength = strLen(s);
 		size_t destLength = sourceLength + mLength;
 
-		size_t strCount = 0;
+		char* dest = new char[mLength + sourceLength + 1];
+
 		size_t sourceCount = 0;
+		size_t strCount = 0;
 		size_t destCount = 0;
+
 		bool bStrCheck = true;
 		bool bSourceCheck = true;
 
@@ -302,14 +302,12 @@ namespace assignment1
 			return;
 		}
 
-		size_t moveCount;
+		size_t moveCount = totalLength - mLength;
+
 		char* backupString = new char[mLength + 1];
 		strCpy(backupString, mString, mLength);
 
-		char* newString;
-		moveCount = totalLength - mLength;
-
-		newString = new char[totalLength + 1];
+		char* newString = new char[totalLength + 1];
 
 		for (size_t i = 0; i < moveCount; i++)
 		{
@@ -341,12 +339,8 @@ namespace assignment1
 			return;
 		}
 
-		size_t moveCount;
-
-		char* newString;
-		moveCount = totalLength - mLength;
-
-		newString = new char[totalLength + 1];
+		size_t moveCount = totalLength - mLength;;
+		char* newString = new char[totalLength + 1];
 
 		for (size_t i = 0; i < mLength; i++)
 		{
@@ -381,7 +375,6 @@ namespace assignment1
 			a++;
 			b--;
 		}
-
 	}
 
 	bool MyString::operator==(const MyString& rhs) const
@@ -393,7 +386,6 @@ namespace assignment1
 		{
 			return false;
 		}
-
 
 		for (size_t i = 0; i < mLength; i++)
 		{
@@ -407,7 +399,6 @@ namespace assignment1
 			}
 		}
 
-
 		return true;
 	}
 
@@ -417,7 +408,6 @@ namespace assignment1
 		{
 			return *this;
 		}
-
 
 		delete[] mString;
 		mLength = rhs.mLength;
@@ -440,7 +430,6 @@ namespace assignment1
 			}
 			source++;
 		}
-
 	}
 
 	void MyString::ToUpper()
@@ -456,6 +445,26 @@ namespace assignment1
 			source++;
 		}
 	}
+
+	MyString::MyString(MyString&& other) noexcept
+		: mString(other.mString)
+		, mLength(other.mLength)
+	{
+		other.mString = nullptr;
+		other.mLength = 0;
+	}
+
+	MyString& MyString::operator=(MyString&& other) noexcept
+	{
+		mString = other.mString;
+		mLength = other.mLength;
+
+		other.mString = nullptr;
+		other.mLength = 0;
+
+		return *this;
+	}
+
 	size_t MyString::strLen(const char* s) const
 	{
 		size_t length = 0;
@@ -466,6 +475,7 @@ namespace assignment1
 		}
 		return length;
 	}
+
 	size_t MyString::strCpy(char* dest, const char* source, size_t length) const
 	{
 		for (size_t i = 0; i < length; i++)
@@ -476,6 +486,7 @@ namespace assignment1
 
 		return 1;
 	}
+
 	size_t MyString::strCat(char* dest, const char* source) const
 	{
 

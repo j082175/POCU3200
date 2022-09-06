@@ -26,6 +26,9 @@ namespace assignment1
 		void ToLower();
 		void ToUpper();
 
+		MyString(MyString&& other) noexcept;
+		MyString& operator=(MyString&& other) noexcept;
+
 	private:
 		size_t strLen(const char* s) const;
 		size_t strCpy(char* dest, const char* source, size_t length) const;
