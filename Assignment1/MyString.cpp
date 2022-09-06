@@ -3,23 +3,21 @@
 namespace assignment1
 {
 	MyString::MyString(const char* s)
+		:mString(nullptr)
+		,mLength(0)
 	{
-		if (s == nullptr)
-		{
-			mString = nullptr;
-			mLength = 0;
-		}
-		else
+		if (s != nullptr)
 		{
 			mLength = strLen(s);
 
 			mString = new char[mLength + 1];
 			strCpy(mString, s, mLength);
 		}
-
 	}
 
 	MyString::MyString(const MyString& other)
+		:mLength(other.mLength)
+		,mString(nullptr)
 	{
 		if (other.mString != nullptr)
 		{
@@ -29,11 +27,6 @@ namespace assignment1
 
 			mString = new char[mLength + 1];
 			strCpy(mString, other.mString, mLength);
-		}
-		else
-		{
-			mString = nullptr;
-			mLength = 0;
 		}
 	}
 
@@ -138,8 +131,6 @@ namespace assignment1
 				index = i;
 				return index;
 			}
-
-
 
 		}
 
@@ -468,6 +459,7 @@ namespace assignment1
 	size_t MyString::strLen(const char* s) const
 	{
 		size_t length = 0;
+
 		while (*s++ != '\0')
 		{
 			length++;
