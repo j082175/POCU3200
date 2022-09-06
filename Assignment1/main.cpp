@@ -710,5 +710,5 @@ int main()
 	//cout << s1.GetCString() << endl;
 
 	MyString s2(s1);
-	MyString s3 = s1 + s2;
+	MyString s3 = (s1 + s2);
 }

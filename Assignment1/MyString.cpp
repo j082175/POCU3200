@@ -30,7 +30,11 @@ namespace assignment1
 			mString = new char[mLength + 1];
 			strCpy(mString, other.mString, mLength);
 		}
-
+		else
+		{
+			mString = nullptr;
+			mLength = 0;
+		}
 	}
 
 	MyString::~MyString()
