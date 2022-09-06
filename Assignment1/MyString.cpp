@@ -1,5 +1,4 @@
 #include "MyString.h"
-#include <iostream>
 
 namespace assignment1
 {
@@ -456,6 +455,13 @@ namespace assignment1
 
 	MyString& MyString::operator=(MyString&& other) noexcept
 	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		delete[] mString;
+
 		mString = other.mString;
 		mLength = other.mLength;
 
