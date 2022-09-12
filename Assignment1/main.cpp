@@ -656,7 +656,7 @@ void test7()
 
 	assert(mong == shell);
 	assert(mong.GetLength() == shell.GetLength());
-	//assert(mong.GetCString() != mongOldStr); // 이 어서트 테스트 무시해야 하지 않을까요? 실제로 이 assert테스트는 뭔가 이상해서 생략하고 통과했습니다.
+	assert(mong.GetCString() != mongOldStr); // 이 어서트 테스트 무시해야 하지 않을까요? 실제로 이 assert테스트는 뭔가 이상해서 생략하고 통과했습니다.
 
 	assert(mong.GetCString() != shell.GetCString());
 
