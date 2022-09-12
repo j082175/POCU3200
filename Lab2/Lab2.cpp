@@ -135,7 +135,7 @@ namespace lab2
 		}
 
 		index = 0;
-		float max = 0.f;
+		float max = std::numeric_limits<float>::lowest();
 
 		while (value[index] != std::numeric_limits<float>::max())
 		{
