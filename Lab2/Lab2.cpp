@@ -18,6 +18,7 @@ namespace lab2
 
 			if (in.eof())
 			{
+				count++;
 				break;
 			}
 
@@ -51,11 +52,11 @@ namespace lab2
 		out << std::right;
 		out << std::setw(12) << "oct" <<
 			std::setw(11) << "dec" <<
-			std::setw(10) << "hex" << std::endl;
+			std::setw(9) << "hex" << std::endl;
 
-		out << std::setfill('-') << std::setw(12) << " " <<
+		out << std::setfill('-') << std::setw(13) << " " <<
 			std::setw(11) << " " <<
-			std::setw(10) << "" << std::endl << std::setfill(' ');
+			std::setw(8) << "" << std::endl << std::setfill(' ');
 
 		int index = 0;
 
@@ -63,7 +64,7 @@ namespace lab2
 		{
 			out << std::setw(12) << std::oct << value[index] <<
 				std::setw(11) << std::dec << value[index] <<
-				std::setw(10) << std::hex << std::uppercase << value[index] << std::endl;
+				std::setw(9) << std::hex << std::uppercase << value[index] << std::endl;
 			index++;
 		}
 
@@ -85,6 +86,7 @@ namespace lab2
 
 			if (in.eof())
 			{
+				count++;
 				break;
 			}
 
