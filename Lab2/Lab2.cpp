@@ -16,14 +16,17 @@ namespace lab2
 		{
 			in >> value[count];
 
-			if (in.eof())
-			{
-				count++;
-				break;
-			}
+			//if (in.eof())
+			//{
+			//	break;
+			//}
 
 			if (in.fail())
 			{
+				if (in.eof())
+				{
+					break;
+				}
 				in.clear();
 				in.ignore();
 				continue;
@@ -31,7 +34,7 @@ namespace lab2
 
 			count++;
 
-			if (count >= maxSize)
+			if (count >= maxSize - 1)
 			{
 				int* temp = new int[maxSize * 2];
 				for (size_t i = 0; i < maxSize; i++)
@@ -84,14 +87,18 @@ namespace lab2
 		{
 			in >> value[count];
 
-			if (in.eof())
-			{
-				count++;
-				break;
-			}
+			//if (in.eof())
+			//{
+			//	//count++;
+			//	break;
+			//}
 
 			if (in.fail())
 			{
+				if (in.eof())
+				{
+					break;
+				}
 				in.clear();
 				in.ignore();
 				continue;
@@ -99,7 +106,7 @@ namespace lab2
 
 			count++;
 
-			if (count >= maxSize)
+			if (count >= maxSize - 1)
 			{
 				float* temp = new float[maxSize * 2];
 				for (size_t i = 0; i < maxSize; i++)
@@ -111,6 +118,7 @@ namespace lab2
 				maxSize *= 2;
 				value = temp;
 			}
+
 		}
 
 		value[count] = std::numeric_limits<float>::max();
