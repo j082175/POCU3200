@@ -16,11 +16,6 @@ namespace lab2
 		{
 			in >> value[count];
 
-			//if (in.eof())
-			//{
-			//	break;
-			//}
-
 			if (in.fail())
 			{
 				if (in.eof())
@@ -86,12 +81,6 @@ namespace lab2
 		while (!in.eof())
 		{
 			in >> value[count];
-
-			//if (in.eof())
-			//{
-			//	//count++;
-			//	break;
-			//}
 
 			if (in.fail())
 			{
