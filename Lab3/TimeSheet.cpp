@@ -1,6 +1,7 @@
 #include "TimeSheet.h"
 #include <cstring>
 #include <cmath>
+static constexpr int MAX_SIZE = 128;
 
 namespace lab3
 {
@@ -78,10 +79,12 @@ namespace lab3
 		}
 
 		// 분산구하기
-		float* backupArr = new float[mEntryCount];
+		//float* backupArr = new float[mEntryCount];
+		float backupArr[MAX_SIZE] = { 0.f, };
+
 		for (size_t i = 0; i < mEntryCount; i++)
 		{
-			backupArr[i] = mSheetArr[i];
+			backupArr[i] = static_cast<float>(mSheetArr[i]);
 		}
 
 		for (size_t i = 0; i < mEntryCount; i++)
@@ -103,7 +106,7 @@ namespace lab3
 
 		float standardDeviation = std::sqrtf(variance);
 
-		delete[] backupArr;
+		//delete[] backupArr;
 
 		return standardDeviation;
 	}
