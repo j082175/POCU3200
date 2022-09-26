@@ -9,7 +9,7 @@ namespace lab4
 	{
 		for (size_t i = 0; i < MAX_SIZE; i++)
 		{
-			mP[i] = new Point;
+			mP[i] = nullptr;
 		}
 	}
 
@@ -29,15 +29,14 @@ namespace lab4
 		{
 			delete mP[i];
 		}
-
-		//delete[] mP;
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
 		if (mElementSize < MAX_SIZE)
 		{
-			mP[mElementSize++] = new Point(x, y);
+			mP[mElementSize] = new Point(x, y);
+			mElementSize++;
 			return true;
 		}
 
@@ -48,7 +47,8 @@ namespace lab4
 	{
 		if (mElementSize < MAX_SIZE)
 		{
-			mP[mElementSize++] = new Point(*point);
+			mP[mElementSize] = new Point(*point);
+			mElementSize++;
 			return true;
 		}
 
@@ -132,11 +132,16 @@ namespace lab4
 			return *this;
 		}
 
+		for (size_t i = 0; i < mElementSize; i++)
+		{
+			delete mP[i];
+		}
+
 		mElementSize = other.mElementSize;
 
 		for (size_t i = 0; i < mElementSize; i++)
 		{
-			mP[i] = other.mP[i];
+			mP[i] = new Point(*other.mP[i]);
 		}
 
 		return *this;
