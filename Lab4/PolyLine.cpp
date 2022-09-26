@@ -45,6 +45,11 @@ namespace lab4
 
 	bool PolyLine::AddPoint(const Point* point)
 	{
+		if (point == nullptr)
+		{
+			return false;
+		}
+
 		if (mElementSize < MAX_SIZE)
 		{
 			mP[mElementSize] = new Point(*point);
@@ -62,6 +67,8 @@ namespace lab4
 			return false;
 		}
 
+		delete mP[i];
+
 		for (size_t j = i; j < mElementSize - 1; j++)
 		{
 			mP[j] = mP[j + 1];
@@ -73,7 +80,7 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
-		if (mElementSize < 1)
+		if (mElementSize < 1 || outMin == nullptr || outMax == nullptr)
 		{
 			return false;
 		}
