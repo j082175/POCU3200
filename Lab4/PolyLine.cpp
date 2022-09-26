@@ -1,12 +1,16 @@
 #include <cstring>
 #include <cmath>
 #include "PolyLine.h"
-
+#include <iostream>
 namespace lab4
 {
 	PolyLine::PolyLine()
 		: mElementSize(0)
 	{
+		for (size_t i = 0; i < MAX_SIZE; i++)
+		{
+			mP[i] = new Point;
+		}
 	}
 
 	PolyLine::PolyLine(const PolyLine& other)
@@ -14,19 +18,26 @@ namespace lab4
 	{
 		for (size_t i = 0; i < mElementSize; i++)
 		{
-			mP[i] = other.mP[i];
+			mP[i] = new Point(*other.mP[i]);
 		}
 	}
 
 	PolyLine::~PolyLine()
 	{
+		std::cout << "destructor" << std::endl;
+		for (size_t i = 0; i < mElementSize; i++)
+		{
+			delete mP[i];
+		}
+
+		//delete[] mP;
 	}
 
 	bool PolyLine::AddPoint(float x, float y)
 	{
 		if (mElementSize < MAX_SIZE)
 		{
-			mP[mElementSize++] = Point(x, y);
+			mP[mElementSize++] = new Point(x, y);
 			return true;
 		}
 
@@ -37,8 +48,7 @@ namespace lab4
 	{
 		if (mElementSize < MAX_SIZE)
 		{
-			mP[mElementSize++] = *point;
-			delete point;
+			mP[mElementSize++] = new Point(*point);
 			return true;
 		}
 
@@ -63,8 +73,7 @@ namespace lab4
 
 	bool PolyLine::TryGetMinBoundingRectangle(Point* outMin, Point* outMax) const
 	{
-		// 점이 최소 2개이상이어야함
-		if (mElementSize < 2)
+		if (mElementSize < 1)
 		{
 			return false;
 		}
@@ -74,14 +83,14 @@ namespace lab4
 
 		for (size_t i = 0; i < mElementSize; i++)
 		{
-			if (mP[i].GetX() > xValue)
+			if (mP[i]->GetX() > xValue)
 			{
-				xValue = mP[i].GetX();
+				xValue = mP[i]->GetX();
 			}
 
-			if (mP[i].GetY() > yValue)
+			if (mP[i]->GetY() > yValue)
 			{
-				yValue = mP[i].GetY();
+				yValue = mP[i]->GetY();
 			}
 		}
 
@@ -90,14 +99,14 @@ namespace lab4
 
 		for (size_t i = 0; i < mElementSize; i++)
 		{
-			if (mP[i].GetX() < xValue)
+			if (mP[i]->GetX() < xValue)
 			{
-				xValue = mP[i].GetX();
+				xValue = mP[i]->GetX();
 			}
 
-			if (mP[i].GetY() < yValue)
+			if (mP[i]->GetY() < yValue)
 			{
-				yValue = mP[i].GetY();
+				yValue = mP[i]->GetY();
 			}
 		}
 
@@ -114,7 +123,7 @@ namespace lab4
 			return nullptr;
 		}
 
-		return &mP[i];
+		return mP[i];
 	}
 	PolyLine& PolyLine::operator=(const PolyLine& other)
 	{

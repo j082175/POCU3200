@@ -25,7 +25,8 @@ namespace lab4
 			MAX_SIZE = 10
 		};
 
-		Point mP[10];
+		const Point* mP[MAX_SIZE];
+
 		size_t mElementSize;
 	};
 }
