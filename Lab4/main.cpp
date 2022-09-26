@@ -60,9 +60,9 @@ void PolyLineAddPointTest()
 {
 	cout << "- PolyLine::AddPoint() -" << endl;
 	PolyLine pl;
-
+	Point* po = new Point(2.f, 3.f);
 	assert(pl.AddPoint(1.0f, 2.0f) == true);
-	assert(pl.AddPoint(new Point(2.0f, 3.0f)) == true);
+	assert(pl.AddPoint(po) == true);
 	assert(pl.AddPoint(2.2f, 1.9f) == true);  // pl은 [1.0f, 2.0f], [2.0f, 3.0f], [2.2f, 1.9f]
 	assert(pl.AddPoint(5.2f, 8.9f) == true);
 	assert(pl.AddPoint(2.2f, 1.4f) == true);
@@ -78,6 +78,10 @@ void PolyLineAddPointTest()
 	AddPoint 매개변수로 입력된 Point 개체를 다른 PolyLine 개체에 재사용하거나
 	스택 메모리에 할당을 하면, 소멸자 오류가 발생한다.
 	*/
+	//PolyLine test;
+	//test.AddPoint(po);
+
+
 	PolyLine pl2;
 	Point* p1 = new Point(2.2f, 3.3f);
 	assert(pl2.AddPoint(1.1f, 2.2f) == true);

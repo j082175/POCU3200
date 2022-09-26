@@ -1,7 +1,7 @@
 #include <cstring>
 #include <cmath>
 #include "PolyLine.h"
-#include <iostream>
+
 namespace lab4
 {
 	PolyLine::PolyLine()
@@ -24,7 +24,6 @@ namespace lab4
 
 	PolyLine::~PolyLine()
 	{
-		std::cout << "destructor" << std::endl;
 		for (size_t i = 0; i < mElementSize; i++)
 		{
 			delete mP[i];
@@ -52,7 +51,7 @@ namespace lab4
 
 		if (mElementSize < MAX_SIZE)
 		{
-			mP[mElementSize] = new Point(*point);
+			mP[mElementSize] = point;
 			mElementSize++;
 			return true;
 		}
