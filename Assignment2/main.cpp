@@ -258,38 +258,31 @@ void test3()
 	Airplane a(10);
 	for (size_t i = 0; i < 10; i++)
 	{
-		str = i + 'a';
+		str = (char)i + 'a';
 		a.AddPassenger(new Person(str.c_str(), i));
 	}
 
 	Boat b(20);
 	for (size_t i = 0; i < 20; i++)
 	{
-		str = i + 'A';
+		str = (char)i + 'A';
 		b.AddPassenger(new Person(str.c_str(), i));
 	}
 
-
-	Airplane a2(a);
-
 	Boatplane bp = b + a;
-	//Boatplane bp2 = a + b;
-
-	Trailer* t1 = new Trailer(80);
-	Sedan s;
-	s.AddPassenger(new Person("a", 1));
-	s.AddTrailer(t1);
-
-	s.GetDriveSpeed();
+	
 }
 
 int main()
 {
-	test1();
+	//test1();
 	//TestTravel();
 	//test2();
 
-	//test3();
+	test3();
+
+	DeusExMachina* d = DeusExMachina::GetInstance();
+	d->GetFurthestTravelled();
 
 	return 0;
 }

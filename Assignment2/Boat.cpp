@@ -23,10 +23,25 @@ namespace assignment2
 		unsigned int thisCount = this->GetPassengersCount();
 		unsigned int planeCount = plane.GetPassengersCount();
 
-		for (size_t i = 0; i < thisCount; i++)
-		{
-			bp.AddPassenger(new Person(*this->GetPassenger(i)));
-		}
+		//for (size_t i = 0; i < thisCount; i++)
+		//{
+		//	bp.AddPassenger(new Person(*this->GetPassenger(i)));
+		//}
+
+		//for (size_t i = 0; i < planeCount; i++)
+		//{
+		//	bp.AddPassenger(new Person(*plane.GetPassenger(i)));
+		//}
+
+		//for (size_t i = 0; i < thisCount; i++)
+		//{
+		//	this->RemovePassenger(thisCount -  1 - i);
+		//}
+
+		//for (size_t i = 0; i < planeCount; i++)
+		//{
+		//	plane.RemovePassenger(planeCount - 1 - i);
+		//}
 
 		for (size_t i = 0; i < planeCount; i++)
 		{
@@ -35,7 +50,12 @@ namespace assignment2
 
 		for (size_t i = 0; i < thisCount; i++)
 		{
-			this->RemovePassenger(thisCount -  1 - i);
+			bp.AddPassenger(new Person(*this->GetPassenger(i)));
+		}
+
+		for (size_t i = 0; i < thisCount; i++)
+		{
+			this->RemovePassenger(thisCount - 1 - i);
 		}
 
 		for (size_t i = 0; i < planeCount; i++)
