@@ -1,5 +1,5 @@
 #include "DeusExMachina.h"
-//#include <iostream>
+#include <iostream>
 
 namespace assignment2
 {
@@ -20,7 +20,7 @@ namespace assignment2
 	}
 
 	DeusExMachina::DeusExMachina()
-		:mVehicleCount(0)
+		: mVehicleCount(0)
 	{
 		for (size_t i = 0; i < MAX_SIZE; i++)
 		{
@@ -50,7 +50,7 @@ namespace assignment2
 
 		mFurthestIndex = max;
 
-		//std::cout << std::endl;
+		std::cout << std::endl;
 	}
 
 	bool DeusExMachina::AddVehicle(Vehicle* vehicle)

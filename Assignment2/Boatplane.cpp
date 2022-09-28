@@ -67,7 +67,7 @@ namespace assignment2
 	{
 		if (mMoveTime != MAX_MOVE_TIME)
 		{
-			//cout << "boatplane ";
+			//Debugger::Debug("Boatplane");
 			++mMoveTime;
 			return std::max(GetFlySpeed(), GetSailSpeed());
 		}

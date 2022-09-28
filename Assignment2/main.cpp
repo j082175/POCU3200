@@ -18,6 +18,19 @@
 using namespace assignment2;
 using namespace std;
 
+void TestTravel()
+{
+	Airplane* airplane = new Airplane(0);
+	Boat* boat = new Boat(0);
+	DeusExMachina* deusExMachina = DeusExMachina::GetInstance();
+
+	deusExMachina->AddVehicle(airplane);
+	deusExMachina->AddVehicle(boat);
+	deusExMachina->Travel();
+	
+	assert(deusExMachina->GetFurthestTravelled() == airplane);
+}
+
 void test1()
 {
 	const char* MAX_SPEED_LABLE = "Max Speed: ";
@@ -43,7 +56,7 @@ void test1()
 	toAdd = NULL;
 	assert(air->AddPassenger(toAdd) == false); // 빌드봇은 이런 테스트 안함
 
-	delete air;
+	//delete air;
 
 	Airplane dockingTest1(10);
 	Boat dockingTest2(10);
@@ -139,10 +152,8 @@ void test1()
 
 }
 
-int main()
+void test2()
 {
-	//test1();
-
 	Person* p = new Person("Bob", 85);
 
 	assert(p->GetName() == std::string("Bob"));
@@ -239,6 +250,18 @@ int main()
 	deusExMachina1->Travel(); // 트레일러 달린 Sedan만 이동
 
 	assert(deusExMachina1->GetFurthestTravelled() == boat);
+}
+
+int main()
+{
+	//test1();
+	//TestTravel();
+	//test2();
+
+	Airplane a(5);
+	Boat b(20);
+
+	Boatplane bp = a + b;
 
 	return 0;
 }

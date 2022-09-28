@@ -1,9 +1,7 @@
 #pragma once
 
-class Vehicle;
-
 class Debugger
 {
 public:
-	static void Debug(Vehicle* vehicle);
+	static void Debug(const char* name);
 };

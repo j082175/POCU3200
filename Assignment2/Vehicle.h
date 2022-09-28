@@ -11,6 +11,8 @@ namespace assignment2
 	public:
 		Vehicle(unsigned int maxPassengersCount);
 		~Vehicle();
+		Vehicle(const Vehicle& other);
+		Vehicle& operator=(const Vehicle& other);
 
 		virtual unsigned int GetMaxSpeed() const = 0;
 

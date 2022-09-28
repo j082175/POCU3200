@@ -19,12 +19,12 @@ namespace assignment2
 	{
 	}
 
-    unsigned int Motorcycle::GetMaxSpeed() const
-    {
+	unsigned int Motorcycle::GetMaxSpeed() const
+	{
 		return GetDriveSpeed();
-    }
+	}
 
-    unsigned int Motorcycle::GetDriveSpeed() const
+	unsigned int Motorcycle::GetDriveSpeed() const
 	{
 		double totalWeight = 0;
 
@@ -46,7 +46,7 @@ namespace assignment2
 
 		if (mMoveTime != MAX_MOVE_TIME)
 		{
-			//cout << "motorcycle ";
+			//Debugger::Debug("Motorcycle");
 			++mMoveTime;
 			return GetDriveSpeed();
 		}

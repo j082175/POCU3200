@@ -17,6 +17,7 @@ namespace assignment2
 
 	Sedan::~Sedan()
 	{
+		delete mT;
 	}
 
 	bool Sedan::AddTrailer(const Trailer* trailer)
@@ -43,12 +44,12 @@ namespace assignment2
 		return true;
 	}
 
-    unsigned int Sedan::GetMaxSpeed() const
-    {
+	unsigned int Sedan::GetMaxSpeed() const
+	{
 		return GetDriveSpeed();
-    }
+	}
 
-    unsigned int Sedan::GetDriveSpeed() const
+	unsigned int Sedan::GetDriveSpeed() const
 	{
 		unsigned int totalWeight = 0;
 		unsigned int speed = 0;
@@ -98,7 +99,7 @@ namespace assignment2
 	{
 		if (mMoveTime != maxMoveTime)
 		{
-			//cout << "sedan ";
+			//Debugger::Debug("Sedan");
 			++mMoveTime;
 			return GetDriveSpeed();
 		}
