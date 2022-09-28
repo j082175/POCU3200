@@ -258,13 +258,22 @@ int main()
 	//TestTravel();
 	//test2();
 
-	Airplane a(0);
-	Boat b(0);
+	std::string str;
+	Airplane a(10);
+	for (size_t i = 0; i < 10; i++)
+	{
+		str = i + 'a';
+		a.AddPassenger(new Person(str.c_str(), i));
+	}
 
-	Boatplane bp = a + b;
+	Boat b(20);
+	for (size_t i = 0; i < 20; i++)
+	{
+		str = i + 'A';
+		b.AddPassenger(new Person(str.c_str(), i));
+	}
 
-	Sedan s;
-	s.RemoveTrailer();
+	Boatplane bp = b + a;
 
 	return 0;
 }
