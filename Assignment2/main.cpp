@@ -258,13 +258,6 @@ int main()
 	//TestTravel();
 	//test2();
 
-	Trailer* t1 = new Trailer(55);
-	Trailer* t2 = new Trailer(33);
-	Sedan s;
-
-	s.AddTrailer(t1);
-	s.AddTrailer(t2);
-
 	std::string str;
 	Airplane a(10);
 	for (size_t i = 0; i < 10; i++)

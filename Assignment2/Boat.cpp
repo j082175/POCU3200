@@ -4,10 +4,6 @@
 
 namespace assignment2
 {
-	static unsigned int mMoveTime = 0;
-	static unsigned int mRestTime = 0;
-	static const unsigned int MAX_MOVE_TIME = 2;
-	static const unsigned int MAX_REST_TIME = 1;
 
 	Boat::Boat(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
@@ -39,12 +35,12 @@ namespace assignment2
 
 		for (size_t i = 0; i < thisCount; i++)
 		{
-			this->RemovePassenger(0);
+			this->RemovePassenger(thisCount -  1 - i);
 		}
 
 		for (size_t i = 0; i < planeCount; i++)
 		{
-			plane.RemovePassenger(0);
+			plane.RemovePassenger(planeCount - 1 - i);
 		}
 
 		return bp;
@@ -71,6 +67,9 @@ namespace assignment2
 
 	unsigned int Boat::TravelSpeed()
 	{
+		const unsigned int MAX_MOVE_TIME = 2;
+		const unsigned int MAX_REST_TIME = 1;
+
 		if (mMoveTime != MAX_MOVE_TIME)
 		{
 			//Debugger::Debug("Boat");

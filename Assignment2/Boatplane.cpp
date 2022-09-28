@@ -3,10 +3,6 @@
 
 namespace assignment2
 {
-	static unsigned int mMoveTime = 0;
-	static unsigned int mRestTime = 0;
-	static const unsigned int MAX_MOVE_TIME = 1;
-	static const unsigned int MAX_REST_TIME = 3;
 
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
@@ -56,6 +52,9 @@ namespace assignment2
 
 	unsigned int Boatplane::TravelSpeed()
 	{
+		const unsigned int MAX_MOVE_TIME = 1;
+		const unsigned int MAX_REST_TIME = 3;
+
 		if (mMoveTime != MAX_MOVE_TIME)
 		{
 			//Debugger::Debug("Boatplane");

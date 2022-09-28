@@ -5,9 +5,6 @@ namespace assignment2
 {
 	static const unsigned int MAX_NUM = 2;
 
-	static unsigned int mMoveTime = 0;
-	static unsigned int mRestTime = 0;
-
 	Motorcycle::Motorcycle()
 		: Vehicle(MAX_NUM)
 		, mMoveTime(0)

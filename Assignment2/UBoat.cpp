@@ -5,9 +5,6 @@ namespace assignment2
 {
 	static const unsigned int MAX_NUM = 50;
 
-	static unsigned int mMoveTime = 0;
-	static unsigned int mRestTime = 0;
-
 	UBoat::UBoat()
 		: Vehicle(MAX_NUM)
 		, mMoveTime(0)

@@ -6,9 +6,6 @@ namespace assignment2
 {
 	static const unsigned int MAX_NUM = 4;
 
-	static unsigned int mMoveTime = 0;
-	static unsigned int mRestTime = 0;
-
 	Sedan::Sedan()
 		: Vehicle(MAX_NUM)
 		, mT(nullptr)
@@ -60,6 +57,11 @@ namespace assignment2
 		for (size_t i = 0; i < GetPassengersCount(); i++)
 		{
 			totalWeight += GetPassenger(i)->GetWeight();
+		}
+
+		if (mT != nullptr)
+		{
+			totalWeight += mT->GetWeight();
 		}
 
 		if (totalWeight <= 80)

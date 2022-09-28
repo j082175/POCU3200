@@ -1,6 +1,5 @@
 #include "Airplane.h"
 #include "Boat.h"
-
 #include <cmath>
 
 namespace assignment2
@@ -36,12 +35,12 @@ namespace assignment2
 
 		for (size_t i = 0; i < thisCount; i++)
 		{
-			this->RemovePassenger(0);
+			this->RemovePassenger(thisCount - 1 - i);
 		}
 
 		for (size_t i = 0; i < boatCount; i++)
 		{
-			boat.RemovePassenger(0);
+			boat.RemovePassenger(boatCount - 1 - i);
 		}
 
 		return bp;
