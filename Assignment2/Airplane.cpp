@@ -22,7 +22,20 @@ namespace assignment2
 
 		unsigned int thisCount = this->GetPassengersCount();
 		unsigned int boatCount = boat.GetPassengersCount();
-		
+
+		//for (size_t i = 0; i < thisCount; i++)
+		//{
+		//	bp.AddPassenger(this->GetPassenger(i));
+		//}
+
+		//for (size_t i = 0; i < boatCount; i++)
+		//{
+		//	bp.AddPassenger(boat.GetPassenger(i));
+		//}
+
+		//SetMemoryNullNoDelete();
+		//boat.SetMemoryNullNoDelete();
+		// 
 		for (size_t i = 0; i < thisCount; i++)
 		{
 			bp.AddPassenger(new Person(*this->GetPassenger(i)));

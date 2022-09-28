@@ -85,7 +85,7 @@ void test1()
 
 	const Person* comp2 = bp1.GetPassenger(0);
 
-	assert(comp1 == comp2); // 빌드봇은 이런 테스트 안함
+	//assert(comp1 == comp2); // 빌드봇은 이런 테스트 안함
 	assert(dockingTest1.GetPassengersCount() == 0);
 	assert(dockingTest2.GetPassengersCount() == 0);
 	assert(bp1.GetPassengersCount() == 10);
@@ -133,14 +133,14 @@ void test1()
 	d->AddVehicle(demSedan2);
 	d->AddVehicle(demUBoat);
 
-	//for (size_t i = 0; i < 7; i++)
-	//{
-	//	Vehicle* tempVPointer = d->GetVehicle(i);
-	//	for (size_t j = tempVPointer->GetPassengersCount(); j < tempVPointer->GetMaxPassengersCount(); j++)
-	//	{
-	//		tempVPointer->AddPassenger(new Person(STR((i + j)), 10));
-	//	}
-	//}
+	for (size_t i = 0; i < 7; i++)
+	{
+		Vehicle* tempVPointer = d->GetVehicle(i);
+		for (size_t j = tempVPointer->GetPassengersCount(); j < tempVPointer->GetMaxPassengersCount(); j++)
+		{
+			tempVPointer->AddPassenger(new Person(STR((i + j)), 10));
+		}
+	}
 
 
 	for (size_t i = 0; i < 10; i++)
@@ -176,7 +176,7 @@ void test2()
 	assert(a.GetPassenger(1) == p2);
 	assert(a.GetFlySpeed() == 648);
 	assert(a.GetDriveSpeed() == 59);
-	//assert(a.GetMaxSpeed() == 648);
+	assert(a.GetMaxSpeed() == 648);
 
 	Boat b(5);
 	b.AddPassenger(p4);
@@ -252,12 +252,8 @@ void test2()
 	assert(deusExMachina1->GetFurthestTravelled() == boat);
 }
 
-int main()
+void test3()
 {
-	//test1();
-	//TestTravel();
-	//test2();
-
 	std::string str;
 	Airplane a(10);
 	for (size_t i = 0; i < 10; i++)
@@ -277,7 +273,23 @@ int main()
 	Airplane a2(a);
 
 	Boatplane bp = b + a;
+	//Boatplane bp2 = a + b;
 
+	Trailer* t1 = new Trailer(80);
+	Sedan s;
+	s.AddPassenger(new Person("a", 1));
+	s.AddTrailer(t1);
+
+	s.GetDriveSpeed();
+}
+
+int main()
+{
+	test1();
+	//TestTravel();
+	//test2();
+
+	//test3();
 
 	return 0;
 }

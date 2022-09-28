@@ -66,6 +66,15 @@ namespace assignment2
 			return false;
 		}
 
+		// person 중복검사
+		for (size_t i = 0; i < mPassengersCount; i++)
+		{
+			if (mPassengersArr[i] == person)
+			{
+				return false;
+			}
+		}
+
 		mPassengersArr[mPassengersCount] = person;
 		mPassengersCount++;
 
@@ -101,6 +110,11 @@ namespace assignment2
 	{
 		return mMaxPassengersCount;
 	}
+
+	//void Vehicle::SetMemoryNullNoDelete()
+	//{
+	//	mPassengersCount = 0;
+	//}
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{

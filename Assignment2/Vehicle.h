@@ -2,15 +2,13 @@
 
 #include "Person.h"
 
-//#include "Debugger.h"
-
 namespace assignment2
 {
 	class Vehicle
 	{
 	public:
 		Vehicle(unsigned int maxPassengersCount);
-		~Vehicle();
+		virtual ~Vehicle();
 		Vehicle(const Vehicle& other);
 		Vehicle& operator=(const Vehicle& other);
 
@@ -23,6 +21,9 @@ namespace assignment2
 		unsigned int GetMaxPassengersCount() const;
 
 		virtual unsigned int TravelSpeed() = 0;
+
+
+		//void SetMemoryNullNoDelete();
 
 	private:
 		enum

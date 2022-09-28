@@ -20,6 +20,8 @@ namespace assignment2
 
 		~DeusExMachina();
 
+		Vehicle* GetVehicle(unsigned int index) const;
+
 	private:
 		//static constexpr unsigned int MAX_SIZE = 10;
 
