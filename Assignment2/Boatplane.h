@@ -9,7 +9,6 @@ namespace assignment2
 	{
 	public:
 		Boatplane(unsigned int maxPassengersCount);
-		Boatplane(const Boatplane& other);
 		~Boatplane();
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetFlySpeed() const;

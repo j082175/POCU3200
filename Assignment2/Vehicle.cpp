@@ -30,11 +30,6 @@ namespace assignment2
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
 	{
-		for (size_t i = 0; i < MAX_SIZE; i++)
-		{
-			delete mPassengersArr[i];
-		}
-
 		for (size_t i = 0; i < mPassengersCount; i++)
 		{
 			mPassengersArr[i] = new Person(*other.GetPassenger(i));
@@ -48,13 +43,13 @@ namespace assignment2
 			return *this;
 		}
 
-		mMaxPassengersCount = other.mMaxPassengersCount;
-		mPassengersCount = other.mPassengersCount;
-
-		for (size_t i = 0; i < MAX_SIZE; i++)
+		for (size_t i = 0; i < mPassengersCount; i++)
 		{
 			delete mPassengersArr[i];
 		}
+
+		mMaxPassengersCount = other.mMaxPassengersCount;
+		mPassengersCount = other.mPassengersCount;
 
 		for (size_t i = 0; i < mPassengersCount; i++)
 		{

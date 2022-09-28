@@ -13,7 +13,6 @@ namespace assignment2
 	{
 	public:
 		Airplane(unsigned int maxPassengersCount);
-		Airplane(const Airplane& other);
 		~Airplane();
 
 		Boatplane operator+(Boat& boat);

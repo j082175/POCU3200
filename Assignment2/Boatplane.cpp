@@ -15,17 +15,6 @@ namespace assignment2
 	{
 	}
 
-	Boatplane::Boatplane(const Boatplane& other)
-		: Vehicle(other.GetMaxPassengersCount())
-		, mMoveTime(0)
-		, mRestTime(0)
-	{
-		for (size_t i = 0; i < other.GetPassengersCount(); i++)
-		{
-			this->AddPassenger(new Person(*other.GetPassenger(i)));
-		}
-	}
-
 	Boatplane::~Boatplane()
 	{
 	}
