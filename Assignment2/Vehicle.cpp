@@ -30,10 +30,18 @@ namespace assignment2
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
 	{
+		// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
+		for (size_t i = 0; i < MAX_SIZE; i++)
+		{
+			mPassengersArr[i] = nullptr;
+		}
+
 		for (size_t i = 0; i < mPassengersCount; i++)
 		{
 			mPassengersArr[i] = new Person(*other.GetPassenger(i));
 		}
+
+
 	}
 
 	Vehicle& Vehicle::operator=(const Vehicle& other)
@@ -55,6 +63,44 @@ namespace assignment2
 		{
 			mPassengersArr[i] = new Person(*other.GetPassenger(i));
 		}
+
+		return *this;
+	}
+
+	Vehicle::Vehicle(Vehicle&& other) noexcept
+		: mMaxPassengersCount(other.mMaxPassengersCount)
+		, mPassengersCount(other.mPassengersCount)
+	{
+		for (size_t i = 0; i < mPassengersCount; i++)
+		{
+			mPassengersArr[i] = other.mPassengersArr[i];
+			delete other.mPassengersArr[i];
+		}
+
+		other.mPassengersCount = 0;
+	}
+
+	Vehicle& Vehicle::operator=(Vehicle&& other) noexcept
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		for (size_t i = 0; i < mPassengersCount; i++)
+		{
+			delete mPassengersArr[i];
+		}
+
+		mPassengersCount = other.mPassengersCount;
+
+		for (size_t i = 0; i < mPassengersCount; i++)
+		{
+			mPassengersArr[i] = other.mPassengersArr[i];
+			delete other.mPassengersArr[i];
+		}
+
+		other.mPassengersCount = 0;
 
 		return *this;
 	}

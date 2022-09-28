@@ -12,6 +12,9 @@ namespace assignment2
 		Vehicle(const Vehicle& other);
 		Vehicle& operator=(const Vehicle& other);
 
+		Vehicle(Vehicle&& other) noexcept;
+		Vehicle& operator=(Vehicle&& other) noexcept;
+
 		virtual unsigned int GetMaxSpeed() const = 0;
 
 		bool AddPassenger(const Person* person);
@@ -22,7 +25,7 @@ namespace assignment2
 
 		virtual unsigned int TravelSpeed() = 0;
 
-
+		
 		//void SetMemoryNullNoDelete();
 
 	private:
