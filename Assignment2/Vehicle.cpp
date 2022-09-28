@@ -4,15 +4,20 @@ namespace assignment2
 {
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
 		: mMaxPassengersCount(maxPassengersCount)
-		, mPersonCount(0)
+		, mPassengersCount(0)
 	{
+		// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
+		for (size_t i = 0; i < MAX_SIZE; i++)
+		{
+			mPassengersArr[i] = nullptr;
+		}
 	}
 
 	Vehicle::~Vehicle()
 	{
-		for (size_t i = 0; i < mPersonCount; i++)
+		for (size_t i = 0; i < mPassengersCount; i++)
 		{
-			delete mPersonArr[i];
+			delete mPassengersArr[i];
 		}
 	}
 
@@ -23,32 +28,35 @@ namespace assignment2
 			return false;
 		}
 
-		mPersonArr[mPersonCount] = person;
-		mPersonCount++;
+		mPassengersArr[mPassengersCount] = person;
+		mPassengersCount++;
 
 		return true;
 	}
 
 	bool Vehicle::RemovePassenger(unsigned int i)
 	{
-		if (mPersonCount <= i)
+		if (mPassengersCount <= i)
 		{
 			return false;
 		}
 
-		delete mPersonArr[i];
+		delete mPassengersArr[i];
 
-		for (size_t j = i; j < mPersonCount - 1; j++)
+		for (size_t j = i; j < mPassengersCount - 1; j++)
 		{
-			mPersonArr[j] = mPersonArr[j + 1];
+			mPassengersArr[j] = mPassengersArr[j + 1];
 		}
+
+		mPassengersCount--;
+		mPassengersArr[mPassengersCount] = nullptr;
 
 		return true;
 	}
 
 	unsigned int Vehicle::GetPassengersCount() const
 	{
-		return mPersonCount;
+		return mPassengersCount;
 	}
 
 	unsigned int Vehicle::GetMaxPassengersCount() const
@@ -58,11 +66,11 @@ namespace assignment2
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{
-		if (mPersonCount <= i)
+		if (mPassengersCount <= i)
 		{
 			return nullptr;
 		}
 
-		return mPersonArr[i];
+		return mPassengersArr[i];
 	}
 }

@@ -1,14 +1,25 @@
 #include "Airplane.h"
 #include "Boat.h"
-#include "Boatplane.h"
 
 #include <cmath>
 
 namespace assignment2
 {
+
 	Airplane::Airplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
+		, mMoveTime(0)
+		, mRestTime(0)
 	{
+	}
+
+	Airplane::Airplane(const Airplane& other)
+		: Vehicle(other.GetMaxPassengersCount())
+	{
+		for (size_t i = 0; i < other.GetPassengersCount(); i++)
+		{
+			this->AddPassenger(new Person(*other.GetPassenger(i)));
+		}
 	}
 
 	Airplane::~Airplane()
@@ -17,33 +28,91 @@ namespace assignment2
 
 	Boatplane Airplane::operator+(Boat& boat)
 	{
-		Boatplane bp(0);
+		Boatplane bp(this->GetMaxPassengersCount() + boat.GetMaxPassengersCount());
+
+		unsigned int thisCount = this->GetPassengersCount();
+		unsigned int boatCount = boat.GetPassengersCount();
+		
+		for (size_t i = 0; i < thisCount; i++)
+		{
+			bp.AddPassenger(new Person(*this->GetPassenger(i)));
+		}
+
+		for (size_t i = 0; i < boatCount; i++)
+		{
+			bp.AddPassenger(new Person(*boat.GetPassenger(i)));
+		}
+
+		for (size_t i = 0; i < thisCount; i++)
+		{
+			this->RemovePassenger(0);
+		}
+
+		for (size_t i = 0; i < boatCount; i++)
+		{
+			boat.RemovePassenger(0);
+		}
+
 		return bp;
 	}
 
 	unsigned int Airplane::GetMaxSpeed() const
-	{
-		return 0;
+	{	
+		return std::max(GetFlySpeed(), GetDriveSpeed());
 	}
 
 	unsigned int Airplane::GetFlySpeed() const
 	{
-		return 0;
+		const double e = 2.718281828459045235360287471352;
+
+		double totalWeight = 0;
+
+		for (size_t i = 0; i < GetPassengersCount(); i++)
+		{
+			totalWeight += GetPassenger(i)->GetWeight();
+		}
+		
+		double speed = 200 * std::pow(e, ((-totalWeight + 800) / 500)); // 648
+
+		return static_cast<unsigned int>(std::round(speed));
 	}
 
 	unsigned int Airplane::GetDriveSpeed() const
 	{
 		const double e = 2.718281828459045235360287471352;
 
-		unsigned int totalWeight = 0;
+		double totalWeight = 0;
 
-		for (size_t i = 0; i < mPersonCount; i++)
+		for (size_t i = 0; i < GetPassengersCount(); i++)
 		{
-			totalWeight += mPersonArr[i]->GetWeight();
+			totalWeight += GetPassenger(i)->GetWeight();
 		}
 
-		double speed = 4 * std::pow(e, (-static_cast<int>(totalWeight) + 400) / 70);
+		double speed = 4 * std::pow(e, (-totalWeight + 400) / 70);
 
 		return static_cast<unsigned int>(std::round(speed));
+	}
+
+	unsigned int Airplane::TravelSpeed()
+	{
+		const unsigned int MAX_MOVE_TIME = 1;
+		const unsigned int MAX_REST_TIME = 3;
+
+		if (mMoveTime != MAX_MOVE_TIME)
+		{
+			++mMoveTime;
+			cout << "air ";
+			return std::max(GetFlySpeed(), GetDriveSpeed());
+		}
+
+		++mRestTime;
+
+		if (mRestTime == MAX_REST_TIME)
+		{
+			mMoveTime = 0;
+			mRestTime = 0;
+		}
+
+		return 0;
 	}
 }

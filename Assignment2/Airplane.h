@@ -13,6 +13,7 @@ namespace assignment2
 	{
 	public:
 		Airplane(unsigned int maxPassengersCount);
+		Airplane(const Airplane& other);
 		~Airplane();
 
 		Boatplane operator+(Boat& boat);
@@ -20,5 +21,11 @@ namespace assignment2
 		unsigned int GetMaxSpeed() const;
 		unsigned int GetFlySpeed() const;
 		unsigned int GetDriveSpeed() const;
+
+		unsigned int TravelSpeed();
+
+	private:
+		unsigned int mMoveTime;
+		unsigned int mRestTime;
 	};
 }

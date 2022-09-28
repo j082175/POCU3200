@@ -2,6 +2,9 @@
 
 #include "Person.h"
 
+#include <iostream>
+using namespace std;
+
 namespace assignment2
 {
 	class Vehicle
@@ -18,14 +21,16 @@ namespace assignment2
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
 
-	protected:
+		virtual unsigned int TravelSpeed() = 0;
+
+	private:
 		enum
 		{
 			MAX_SIZE = 100
 		};
 
 		unsigned int mMaxPassengersCount; // 100보다 큰 경우는 없다고 가정해도 좋음.
-		unsigned int mPersonCount;
-		const Person* mPersonArr[MAX_SIZE];
+		unsigned int mPassengersCount;
+		const Person* mPassengersArr[MAX_SIZE];
 	};
 }
