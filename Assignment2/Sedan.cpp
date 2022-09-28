@@ -98,7 +98,7 @@ namespace assignment2
 	{
 		if (mMoveTime != maxMoveTime)
 		{
-			cout << "sedan ";
+			//cout << "sedan ";
 			++mMoveTime;
 			return GetDriveSpeed();
 		}

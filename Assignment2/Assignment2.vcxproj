@@ -77,6 +77,7 @@
     <ClCompile Include="Airplane.cpp" />
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="Boatplane.cpp" />
+    <ClCompile Include="Debugger.cpp" />
     <ClCompile Include="DeusExMachina.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Motorcycle.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Airplane.h" />
     <ClInclude Include="Boat.h" />
     <ClInclude Include="Boatplane.h" />
+    <ClInclude Include="Debugger.h" />
     <ClInclude Include="DeusExMachina.h" />
     <ClInclude Include="IDivable.h" />
     <ClInclude Include="IDrivable.h" />

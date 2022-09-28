@@ -101,7 +101,7 @@ namespace assignment2
 		if (mMoveTime != MAX_MOVE_TIME)
 		{
 			++mMoveTime;
-			cout << "air ";
+			//cout << "air ";
 			return std::max(GetFlySpeed(), GetDriveSpeed());
 		}
 
