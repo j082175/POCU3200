@@ -258,10 +258,13 @@ int main()
 	//TestTravel();
 	//test2();
 
-	Airplane a(5);
-	Boat b(20);
+	Airplane a(0);
+	Boat b(0);
 
 	Boatplane bp = a + b;
+
+	Sedan s;
+	s.RemoveTrailer();
 
 	return 0;
 }

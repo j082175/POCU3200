@@ -18,6 +18,8 @@ namespace assignment2
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
 
+		~DeusExMachina();
+
 	private:
 		//static constexpr unsigned int MAX_SIZE = 10;
 

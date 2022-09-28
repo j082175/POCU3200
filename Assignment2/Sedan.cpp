@@ -1,5 +1,7 @@
 #include "Sedan.h"
 
+#include "Trailer.h"
+
 namespace assignment2
 {
 	static const unsigned int MAX_NUM = 4;

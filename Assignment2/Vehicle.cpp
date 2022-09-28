@@ -30,7 +30,7 @@ namespace assignment2
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
 	{
-		for (size_t i = 0; i < mPassengersCount; i++)
+		for (size_t i = 0; i < MAX_SIZE; i++)
 		{
 			delete mPassengersArr[i];
 		}
@@ -51,7 +51,7 @@ namespace assignment2
 		mMaxPassengersCount = other.mMaxPassengersCount;
 		mPassengersCount = other.mPassengersCount;
 
-		for (size_t i = 0; i < mPassengersCount; i++)
+		for (size_t i = 0; i < MAX_SIZE; i++)
 		{
 			delete mPassengersArr[i];
 		}

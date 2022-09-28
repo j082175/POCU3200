@@ -103,4 +103,11 @@ namespace assignment2
 
 		return mVehicleArr[mFurthestIndex];
 	}
+	DeusExMachina::~DeusExMachina()
+	{
+		for (size_t i = 0; i < mVehicleCount; i++)
+		{
+			delete mVehicleArr[i];
+		}
+	}
 }
