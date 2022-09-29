@@ -21,6 +21,7 @@ namespace assignment2
 
 		Vehicle* GetVehicle(unsigned int index) const;
 
+		static void Destroy();
 	private:
 		enum 
 		{

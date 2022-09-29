@@ -256,13 +256,13 @@ void AddPassengers(Vehicle& a, Vehicle& b)
 {
 	std::string str;
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		str = (char)i + 'a';
 		a.AddPassenger(new Person(str.c_str(), i * 40));
 	}
 
-	for (size_t i = 0; i < 5; i++)
+	for (size_t i = 0; i < 4; i++)
 	{
 		str = (char)i + 'A';
 		b.AddPassenger(new Person(str.c_str(), i * 80));
@@ -273,37 +273,37 @@ void AddPassengers(Vehicle& a, Vehicle& b)
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc(156);
+	//_CrtSetBreakAlloc(191);
 
 
-	test1();
-	TestTravel();
-	test2();
+	//test1();
+	//TestTravel();
+	//test2();
 
 	Trailer* t1 = new Trailer(30);
 	Trailer* t2 = new Trailer(60);
 
-	Sedan s1;
-	Sedan s2;
-	Sedan s3;
-	Sedan s4;
+	Sedan* s1 = new Sedan;
+	Sedan* s2 = new Sedan;
+	Sedan* s3 = new Sedan;
+	Sedan* s4 = new Sedan;
 
-	s2.AddTrailer(t1);
-	s3.AddTrailer(t2);
+	s2->AddTrailer(t1);
+	s3->AddTrailer(t2);
 
-	AddPassengers(s1, s2);
-	AddPassengers(s3, s4);
+	AddPassengers(*s1, *s2);
+	AddPassengers(*s3, *s4);
 
-	unsigned int i1 = s1.GetDriveSpeed();
-	unsigned i2 = s2.GetDriveSpeed();
-	unsigned i3 = s3.GetDriveSpeed();
-	unsigned i4 = s4.GetDriveSpeed();
+	unsigned int i1 = s1->GetDriveSpeed();
+	unsigned i2 = s2->GetDriveSpeed();
+	unsigned i3 = s3->GetDriveSpeed();
+	unsigned i4 = s4->GetDriveSpeed();
 
 	DeusExMachina* de = DeusExMachina::GetInstance();
-	de->AddVehicle(&s1);
-	de->AddVehicle(&s2);
-	de->AddVehicle(&s3);
-	de->AddVehicle(&s4);
+	de->AddVehicle(s1);
+	de->AddVehicle(s2);
+	de->AddVehicle(s3);
+	de->AddVehicle(s4);
 
 	de->Travel();
 	de->Travel();
@@ -312,8 +312,6 @@ int main()
 
 
 	const Vehicle* winner = de->GetFurthestTravelled();
-
-	Sedan* ss1 = new Sedan;
 
 
 	return 0;

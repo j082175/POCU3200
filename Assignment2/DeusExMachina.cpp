@@ -6,11 +6,17 @@ namespace assignment2
 	DeusExMachina* DeusExMachina::mDeusPtr = nullptr;
 	unsigned int DeusExMachina::mSpeedCheckArr[MAX_SIZE] = { 0, };
 
+	void DeusExMachina::Destroy()
+	{
+		delete mDeusPtr;
+	}
+
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
 		if (mDeusPtr == nullptr)
 		{
 			mDeusPtr = new DeusExMachina;
+			atexit(Destroy);
 		}
 
 		return mDeusPtr;
@@ -97,8 +103,6 @@ namespace assignment2
 		{
 			delete mVehicleArr[i];
 		}
-
-		mDeusPtr = nullptr;
 	}
 
 	Vehicle* DeusExMachina::GetVehicle(unsigned int index) const
