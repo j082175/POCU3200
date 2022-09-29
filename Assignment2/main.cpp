@@ -252,24 +252,21 @@ void test2()
 	assert(deusExMachina1->GetFurthestTravelled() == boat);
 }
 
-void test3()
+void AddPassengers(Vehicle& a, Vehicle& b)
 {
 	std::string str;
-	Airplane a(10);
-	for (size_t i = 0; i < 10; i++)
+
+	for (size_t i = 0; i < 5; i++)
 	{
 		str = (char)i + 'a';
-		a.AddPassenger(new Person(str.c_str(), i));
+		a.AddPassenger(new Person(str.c_str(), i * 40));
 	}
 
-	Boat b(20);
-	for (size_t i = 0; i < 20; i++)
+	for (size_t i = 0; i < 5; i++)
 	{
 		str = (char)i + 'A';
-		b.AddPassenger(new Person(str.c_str(), i));
+		b.AddPassenger(new Person(str.c_str(), i * 80));
 	}
-
-	Boatplane bp = b + a;
 	
 }
 
@@ -279,10 +276,25 @@ int main()
 	//TestTravel();
 	//test2();
 
-	test3();
+	Trailer* t1 = new Trailer(30);
+	Trailer* t2 = new Trailer(60);
 
-	DeusExMachina* d = DeusExMachina::GetInstance();
-	d->GetFurthestTravelled();
+	Sedan s1;
+	Sedan s2;
+	Sedan s3;
+	Sedan s4;
+
+	s2.AddTrailer(t1);
+	s3.AddTrailer(t2);
+
+	AddPassengers(s1, s2);
+	AddPassengers(s3, s4);
+
+	unsigned int i1 = s1.GetDriveSpeed();
+	unsigned i2 = s2.GetDriveSpeed();
+	unsigned i3 = s3.GetDriveSpeed();
+	unsigned i4 = s4.GetDriveSpeed();
+
 
 	return 0;
 }

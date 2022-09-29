@@ -64,25 +64,46 @@ namespace assignment2
 			totalWeight += mT->GetWeight();
 		}
 
-		if (totalWeight <= 80)
+		//if (totalWeight <= 80)
+		//{
+		//	speed = 480;
+		//}
+		//else if (totalWeight > 80)
+		//{
+		//	speed = 458;
+		//}
+		//else if (totalWeight > 160)
+		//{
+		//	speed = 400;
+		//}
+		//else if (totalWeight > 260)
+		//{
+		//	speed = 380;
+		//}
+		//else if (totalWeight > 350)
+		//{
+		//	speed = 300;
+		//}
+
+		if (totalWeight > 350)
 		{
-			speed = 480;
-		}
-		else if (totalWeight > 80)
-		{
-			speed = 458;
-		}
-		else if (totalWeight > 160)
-		{
-			speed = 400;
+			speed = 300;
 		}
 		else if (totalWeight > 260)
 		{
 			speed = 380;
 		}
-		else if (totalWeight > 350)
+		else if (totalWeight > 160)
 		{
-			speed = 300;
+			speed = 400;
+		}
+		else if (totalWeight > 80)
+		{
+			speed = 458;
+		}
+		else if (totalWeight <= 80)
+		{
+			speed = 480;
 		}
 
 		return speed;
