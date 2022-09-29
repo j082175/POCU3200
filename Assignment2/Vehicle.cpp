@@ -107,8 +107,14 @@ namespace assignment2
 
 	bool Vehicle::AddPassenger(const Person* person)
 	{
-		if (person == nullptr || mPassengersCount >= mMaxPassengersCount)
+		if (person == nullptr)
 		{
+			return false;
+		}
+
+		if (mPassengersCount >= mMaxPassengersCount)
+		{
+			delete person;
 			return false;
 		}
 

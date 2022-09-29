@@ -46,8 +46,14 @@ namespace assignment2
 
 	bool DeusExMachina::AddVehicle(Vehicle* vehicle)
 	{
-		if (vehicle == nullptr || mVehicleCount >= MAX_SIZE)
+		if (vehicle == nullptr)
 		{
+			return false;
+		}
+
+		if (mVehicleCount >= MAX_SIZE)
+		{
+			delete vehicle;
 			return false;
 		}
 
