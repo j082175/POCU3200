@@ -63,12 +63,12 @@ namespace assignment2
 			return false;
 		}
 
-		for (size_t i = mVehicleCount; i >= 1; i--)
-		{
-			mVehicleArr[i] = mVehicleArr[i - 1];
-		}
+		//for (size_t i = mVehicleCount; i >= 1; i--)
+		//{
+		//	mVehicleArr[i] = mVehicleArr[i - 1];
+		//}
 
-		mVehicleArr[0] = vehicle;
+		mVehicleArr[mVehicleCount] = vehicle;
 		mVehicleCount++;
 
 		return true;
@@ -101,9 +101,9 @@ namespace assignment2
 			return nullptr;
 		}
 
-		unsigned int max = 0;
+		unsigned int max = mVehicleCount - 1;
 
-		for (size_t i = 1; i < mVehicleCount; i++)
+		for (int i = mVehicleCount - 2; i >= 0; i--)
 		{
 			if (mSpeedCheckArr[i] > mSpeedCheckArr[max])
 			{

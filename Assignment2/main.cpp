@@ -56,8 +56,6 @@ void test1()
 	toAdd = NULL;
 	assert(air->AddPassenger(toAdd) == false); // 빌드봇은 이런 테스트 안함
 
-	//delete air;
-
 	Airplane dockingTest1(10);
 	Boat dockingTest2(10);
 
@@ -149,6 +147,7 @@ void test1()
 	}
 
 	delete d;
+	delete air;
 }
 
 void test2()
@@ -277,7 +276,7 @@ int main()
 	//_CrtSetBreakAlloc(155);
 
 
-	//test1();
+	test1();
 	//TestTravel();
 	//test2();
 
@@ -306,10 +305,10 @@ int main()
 	de->AddVehicle(s3);
 	de->AddVehicle(s4);
 
-	//de->Travel();
-	//de->Travel();
-	//de->Travel();
-	//de->Travel();
+	de->Travel();
+	de->Travel();
+	de->Travel();
+	de->Travel();
 
 
 	const Vehicle* winner = de->GetFurthestTravelled();
