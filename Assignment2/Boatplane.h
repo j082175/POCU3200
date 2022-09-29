@@ -17,8 +17,5 @@ namespace assignment2
 
 		unsigned int TravelSpeed();
 
-	//private:
-	//	unsigned int mMoveTime;
-	//	unsigned int mRestTime;
 	};
 }

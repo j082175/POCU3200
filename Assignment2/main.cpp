@@ -281,7 +281,7 @@ int main()
 	//TestTravel();
 	//test2();
 
-	/*Trailer* t1 = new Trailer(30);
+	Trailer* t1 = new Trailer(30);
 	Trailer* t2 = new Trailer(60);
 
 	Sedan* s1 = new Sedan;
@@ -306,13 +306,13 @@ int main()
 	de->AddVehicle(s3);
 	de->AddVehicle(s4);
 
-	de->Travel();
-	de->Travel();
-	de->Travel();
-	de->Travel();
+	//de->Travel();
+	//de->Travel();
+	//de->Travel();
+	//de->Travel();
 
 
-	const Vehicle* winner = de->GetFurthestTravelled();*/
+	const Vehicle* winner = de->GetFurthestTravelled();
 
 
 	return 0;

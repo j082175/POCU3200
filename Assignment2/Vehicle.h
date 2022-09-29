@@ -29,6 +29,10 @@ namespace assignment2
 		
 		//void SetMemoryNullNoDelete();
 
+	protected:
+		unsigned int mMoveTime;
+		unsigned int mRestTime;
+
 	private:
 		enum
 		{
@@ -39,8 +43,5 @@ namespace assignment2
 		unsigned int mPassengersCount;
 		const Person* mPassengersArr[MAX_SIZE] = { nullptr, };
 
-	protected:
-		unsigned int mMoveTime;
-		unsigned int mRestTime;
 	};
 }

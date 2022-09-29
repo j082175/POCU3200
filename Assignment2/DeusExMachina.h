@@ -8,20 +8,20 @@ namespace assignment2
 	class DeusExMachina
 	{
 	public:
+		static void Destroy();
+
 		static DeusExMachina* GetInstance();
 
 		DeusExMachina();
+		~DeusExMachina();
 
 		void Travel() const;
 		bool AddVehicle(Vehicle* vehicle);
 		bool RemoveVehicle(unsigned int i);
 		const Vehicle* GetFurthestTravelled() const;
 
-		~DeusExMachina();
-
 		Vehicle* GetVehicle(unsigned int index) const;
 
-		static void Destroy();
 	private:
 		enum 
 		{

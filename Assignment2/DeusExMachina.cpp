@@ -1,5 +1,4 @@
 #include "DeusExMachina.h"
-//#include <iostream>
 
 namespace assignment2
 {
@@ -31,6 +30,16 @@ namespace assignment2
 		//}
 	}
 
+	DeusExMachina::~DeusExMachina()
+	{
+		for (size_t i = 0; i < mVehicleCount; i++)
+		{
+			delete mVehicleArr[i];
+		}
+
+		mDeusPtr = nullptr;
+	}
+
 	void DeusExMachina::Travel() const
 	{
 		// GetMaxSpeed()
@@ -40,8 +49,6 @@ namespace assignment2
 		{
 			mSpeedCheckArr[i] += mVehicleArr[i]->TravelSpeed();
 		}
-
-		//std::cout << std::endl;
 	}
 
 	bool DeusExMachina::AddVehicle(Vehicle* vehicle)
@@ -56,7 +63,12 @@ namespace assignment2
 			return false;
 		}
 
-		mVehicleArr[mVehicleCount] = vehicle;
+		for (size_t i = mVehicleCount; i >= 1; i--)
+		{
+			mVehicleArr[i] = mVehicleArr[i - 1];
+		}
+
+		mVehicleArr[0] = vehicle;
 		mVehicleCount++;
 
 		return true;
@@ -100,16 +112,6 @@ namespace assignment2
 		}
 
 		return mVehicleArr[max];
-	}
-
-	DeusExMachina::~DeusExMachina()
-	{
-		for (size_t i = 0; i < mVehicleCount; i++)
-		{
-			delete mVehicleArr[i];
-		}
-
-		mDeusPtr = nullptr;
 	}
 
 	Vehicle* DeusExMachina::GetVehicle(unsigned int index) const

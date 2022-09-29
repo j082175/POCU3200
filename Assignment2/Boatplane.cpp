@@ -6,8 +6,6 @@ namespace assignment2
 
 	Boatplane::Boatplane(unsigned int maxPassengersCount)
 		: Vehicle(maxPassengersCount)
-		//, mMoveTime(0)
-		//, mRestTime(0)
 	{
 	}
 

@@ -23,7 +23,5 @@ namespace assignment2
 			MAX_NUM = 50
 		};
 
-		//unsigned int mMoveTime;
-		//unsigned int mRestTime;
 	};
 }
