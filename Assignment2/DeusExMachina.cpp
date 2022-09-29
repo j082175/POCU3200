@@ -101,15 +101,17 @@ namespace assignment2
 			return nullptr;
 		}
 
-		unsigned int max = mVehicleCount - 1;
+		unsigned int max = 0;
 
-		for (int i = mVehicleCount - 2; i >= 0; i--)
+		for (size_t i = 1; i < mVehicleCount; i++)
 		{
 			if (mSpeedCheckArr[i] > mSpeedCheckArr[max])
 			{
 				max = i;
 			}
 		}
+
+		max = mVehicleCount - (max + 1);
 
 		return mVehicleArr[max];
 	}

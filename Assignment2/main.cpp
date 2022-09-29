@@ -276,7 +276,7 @@ int main()
 	//_CrtSetBreakAlloc(155);
 
 
-	test1();
+	//test1();
 	//TestTravel();
 	//test2();
 
