@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Vehicle.h"
-#define MAX_SIZE 10
 
 namespace assignment2
 {
@@ -23,11 +22,16 @@ namespace assignment2
 		Vehicle* GetVehicle(unsigned int index) const;
 
 	private:
-		//static constexpr unsigned int MAX_SIZE = 10;
+		enum 
+		{
+			MAX_SIZE = 10
+		};
 
 		static DeusExMachina* mDeusPtr;
+		static unsigned int mSpeedCheckArr[MAX_SIZE];
+
 		unsigned int mVehicleCount;
-		Vehicle* mVehicleArr[MAX_SIZE];
-		static unsigned int mFurthestIndex;
+		Vehicle* mVehicleArr[MAX_SIZE] = { nullptr, };
+
 	};
 }

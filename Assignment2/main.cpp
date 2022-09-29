@@ -272,9 +272,9 @@ void AddPassengers(Vehicle& a, Vehicle& b)
 
 int main()
 {
-	//test1();
-	//TestTravel();
-	//test2();
+	test1();
+	TestTravel();
+	test2();
 
 	Trailer* t1 = new Trailer(30);
 	Trailer* t2 = new Trailer(60);
@@ -294,6 +294,20 @@ int main()
 	unsigned i2 = s2.GetDriveSpeed();
 	unsigned i3 = s3.GetDriveSpeed();
 	unsigned i4 = s4.GetDriveSpeed();
+
+	DeusExMachina* de = DeusExMachina::GetInstance();
+	de->AddVehicle(&s1);
+	de->AddVehicle(&s2);
+	de->AddVehicle(&s3);
+	de->AddVehicle(&s4);
+
+	de->Travel();
+	de->Travel();
+	de->Travel();
+	de->Travel();
+
+
+	const Vehicle* winner = de->GetFurthestTravelled();
 
 
 	return 0;

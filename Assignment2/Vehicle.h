@@ -36,6 +36,6 @@ namespace assignment2
 
 		unsigned int mMaxPassengersCount; // 100보다 큰 경우는 없다고 가정해도 좋음.
 		unsigned int mPassengersCount;
-		const Person* mPassengersArr[MAX_SIZE];
+		const Person* mPassengersArr[MAX_SIZE] = { nullptr, };
 	};
 }

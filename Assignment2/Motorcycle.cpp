@@ -3,7 +3,6 @@
 
 namespace assignment2
 {
-	static const unsigned int MAX_NUM = 2;
 
 	Motorcycle::Motorcycle()
 		: Vehicle(MAX_NUM)

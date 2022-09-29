@@ -11,11 +11,11 @@ namespace assignment2
 			mMaxPassengersCount = MAX_SIZE;
 		}
 
-		// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
-		for (size_t i = 0; i < MAX_SIZE; i++)
-		{
-			mPassengersArr[i] = nullptr;
-		}
+		//// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
+		//for (size_t i = 0; i < MAX_SIZE; i++)
+		//{
+		//	mPassengersArr[i] = nullptr;
+		//}
 	}
 
 	Vehicle::~Vehicle()
@@ -30,11 +30,11 @@ namespace assignment2
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
 	{
-		// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
-		for (size_t i = 0; i < MAX_SIZE; i++)
-		{
-			mPassengersArr[i] = nullptr;
-		}
+		//// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
+		//for (size_t i = 0; i < MAX_SIZE; i++)
+		//{
+		//	mPassengersArr[i] = nullptr;
+		//}
 
 		for (size_t i = 0; i < mPassengersCount; i++)
 		{

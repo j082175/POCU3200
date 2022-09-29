@@ -24,6 +24,11 @@ namespace assignment2
 		unsigned int getSpeed(unsigned int maxMoveTime, unsigned int maxRestTime);
 
 	private:
+		enum 
+		{
+			MAX_NUM = 4
+		};
+
 		const Trailer* mT;
 
 		unsigned int mMoveTime;

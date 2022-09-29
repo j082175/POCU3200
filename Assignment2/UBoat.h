@@ -18,6 +18,11 @@ namespace assignment2
 		unsigned int TravelSpeed();
 
 	private:
+		enum 
+		{
+			MAX_NUM = 50
+		};
+
 		unsigned int mMoveTime;
 		unsigned int mRestTime;
 	};

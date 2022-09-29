@@ -3,7 +3,6 @@
 
 namespace assignment2
 {
-	static const unsigned int MAX_NUM = 50;
 
 	UBoat::UBoat()
 		: Vehicle(MAX_NUM)

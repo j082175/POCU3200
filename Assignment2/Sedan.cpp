@@ -4,7 +4,6 @@
 
 namespace assignment2
 {
-	static const unsigned int MAX_NUM = 4;
 
 	Sedan::Sedan()
 		: Vehicle(MAX_NUM)
@@ -63,27 +62,6 @@ namespace assignment2
 		{
 			totalWeight += mT->GetWeight();
 		}
-
-		//if (totalWeight <= 80)
-		//{
-		//	speed = 480;
-		//}
-		//else if (totalWeight > 80)
-		//{
-		//	speed = 458;
-		//}
-		//else if (totalWeight > 160)
-		//{
-		//	speed = 400;
-		//}
-		//else if (totalWeight > 260)
-		//{
-		//	speed = 380;
-		//}
-		//else if (totalWeight > 350)
-		//{
-		//	speed = 300;
-		//}
 
 		if (totalWeight > 350)
 		{
