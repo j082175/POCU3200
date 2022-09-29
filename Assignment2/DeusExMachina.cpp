@@ -104,10 +104,12 @@ namespace assignment2
 
 	DeusExMachina::~DeusExMachina()
 	{
-		for (size_t i = 0; i < mVehicleCount; i++)
-		{
-			delete mVehicleArr[i];
-		}
+		//for (size_t i = 0; i < mVehicleCount; i++)
+		//{
+		//	delete mVehicleArr[i];
+		//}
+
+
 
 		mDeusPtr = nullptr;
 	}

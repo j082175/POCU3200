@@ -315,5 +315,16 @@ int main()
 	//const Vehicle* winner = de->GetFurthestTravelled();
 
 
+	Sedan s1;
+	Sedan s2;
+	s1.AddPassenger(new Person("a", 3));
+	s1.AddPassenger(new Person("b", 4));
+	s1.AddTrailer(new Trailer(444));
+	s2 = s1;
+
+	Airplane a1(1);
+	Airplane a2(2);
+
+	a1 = a2;
 	return 0;
 }

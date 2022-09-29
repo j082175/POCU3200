@@ -2,6 +2,7 @@
 
 namespace assignment2
 {
+
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
 		: mPassengersCount(0)
 		, mMaxPassengersCount(maxPassengersCount)

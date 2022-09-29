@@ -18,6 +18,38 @@ namespace assignment2
 		delete mT;
 	}
 
+	Sedan& Sedan::operator=(const Sedan& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		Vehicle::operator=(other);
+
+		delete mT;
+
+		mMoveTime = other.mMoveTime;
+		mRestTime = other.mRestTime;
+
+		if (other.mT == nullptr)
+		{
+			mT = nullptr;
+			return *this;
+		}
+		mT = new Trailer(*other.mT);
+
+		return *this;
+	}
+
+	Sedan::Sedan(const Sedan& other)
+		: Vehicle(MAX_NUM)
+		, mMoveTime(other.mMoveTime)
+		, mRestTime(other.mRestTime)
+	{
+		mT = new Trailer(*other.mT);
+	}
+
 	bool Sedan::AddTrailer(const Trailer* trailer)
 	{
 		if (trailer == nullptr || mT == trailer)

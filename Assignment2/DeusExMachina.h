@@ -32,7 +32,7 @@ namespace assignment2
 		static unsigned int mSpeedCheckArr[MAX_SIZE];
 
 		unsigned int mVehicleCount;
-		Vehicle* mVehicleArr[MAX_SIZE] = { nullptr, };
 
+		Vehicle* mVehicleArr[MAX_SIZE] = { nullptr, };
 	};
 }

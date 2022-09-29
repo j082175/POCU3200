@@ -7,6 +7,7 @@ namespace assignment2
 	class Vehicle
 	{
 	public:
+
 		Vehicle(unsigned int maxPassengersCount);
 		virtual ~Vehicle();
 		Vehicle(const Vehicle& other);
