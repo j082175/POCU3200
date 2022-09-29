@@ -47,7 +47,7 @@ void test1()
 		toAdd = new Person(STR(i), i);
 		if (air->AddPassenger(toAdd) == false)
 		{
-			delete toAdd;
+			//delete toAdd;
 		}
 
 		cout << MAX_SPEED_LABLE << air->GetMaxSpeed() << endl
