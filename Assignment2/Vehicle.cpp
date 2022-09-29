@@ -114,7 +114,6 @@ namespace assignment2
 
 		if (mPassengersCount >= mMaxPassengersCount)
 		{
-			delete person;
 			return false;
 		}
 

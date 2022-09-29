@@ -53,7 +53,6 @@ namespace assignment2
 
 		if (mVehicleCount >= MAX_SIZE)
 		{
-			delete vehicle;
 			return false;
 		}
 

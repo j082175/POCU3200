@@ -27,7 +27,6 @@ namespace assignment2
 
 		if (mT != nullptr)
 		{
-			delete trailer;
 			return false;
 		}
 
