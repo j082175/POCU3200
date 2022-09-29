@@ -111,7 +111,7 @@ namespace assignment2
 			}
 		}
 
-		max = mVehicleCount - (max + 1);
+		//max = mVehicleCount - (max + 1);
 
 		return mVehicleArr[max];
 	}
