@@ -103,6 +103,8 @@ namespace assignment2
 		{
 			delete mVehicleArr[i];
 		}
+
+		mDeusPtr = nullptr;
 	}
 
 	Vehicle* DeusExMachina::GetVehicle(unsigned int index) const

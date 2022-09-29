@@ -149,7 +149,6 @@ void test1()
 	}
 
 	delete d;
-
 }
 
 void test2()
@@ -276,9 +275,9 @@ int main()
 	//_CrtSetBreakAlloc(191);
 
 
-	//test1();
-	//TestTravel();
-	//test2();
+	test1();
+	TestTravel();
+	test2();
 
 	Trailer* t1 = new Trailer(30);
 	Trailer* t2 = new Trailer(60);
