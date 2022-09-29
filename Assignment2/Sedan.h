@@ -32,8 +32,5 @@ namespace assignment2
 		};
 
 		const Trailer* mT;
-
-		unsigned int mMoveTime;
-		unsigned int mRestTime;
 	};
 }

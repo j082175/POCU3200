@@ -8,8 +8,6 @@ namespace assignment2
 	Sedan::Sedan()
 		: Vehicle(MAX_NUM)
 		, mT(nullptr)
-		, mMoveTime(0)
-		, mRestTime(0)
 	{
 	}
 
@@ -43,9 +41,7 @@ namespace assignment2
 	}
 
 	Sedan::Sedan(const Sedan& other)
-		: Vehicle(MAX_NUM)
-		, mMoveTime(other.mMoveTime)
-		, mRestTime(other.mRestTime)
+		: Vehicle(other)
 	{
 		mT = new Trailer(*other.mT);
 	}

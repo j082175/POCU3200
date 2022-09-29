@@ -6,8 +6,8 @@ namespace assignment2
 
 	UBoat::UBoat()
 		: Vehicle(MAX_NUM)
-		, mMoveTime(0)
-		, mRestTime(0)
+		//, mMoveTime(0)
+		//, mRestTime(0)
 	{
 	}
 

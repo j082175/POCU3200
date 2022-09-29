@@ -6,6 +6,8 @@ namespace assignment2
 	Vehicle::Vehicle(unsigned int maxPassengersCount)
 		: mPassengersCount(0)
 		, mMaxPassengersCount(maxPassengersCount)
+		, mMoveTime(0)
+		, mRestTime(0)
 	{
 		if (maxPassengersCount > MAX_SIZE)
 		{
@@ -30,6 +32,8 @@ namespace assignment2
 	Vehicle::Vehicle(const Vehicle& other)
 		: mMaxPassengersCount(other.mMaxPassengersCount)
 		, mPassengersCount(other.mPassengersCount)
+		, mMoveTime(other.mMoveTime)
+		, mRestTime(other.mRestTime)
 	{
 		//// 질문 1. for 문을 사용하지 않고 개체배열을 초기화하는 방법은 없는것인가? (최적화 때문에)
 		//for (size_t i = 0; i < MAX_SIZE; i++)
