@@ -272,6 +272,10 @@ void AddPassengers(Vehicle& a, Vehicle& b)
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(156);
+
+
 	test1();
 	TestTravel();
 	test2();
@@ -308,6 +312,8 @@ int main()
 
 
 	const Vehicle* winner = de->GetFurthestTravelled();
+
+	Sedan* ss1 = new Sedan;
 
 
 	return 0;
