@@ -9,11 +9,8 @@ namespace assignment2
 	{
 	public:
 		static void Destroy();
-
-		static DeusExMachina* GetInstance();
-
-		DeusExMachina();
 		~DeusExMachina();
+		static DeusExMachina* GetInstance();
 
 		void Travel() const;
 		bool AddVehicle(Vehicle* vehicle);
@@ -22,6 +19,11 @@ namespace assignment2
 
 		Vehicle* GetVehicle(unsigned int index) const;
 
+	private:
+		DeusExMachina();
+
+		DeusExMachina(const DeusExMachina& other) = delete;
+		DeusExMachina& operator=(const DeusExMachina& other) = delete;
 	private:
 		enum 
 		{

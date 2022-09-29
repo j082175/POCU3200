@@ -300,6 +300,8 @@ int main()
 	unsigned i4 = s4->GetDriveSpeed();
 
 	DeusExMachina* de = DeusExMachina::GetInstance();
+
+
 	de->AddVehicle(s1);
 	de->AddVehicle(s2);
 	de->AddVehicle(s3);
@@ -312,7 +314,6 @@ int main()
 
 
 	const Vehicle* winner = de->GetFurthestTravelled();
-
 
 	return 0;
 }
