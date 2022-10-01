@@ -308,6 +308,17 @@ int main()
 	Sedan* s = new Sedan;
 	s->AddTrailer(t);
 	AddPassengers(*s);
+	Trailer* t2 = new Trailer(30);
+	Sedan* s2 = new Sedan;
+	s2->AddTrailer(t2);
+	Airplane* a2 = new Airplane(20);
+	AddPassengers(*a2);
+	Boat* b2 = new Boat(40);
+	AddPassengers(*b2);
+	Boatplane* bp2 = new Boatplane(44);
+	AddPassengers(*bp2);
+	Motorcycle* m2 = new Motorcycle;
+	AddPassengers(*m2);
 
 	DeusExMachina* de = DeusExMachina::GetInstance();
 	de->AddVehicle(a);
@@ -316,11 +327,20 @@ int main()
 	de->AddVehicle(m);
 	de->AddVehicle(ub);
 	de->AddVehicle(s);
-	de->AddVehicle(a);
+	de->AddVehicle(s2);
+	de->AddVehicle(a2);
+	de->AddVehicle(b2);
+	de->AddVehicle(bp2);
+	de->AddVehicle(m2);
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		de->Travel();
+	}
 	
 	for (size_t i = 0; i < 11; i++)
 	{
-		de->RemoveVehicle(0);
+		de->RemoveVehicle(i);
 	}
 
 	 a = new Airplane(100);
@@ -337,6 +357,17 @@ int main()
 	 s = new Sedan;
 	s->AddTrailer(t);
 	AddPassengers(*s);
+	t2 = new Trailer(30);
+	 s2 = new Sedan;
+	s2->AddTrailer(t2);
+	 a2 = new Airplane(20);
+	AddPassengers(*a2);
+	 b2 = new Boat(40);
+	AddPassengers(*b2);
+	 bp2 = new Boatplane(44);
+	AddPassengers(*bp2);
+	 m2 = new Motorcycle;
+	AddPassengers(*m2);
 
 	de->AddVehicle(a);
 	de->AddVehicle(b);
@@ -344,11 +375,20 @@ int main()
 	de->AddVehicle(m);
 	de->AddVehicle(ub);
 	de->AddVehicle(s);
-	de->AddVehicle(a);
+	de->AddVehicle(s2);
+	de->AddVehicle(a2);
+	de->AddVehicle(b2);
+	de->AddVehicle(bp2);
+	de->AddVehicle(m2);
+
+	for (size_t i = 0; i < 10; i++)
+	{
+		de->Travel();
+	}
 
 	for (size_t i = 0; i < 11; i++)
 	{
-		de->RemoveVehicle(0);
+		de->RemoveVehicle(9 - i);
 	}
 
 	return 0;

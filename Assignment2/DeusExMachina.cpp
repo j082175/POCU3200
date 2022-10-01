@@ -86,10 +86,12 @@ namespace assignment2
 		}
 
 		delete mVehicleArr[i];
+		mSpeedCheckArr[i] = 0;
 
 		for (size_t j = i; j < mVehicleCount - 1; j++)
 		{
 			mVehicleArr[j] = mVehicleArr[j + 1];
+			mSpeedCheckArr[j] = mSpeedCheckArr[j + 1];
 		}
 
 		--mVehicleCount;
