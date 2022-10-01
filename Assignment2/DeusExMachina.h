@@ -30,7 +30,7 @@ namespace assignment2
 			MAX_SIZE = 10
 		};
 
-		static DeusExMachina* mDeusPtr;
+		static DeusExMachina* mInstance;
 		static unsigned int mSpeedCheckArr[MAX_SIZE];
 
 		unsigned int mVehicleCount;

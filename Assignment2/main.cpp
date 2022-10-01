@@ -206,8 +206,8 @@ void test2()
 	bool bAdded = sedan2->AddTrailer(new Trailer(50));
 	assert(bAdded);
 
-	//bAdded = sedan2->AddTrailer(new Trailer(60));
-	//assert(!bAdded);
+	bAdded = sedan2->AddTrailer(new Trailer(60));
+	assert(!bAdded);
 
 	bAdded = deusExMachina1->AddVehicle(airplane);
 	assert(bAdded);
@@ -236,6 +236,26 @@ void test2()
 	bRemoved = deusExMachina1->RemoveVehicle(9);
 	assert(!bRemoved);
 
+	for (size_t i = 0; i < 10; i++)
+	{
+		deusExMachina1->RemoveVehicle(0);
+	}
+
+	bAdded = deusExMachina1->AddVehicle(airplane);
+	assert(bAdded);
+
+	Sedan* s = new Sedan();
+	s->AddTrailer(new Trailer(50));
+	deusExMachina1->AddVehicle(new Boat(5));
+	deusExMachina1->AddVehicle(new Boatplane(5));
+	deusExMachina1->AddVehicle(new Motorcycle());
+	deusExMachina1->AddVehicle(new Sedan());
+	deusExMachina1->AddVehicle(s);
+	deusExMachina1->AddVehicle(new UBoat());
+	deusExMachina1->AddVehicle(new Airplane(5));
+	deusExMachina1->AddVehicle(new Airplane(5));
+	deusExMachina1->AddVehicle(new Airplane(5));
+
 	deusExMachina1->Travel(); // 모든 운송 수단이 이동
 	deusExMachina1->Travel(); // Boat, Motorcycle, 두 Sedan, UBoat가 이동
 	deusExMachina1->Travel(); // Motorcycle, 두 Sedan이 이동
@@ -252,7 +272,7 @@ void test2()
 	assert(deusExMachina1->GetFurthestTravelled() == boat);
 }
 
-void AddPassengers(Vehicle& a, Vehicle& b)
+void AddPassengers(Vehicle& a)
 {
 	std::string str;
 
@@ -261,59 +281,75 @@ void AddPassengers(Vehicle& a, Vehicle& b)
 		str = (char)i + 'a';
 		a.AddPassenger(new Person(str.c_str(), i * 40));
 	}
-
-	for (size_t i = 0; i < 4; i++)
-	{
-		str = (char)i + 'A';
-		b.AddPassenger(new Person(str.c_str(), i * 80));
-	}
 	
 }
 
 int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	//_CrtSetBreakAlloc(155);
+	//_CrtSetBreakAlloc(201);
 
 
 	//test1();
 	//TestTravel();
 	//test2();
 
-	Trailer* t1 = new Trailer(30);
-	Trailer* t2 = new Trailer(60);
-
-	Sedan* s1 = new Sedan;
-	Sedan* s2 = new Sedan;
-	Sedan* s3 = new Sedan;
-	Sedan* s4 = new Sedan;
-
-	s2->AddTrailer(t1);
-	s3->AddTrailer(t2);
-
-	AddPassengers(*s1, *s2);
-	AddPassengers(*s3, *s4);
-
-	unsigned int i1 = s1->GetDriveSpeed();
-	unsigned i2 = s2->GetDriveSpeed();
-	unsigned i3 = s3->GetDriveSpeed();
-	unsigned i4 = s4->GetDriveSpeed();
+	Airplane* a = new Airplane(100);
+	AddPassengers(*a);
+	Boat* b = new Boat(50);
+	AddPassengers(*b);
+	Boatplane* bp = new Boatplane(10);
+	AddPassengers(*bp);
+	Motorcycle* m = new Motorcycle;
+	AddPassengers(*m);
+	UBoat* ub = new UBoat;
+	AddPassengers(*ub);
+	Trailer* t = new Trailer(50);
+	Sedan* s = new Sedan;
+	s->AddTrailer(t);
+	AddPassengers(*s);
 
 	DeusExMachina* de = DeusExMachina::GetInstance();
+	de->AddVehicle(a);
+	de->AddVehicle(b);
+	de->AddVehicle(bp);
+	de->AddVehicle(m);
+	de->AddVehicle(ub);
+	de->AddVehicle(s);
+	de->AddVehicle(a);
+	
+	for (size_t i = 0; i < 11; i++)
+	{
+		de->RemoveVehicle(0);
+	}
 
+	 a = new Airplane(100);
+	AddPassengers(*a);
+	 b = new Boat(50);
+	AddPassengers(*b);
+	 bp = new Boatplane(10);
+	AddPassengers(*bp);
+	 m = new Motorcycle;
+	AddPassengers(*m);
+	 ub = new UBoat;
+	AddPassengers(*ub);
+	 t = new Trailer(50);
+	 s = new Sedan;
+	s->AddTrailer(t);
+	AddPassengers(*s);
 
-	de->AddVehicle(s1);
-	de->AddVehicle(s2);
-	de->AddVehicle(s3);
-	de->AddVehicle(s4);
+	de->AddVehicle(a);
+	de->AddVehicle(b);
+	de->AddVehicle(bp);
+	de->AddVehicle(m);
+	de->AddVehicle(ub);
+	de->AddVehicle(s);
+	de->AddVehicle(a);
 
-	de->Travel();
-	de->Travel();
-	de->Travel();
-	de->Travel();
-
-
-	const Vehicle* winner = de->GetFurthestTravelled();
+	for (size_t i = 0; i < 11; i++)
+	{
+		de->RemoveVehicle(0);
+	}
 
 	return 0;
 }

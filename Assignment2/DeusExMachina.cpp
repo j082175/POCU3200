@@ -2,23 +2,23 @@
 
 namespace assignment2
 {
-	DeusExMachina* DeusExMachina::mDeusPtr = nullptr;
+	DeusExMachina* DeusExMachina::mInstance = nullptr;
 	unsigned int DeusExMachina::mSpeedCheckArr[MAX_SIZE] = { 0, };
 
 	void DeusExMachina::Destroy()
 	{
-		delete mDeusPtr;
+		delete mInstance;
 	}
 
 	DeusExMachina* DeusExMachina::GetInstance()
 	{
-		if (mDeusPtr == nullptr)
+		if (mInstance == nullptr)
 		{
-			mDeusPtr = new DeusExMachina;
+			mInstance = new DeusExMachina;
 			atexit(Destroy);
 		}
 
-		return mDeusPtr;
+		return mInstance;
 	}
 
 	DeusExMachina::DeusExMachina()
@@ -37,7 +37,7 @@ namespace assignment2
 			delete mVehicleArr[i];
 		}
 
-		mDeusPtr = nullptr;
+		mInstance = nullptr;
 	}
 
 	void DeusExMachina::Travel() const
@@ -63,10 +63,14 @@ namespace assignment2
 			return false;
 		}
 
-		//for (size_t i = mVehicleCount; i >= 1; i--)
-		//{
-		//	mVehicleArr[i] = mVehicleArr[i - 1];
-		//}
+		// vehicle 중복검사
+		for (size_t i = 0; i < MAX_SIZE; i++)
+		{
+			if (mVehicleArr[i] == vehicle)
+			{
+				return false;
+			}
+		}
 
 		mVehicleArr[mVehicleCount] = vehicle;
 		mVehicleCount++;
@@ -110,8 +114,6 @@ namespace assignment2
 				max = i;
 			}
 		}
-
-		//max = mVehicleCount - (max + 1);
 
 		return mVehicleArr[max];
 	}
