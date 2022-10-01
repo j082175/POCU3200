@@ -337,6 +337,8 @@ int main()
 	{
 		de->Travel();
 	}
+
+	const Vehicle* winner = de->GetFurthestTravelled();
 	
 	for (size_t i = 0; i < 11; i++)
 	{
@@ -385,6 +387,8 @@ int main()
 	{
 		de->Travel();
 	}
+
+	winner = de->GetFurthestTravelled();
 
 	for (size_t i = 0; i < 11; i++)
 	{

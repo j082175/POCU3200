@@ -86,7 +86,6 @@ namespace assignment2
 		}
 
 		delete mVehicleArr[i];
-		mSpeedCheckArr[i] = 0;
 
 		for (size_t j = i; j < mVehicleCount - 1; j++)
 		{
@@ -96,6 +95,7 @@ namespace assignment2
 
 		--mVehicleCount;
 		mVehicleArr[mVehicleCount] = nullptr;
+		mSpeedCheckArr[mVehicleCount] = 0;
 
 		return true;
 	}
