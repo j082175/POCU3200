@@ -339,6 +339,8 @@ int main()
 	}
 
 	const Vehicle* winner = de->GetFurthestTravelled();
+	assert(winner == m);
+	
 	
 	for (size_t i = 0; i < 11; i++)
 	{
@@ -389,6 +391,7 @@ int main()
 	}
 
 	winner = de->GetFurthestTravelled();
+	assert(winner == b);
 
 	for (size_t i = 0; i < 11; i++)
 	{

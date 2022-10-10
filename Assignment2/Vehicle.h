@@ -16,18 +16,15 @@ namespace assignment2
 		Vehicle(Vehicle&& other) noexcept;
 		Vehicle& operator=(Vehicle&& other) noexcept;
 
-		virtual unsigned int GetMaxSpeed() const = 0;
-
 		bool AddPassenger(const Person* person);
 		bool RemovePassenger(unsigned int i);
 		const Person* GetPassenger(unsigned int i) const;
 		unsigned int GetPassengersCount() const;
 		unsigned int GetMaxPassengersCount() const;
 
-		virtual unsigned int TravelSpeed() = 0;
+		virtual unsigned int GetMaxSpeed() const = 0;
 
-		
-		//void SetMemoryNullNoDelete();
+		virtual unsigned int TravelSpeed() = 0;
 
 	protected:
 		unsigned int mMoveTime;

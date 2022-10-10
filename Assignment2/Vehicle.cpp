@@ -45,8 +45,6 @@ namespace assignment2
 		{
 			mPassengersArr[i] = new Person(*other.GetPassenger(i));
 		}
-
-
 	}
 
 	Vehicle& Vehicle::operator=(const Vehicle& other)
@@ -166,11 +164,6 @@ namespace assignment2
 	{
 		return mMaxPassengersCount;
 	}
-
-	//void Vehicle::SetMemoryNullNoDelete()
-	//{
-	//	mPassengersCount = 0;
-	//}
 
 	const Person* Vehicle::GetPassenger(unsigned int i) const
 	{

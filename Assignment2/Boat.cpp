@@ -85,6 +85,4 @@ namespace assignment2
 
 		return 0;
 	}
-
-
 }

@@ -8,8 +8,9 @@ namespace assignment2
 	class DeusExMachina
 	{
 	public:
-		static void Destroy();
 		~DeusExMachina();
+
+		static void Destroy();
 		static DeusExMachina* GetInstance();
 
 		void Travel() const;
@@ -21,9 +22,9 @@ namespace assignment2
 
 	private:
 		DeusExMachina();
-
 		DeusExMachina(const DeusExMachina& other) = delete;
 		DeusExMachina& operator=(const DeusExMachina& other) = delete;
+
 	private:
 		enum 
 		{
