@@ -17,7 +17,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT32_MIN;
+			return INT32_MAX;
 		}
 
 		int min = v[0];
@@ -36,7 +36,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT32_MAX;
+			return INT32_MIN;
 		}
 
 		int max = v[0];
