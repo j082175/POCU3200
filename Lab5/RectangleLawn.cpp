@@ -39,4 +39,3 @@ unsigned int lab5::RectangleLawn::GetFencePrice(eFenceType fenceType) const
 
 	return static_cast<unsigned int>(std::round(result));
 }
-

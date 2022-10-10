@@ -11,6 +11,3 @@ namespace lab5
 		unsigned int GetArea() const; // 반환단위 : m^2
 	};
 }
-
-
-

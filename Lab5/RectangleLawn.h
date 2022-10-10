@@ -15,5 +15,3 @@ namespace lab5
 		unsigned int GetFencePrice(eFenceType fenceType) const;
 	};
 }
-
-
