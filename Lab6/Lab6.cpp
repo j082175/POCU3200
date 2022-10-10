@@ -17,7 +17,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT_MIN;
+			return INT32_MIN;
 		}
 
 		int min = v[0];
@@ -36,7 +36,7 @@ namespace lab6
 	{
 		if (v.size() == 0)
 		{
-			return INT_MAX;
+			return INT32_MAX;
 		}
 
 		int max = v[0];
@@ -109,8 +109,6 @@ namespace lab6
 		{
 			return;
 		}
-
-		std::vector<int> newVector(v.size());
 		
 		for (size_t i = 0; i < v.size() - 1; i++)
 		{

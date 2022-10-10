@@ -3,31 +3,11 @@
 
 int main()
 {
-	std::vector<int> v;
-	v.push_back(4);
-	v.push_back(3);
-	v.push_back(4);
-	v.push_back(12);
-	v.push_back(7);
-	v.push_back(11);
+	std::vector<int> v = { 1,3,3,3,4,2,5,6,1,3,8,5,2,46,2,3,5,2 };
 
-	int sum = lab6::Sum(v);
-	int max = lab6::Max(v);
-	int min = lab6::Min(v);
-	float average = lab6::Average(v);
-	int numWithMaxOccurence = lab6::NumberWithMaxOccurrence(v);
-	lab6::SortDescending(v);
+	lab6::Min(v);
 
-	assert(sum == 41);
-	assert(max == 12);
-	assert(min == 3);
-	assert(average == 6.83333349f);
-	assert(numWithMaxOccurence == 4);
-
-	for (int i = 0; i < (int)v.size() - 1; ++i)
-	{
-		assert(v[i] >= v[i + 1]);
-	}
+	lab6::Max(v);
 
 	return 0;
 }
