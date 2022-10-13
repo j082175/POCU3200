@@ -137,7 +137,7 @@ namespace lab6
 
 		int left = l;
 
-		for (size_t i = left; i < r; i++)
+		for (int i = left; i < r; i++)
 		{
 			if (v[i] > pivot)
 			{
