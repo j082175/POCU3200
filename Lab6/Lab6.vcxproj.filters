@@ -21,9 +21,15 @@
     <ClCompile Include="Lab6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SortSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SortSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
