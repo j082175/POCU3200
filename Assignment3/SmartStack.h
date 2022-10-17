@@ -25,12 +25,13 @@ namespace assignment3
 
 	private:
 		template<typename T1, typename T2, typename T3>
-		struct thirdPair {
+		struct ThirdPair 
+		{
 			T1 first;
 			T2 second;
 			T3 third;
 		};
-		std::stack<thirdPair<T, T, T>> mStack;
+		std::stack<ThirdPair<T, T, T>> mStack;
 		//double mTotalSum;
 	};
 
@@ -135,7 +136,7 @@ namespace assignment3
 
 		double sum = 0.;
 		size_t length = mStack.size();
-		std::stack<thirdPair<T, T, T>> bS(mStack);
+		std::stack<ThirdPair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
@@ -155,7 +156,7 @@ namespace assignment3
 		double backup;
 
 		size_t length = mStack.size();
-		std::stack<thirdPair<T, T, T>> bS(mStack);
+		std::stack<ThirdPair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
