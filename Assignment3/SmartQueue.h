@@ -214,7 +214,7 @@ namespace assignment3
 	class SmartQueue
 	{
 	public:
-		SmartQueue();
+		SmartQueue() = default;
 
 		void Enqueue(T value);
 		T Peek();
@@ -229,12 +229,7 @@ namespace assignment3
 
 	private:
 		std::queue<T> mQueue;
-		enum { MAX_SIZE = 128 };
 	};
-
-	template<typename T>
-	inline SmartQueue<T>::SmartQueue()
-	{}
 
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T value)

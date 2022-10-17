@@ -9,13 +9,9 @@ namespace assignment3
 	class SmartStack
 	{
 	public:
-		SmartStack();
-		SmartStack(const SmartStack<T>& other)
-			: mStack(other.mStack)
-		{
+		SmartStack() = default;
+		SmartStack(const SmartStack<T>& other);
 
-		}
-		
 		void Push(T value);
 		T Pop();
 		T Peek();
@@ -29,19 +25,25 @@ namespace assignment3
 
 	private:
 		template<typename T1, typename T2, typename T3>
-		struct third_pair
+		struct thirdPair
 		{
 			T1 first;
 			T2 second;
 			T3 third;
 		};
-		std::stack<third_pair<T, T, T>> mStack;
+		std::stack<thirdPair<T, T, T>> mStack;
 		//double mTotalSum;
 	};
 
+	//template<typename T>
+	//inline SmartStack<T>::SmartStack()
+	//	//: mTotalSum(0)
+	//{
+	//}
+
 	template<typename T>
-	inline SmartStack<T>::SmartStack()
-		//: mTotalSum(0)
+	inline SmartStack<T>::SmartStack(const SmartStack<T>& other)
+		: mStack(other.mStack)
 	{
 	}
 
@@ -73,7 +75,7 @@ namespace assignment3
 		//bS.pop();
 
 		//mTotalSum += powSum;
-		
+
 		//mStack.push(value);
 	}
 
@@ -83,17 +85,6 @@ namespace assignment3
 		// O(1)
 		T value = mStack.top().first;
 		mStack.pop();
-
-		//T value2 = mStack.top();
-		//if (value2 > mMax)
-		//{
-		//	mMax = value2;
-		//}
-
-		//if (value2 < mMin)
-		//{
-		//	mMin = value2;
-		//}
 
 		return value;
 	}
@@ -114,21 +105,6 @@ namespace assignment3
 			return std::numeric_limits<T>::lowest();
 		}
 
-		//std::stack<third_pair<T, T, T>> bS(mStack);
-		//T maxValue = bS.top().first;
-		//bS.pop();
-		//size_t length = mStack.size();
-		//for (size_t i = 1; i < length; i++)
-		//{
-		//	if (bS.top().first > maxValue)
-		//	{
-		//		maxValue = bS.top().first;
-		//	}
-		//	bS.pop();
-		//}
-
-		//return maxValue;
-
 		return mStack.top().third;
 	}
 
@@ -140,21 +116,6 @@ namespace assignment3
 		{
 			return std::numeric_limits<T>::max();
 		}
-
-		//std::stack<third_pair<T, T, T>> bS(mStack);
-		//T minValue = bS.top().first;
-		//bS.pop();
-		//size_t length = mStack.size();
-		//for (size_t i = 1; i < length; i++)
-		//{
-		//	if (bS.top().first < minValue)
-		//	{
-		//		minValue = bS.top().first;
-		//	}
-		//	bS.pop();
-		//}
-
-		//return minValue;
 
 		return mStack.top().second;
 	}
@@ -175,7 +136,7 @@ namespace assignment3
 
 		double sum = 0.;
 		size_t length = mStack.size();
-		std::stack<third_pair<T, T, T>> bS(mStack);
+		std::stack<thirdPair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
@@ -195,7 +156,7 @@ namespace assignment3
 		double backup;
 
 		size_t length = mStack.size();
-		std::stack<third_pair<T, T, T>> bS(mStack);
+		std::stack<thirdPair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{

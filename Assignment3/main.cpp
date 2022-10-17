@@ -578,9 +578,17 @@ int main()
 	TestMinMaxWhenEmpty();
 
 	QueueStack<int> q1(10);
+
+	for (size_t i = 0; i < 20; i++)
+	{
+		q1.Enqueue(i);
+	}
+	q1.Enqueue(3);
+	q1.Enqueue(0);
+	q1.Enqueue(20);
 	
 	int value = q1.GetMax();
-
+	int value2 = q1.GetMin();
 
 
 	
