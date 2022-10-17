@@ -25,8 +25,7 @@ namespace assignment3
 
 	private:
 		template<typename T1, typename T2, typename T3>
-		struct thirdPair
-		{
+		struct thirdPair {
 			T1 first;
 			T2 second;
 			T3 third;
