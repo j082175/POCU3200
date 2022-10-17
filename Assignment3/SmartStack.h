@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <stack>
 #include <cmath>
 
 namespace assignment3
@@ -22,7 +22,7 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		std::vector<T> mVec;
+		std::stack<T> mStack;
 		T mMax = T();
 		T mMin = T();
 		enum { MAX_SIZE = 128 };
@@ -37,57 +37,45 @@ namespace assignment3
 	inline void SmartStack<T>::Push(T value)
 	{
 		// O(1)
-		mVec.push_back(value);
+		mStack.push(value);
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::Pop()
 	{
 		// O(1)
-		T value = mVec.back();
-		mVec.pop_back();
+		T value = mStack.top();
+		mStack.pop();
 		return value;
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::Peek()
 	{
-		return mVec.back();
+		return mStack.top();
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetMax()
 	{
 		//// O(1)
-		//if (mVec.size() == 0)
-		//{
-		//	return std::numeric_limits<T>::min();
-		//}
 
-		//T maxValue = mVec[0];
-		//for (std::vector<int>::iterator i = mVec.begin() + 1; i != mVec.end(); i++)
-		//{
-		//	if (*i > maxValue)
-		//	{
-		//		maxValue = *i;
-		//	}
-		//}
-
-		//return maxValue;
-
-				// O(1)
-		if (mVec.size() == 0)
+		if (mStack.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
-		T maxValue = mVec[0];
-		for (size_t i = 1; i < mVec.size(); i++)
+		std::stack<T> bS(mStack);
+		T maxValue = bS.top();
+		bS.pop();
+		size_t length = mStack.size();
+		for (size_t i = 1; i < length; i++)
 		{
-			if (mVec[i] > maxValue)
+			if (bS.top() > maxValue)
 			{
-				maxValue = mVec[i];
+				maxValue = bS.top();
 			}
+			bS.pop();
 		}
 
 		return maxValue;
@@ -97,18 +85,22 @@ namespace assignment3
 	inline T SmartStack<T>::GetMin()
 	{
 		// O(1)
-		if (mVec.size() == 0)
+		if (mStack.size() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
-		T minValue = mVec[0];
-		for (size_t i = 1; i < mVec.size(); i++)
+		std::stack<T> bS(mStack);
+		T minValue = bS.top();
+		bS.pop();
+		size_t length = mStack.size();
+		for (size_t i = 1; i < length; i++)
 		{
-			if (mVec[i] < minValue)
+			if (bS.top() < minValue)
 			{
-				minValue = mVec[i];
+				minValue = bS.top();
 			}
+			bS.pop();
 		}
 
 		return minValue;
@@ -117,22 +109,25 @@ namespace assignment3
 	template<typename T>
 	inline double SmartStack<T>::GetAverage()
 	{
-		return static_cast<double>(GetSum()) / mVec.size();
+		return static_cast<double>(GetSum()) / mStack.size();
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::GetSum()
 	{
-		if (mVec.size() == 0)
+		if (mStack.size() == 0)
 		{
 			return 0;
 		}
 
 		double sum = 0.;
+		size_t length = mStack.size();
+		std::stack<T> bS(mStack);
 
-		for (size_t i = 0; i < mVec.size(); i++)
+		for (size_t i = 0; i < length; i++)
 		{
-			sum += mVec[i];
+			sum += bS.top();
+			bS.pop();
 		}
 
 		return static_cast<T>(sum);
@@ -146,15 +141,20 @@ namespace assignment3
 
 		double backupArr[MAX_SIZE] = { 0. };
 
-		for (size_t i = 0; i < mVec.size(); i++)
+		size_t length = mStack.size();
+		std::stack<T>bS(mStack);
+
+		for (size_t i = 0; i < length; i++)
 		{
-			backupArr[i] = static_cast<double>(mVec[i]);
+			backupArr[i] = static_cast<double>(bS.top());
 			backupArr[i] -= average;
 			backupArr[i] *= backupArr[i];
 			powSum += backupArr[i];
+
+			bS.pop();
 		}
 
-		return powSum / mVec.size();
+		return powSum / length;
 	}
 
 	template<typename T>
@@ -166,6 +166,6 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int SmartStack<T>::GetCount()
 	{
-		return static_cast<unsigned>(mVec.size());
+		return static_cast<unsigned>(mStack.size());
 	}
 }

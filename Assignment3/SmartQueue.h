@@ -54,7 +54,7 @@ namespace assignment3
 	{
 		if (mQueue.size() == 0)
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		size_t length = mQueue.size();

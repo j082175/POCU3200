@@ -1,5 +1,4 @@
 #pragma once
-#include <vector>
 #include <queue>
 
 #include "SmartStack.h"
@@ -11,6 +10,42 @@ namespace assignment3
 	{
 	public:
 		QueueStack(unsigned int maxStackSize);
+		QueueStack(const QueueStack<T>& other);
+		//QueueStack<T> operator=(const QueueStack<T>& other)
+		//{
+		//	if (this == &other)
+		//	{
+		//		return *this;
+		//	}
+
+		//	mMaxStackSize = other.mMaxStackSize;
+		//	size_t length = mQueue.size();
+		//	
+		//	for (size_t i = 0; i < length; i++)
+		//	{
+		//		delete mQueue.front();
+		//		mQueue.pop();
+		//	}
+
+		//	length = other.mQueue.size();
+		//	std::queue<SmartStack<T>*> bQ(other.mQueue);
+
+		//	for (size_t i = 0; i < length; i++)
+		//	{
+		//		mQueue.push(new SmartStack<T>(*bQ.front()));
+		//		bQ.pop();
+		//	}
+		//}
+
+		//~QueueStack()
+		//{
+		//	size_t length = mQueue.size();
+		//	for (size_t i = 0; i < length; i++)
+		//	{
+		//		delete mQueue.front();
+		//		mQueue.pop();
+		//	}
+		//}
 
 		void Enqueue(T value);
 		T Peek();
@@ -32,7 +67,20 @@ namespace assignment3
 		: mMaxStackSize(maxStackSize)
 	{
 		//mQueue.push(new std::vector<T>());
-		mQueue.push(new SmartStack<T>());
+
+	}
+	template<typename T>
+	inline QueueStack<T>::QueueStack(const QueueStack<T>& other)
+		: mMaxStackSize(other.mMaxStackSize)
+	{
+		std::queue<SmartStack<T>*> bQ(other.mQueue);
+		size_t length = other.mQueue.size();
+
+		for (size_t i = 0; i < length; i++)
+		{
+			mQueue.push(new SmartStack<T>(*bQ.front()));
+			bQ.pop();
+		}
 	}
 	template<typename T>
 	inline void QueueStack<T>::Enqueue(T value)
@@ -42,6 +90,18 @@ namespace assignment3
 		//	mQueue.push(new std::vector<T>());
 		//}
 		//mQueue.back()->push_back(value);
+
+		if (mMaxStackSize == 0)
+		{
+			return;
+		}
+
+		if (mQueue.empty())
+		{
+			mQueue.push(new SmartStack<T>());
+			mQueue.back()->Push(value);
+			return;
+		}
 
 		if (mQueue.back()->GetCount() >= mMaxStackSize)
 		{
@@ -57,14 +117,19 @@ namespace assignment3
 	template<typename T>
 	inline T QueueStack<T>::Dequeue()
 	{
-		return mQueue.front()->Pop();
+		T value = mQueue.front()->Pop();
+		if (mQueue.front()->GetCount() == 0)
+		{
+			mQueue.pop();
+		}
+		return value;
 	}
 	template<typename T>
 	inline T QueueStack<T>::GetMax()
 	{
 		if (mQueue.empty())
 		{
-			return std::numeric_limits<T>::min();
+			return std::numeric_limits<T>::lowest();
 		}
 
 		T maxValue = mQueue.front()->GetMax();
@@ -78,6 +143,7 @@ namespace assignment3
 			if (mQueue.front()->GetMax() > maxValue)
 			{
 				maxValue = mQueue.front()->GetMax();
+				mQueue.pop();
 			}
 		}
 
@@ -103,6 +169,7 @@ namespace assignment3
 			if (mQueue.front()->GetMin() < minValue)
 			{
 				minValue = mQueue.front()->GetMin();
+				mQueue.pop();
 			}
 		}
 
