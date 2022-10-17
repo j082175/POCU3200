@@ -28,15 +28,18 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		std::stack<T> mStack;
-		T mMax;
-		T mMin;
+		template<typename T1, typename T2, typename T3>
+		struct third_pair
+		{
+			T1 first;
+			T2 second;
+			T3 third;
+		};
+		std::stack<third_pair<T, T, T>> mStack;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
-		: mMax(std::numeric_limits<T>::lowest())
-		, mMin(std::numeric_limits<T>::max())
 	{
 	}
 
@@ -44,23 +47,21 @@ namespace assignment3
 	inline void SmartStack<T>::Push(T value)
 	{
 		// O(1)
-		mStack.push(value);
-		if (value > mMax)
-		{
-			mMax = value;
-		}
+		T st_min;
+		T st_max;
 
-		if (value < mMin)
-		{
-			mMin = value;
-		}
+		st_min = mStack.empty() ? value : std::min(value, mStack.top().second);
+		st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
+		mStack.push({ value, st_min, st_max });
+		
+		//mStack.push(value);
 	}
 
 	template<typename T>
 	inline T SmartStack<T>::Pop()
 	{
 		// O(1)
-		T value = mStack.top();
+		T value = mStack.top().first;
 		mStack.pop();
 
 		//T value2 = mStack.top();
@@ -80,7 +81,7 @@ namespace assignment3
 	template<typename T>
 	inline T SmartStack<T>::Peek()
 	{
-		return mStack.top();
+		return mStack.top().first;
 	}
 
 	template<typename T>
@@ -93,22 +94,22 @@ namespace assignment3
 			return std::numeric_limits<T>::lowest();
 		}
 
-		std::stack<T> bS(mStack);
-		T maxValue = bS.top();
-		bS.pop();
-		size_t length = mStack.size();
-		for (size_t i = 1; i < length; i++)
-		{
-			if (bS.top() > maxValue)
-			{
-				maxValue = bS.top();
-			}
-			bS.pop();
-		}
+		//std::stack<third_pair<T, T, T>> bS(mStack);
+		//T maxValue = bS.top().first;
+		//bS.pop();
+		//size_t length = mStack.size();
+		//for (size_t i = 1; i < length; i++)
+		//{
+		//	if (bS.top().first > maxValue)
+		//	{
+		//		maxValue = bS.top().first;
+		//	}
+		//	bS.pop();
+		//}
 
-		return maxValue;
+		//return maxValue;
 
-		//return mMax;
+		return mStack.top().third;
 	}
 
 	template<typename T>
@@ -120,22 +121,22 @@ namespace assignment3
 			return std::numeric_limits<T>::max();
 		}
 
-		std::stack<T> bS(mStack);
-		T minValue = bS.top();
-		bS.pop();
-		size_t length = mStack.size();
-		for (size_t i = 1; i < length; i++)
-		{
-			if (bS.top() < minValue)
-			{
-				minValue = bS.top();
-			}
-			bS.pop();
-		}
+		//std::stack<third_pair<T, T, T>> bS(mStack);
+		//T minValue = bS.top().first;
+		//bS.pop();
+		//size_t length = mStack.size();
+		//for (size_t i = 1; i < length; i++)
+		//{
+		//	if (bS.top().first < minValue)
+		//	{
+		//		minValue = bS.top().first;
+		//	}
+		//	bS.pop();
+		//}
 
-		return minValue;
+		//return minValue;
 
-		//return mMin;
+		return mStack.top().second;
 	}
 
 	template<typename T>
@@ -154,11 +155,11 @@ namespace assignment3
 
 		double sum = 0.;
 		size_t length = mStack.size();
-		std::stack<T> bS(mStack);
+		std::stack<third_pair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
-			sum += bS.top();
+			sum += bS.top().first;
 			bS.pop();
 		}
 
@@ -174,11 +175,11 @@ namespace assignment3
 		double backup;
 
 		size_t length = mStack.size();
-		std::stack<T>bS(mStack);
+		std::stack<third_pair<T, T, T>> bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
-			backup = static_cast<double>(bS.top());
+			backup = static_cast<double>(bS.top().first);
 			backup -= average;
 			backup *= backup;
 			powSum += backup;

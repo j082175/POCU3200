@@ -559,6 +559,13 @@ void TestMinMaxWhenEmpty()
 	assert(qs4.GetMin() == std::numeric_limits<double>::max());
 };
 
+template<typename T1, typename T2, typename T3>
+struct third_pair
+{
+	T1 first;
+	T2 second;
+	T3 third;
+};
 
 int main()
 {
@@ -587,4 +594,55 @@ int main()
 	q2 = q1;
 	q1.Dequeue();
 
+	
+
+	//adding an element
+	std::stack<third_pair<int, int, int>> st;
+	//st.push(std::make_pair(1, 1));
+	//st.push(std::make_pair(2, 1));
+	//st.push(std::make_pair(3, 1));
+	//st.push(std::make_pair(4, 1));
+
+	int st_min = 0;
+	int st_max = 0;
+	int i = 0;
+
+	i = 1;
+	st_min = st.empty() ? i : std::min(i, st.top().second);
+	st_max = st.empty() ? i : std::max(i, st.top().third);
+	st.push({ i, st_min, st_max });
+
+	i = -1;
+	st_min = st.empty() ? i : std::min(i, st.top().second);
+	st_max = st.empty() ? i : std::max(i, st.top().third);
+	st.push({ i, st_min, st_max });
+
+	i = 3;
+	st_min = st.empty() ? i : std::min(i, st.top().second);
+	st_max = st.empty() ? i : std::max(i, st.top().third);
+	st.push({ i, st_min, st_max });
+
+	i = 4;
+	st_min = st.empty() ? i : std::min(i, st.top().second);
+	st_max = st.empty() ? i : std::max(i, st.top().third);
+	st.push({ i, st_min, st_max });
+
+	i = -5;
+	st_min = st.empty() ? i : std::min(i, st.top().second);
+	st_max = st.empty() ? i : std::max(i, st.top().third);
+	st.push({ i, st_min, st_max });
+
+	//finding the minimum
+	st_min = st.top().second;
+	st.pop();
+	st_min = st.top().second;
+
+
+	SmartStack<int> ss;
+	for (size_t i = 0; i < 10; i++)
+	{
+		ss.Push(i);
+	}
+
+	
 }
