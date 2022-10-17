@@ -377,18 +377,17 @@ namespace assignment3
 		size_t length = mQueue.size();
 
 		std::queue<SmartStack<T>*> bQ = mQueue;
-		mQueue.pop();
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front()->GetMax() > maxValue)
+			if (bQ.front()->GetMax() > maxValue)
 			{
-				maxValue = mQueue.front()->GetMax();
-				mQueue.pop();
+				maxValue = bQ.front()->GetMax();
+				bQ.pop();
 			}
 		}
 
-		mQueue = bQ;
 		return maxValue;
 	}
 	template<typename T>
@@ -403,18 +402,17 @@ namespace assignment3
 		size_t length = mQueue.size();
 
 		std::queue<SmartStack<T>*> bQ = mQueue;
-		mQueue.pop();
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front()->GetMin() < minValue)
+			if (bQ.front()->GetMin() < minValue)
 			{
-				minValue = mQueue.front()->GetMin();
-				mQueue.pop();
+				minValue = bQ.front()->GetMin();
+				bQ.pop();
 			}
 		}
 
-		mQueue = bQ;
 		return minValue;
 	}
 	template<typename T>

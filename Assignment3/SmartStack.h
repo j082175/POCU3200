@@ -36,10 +36,12 @@ namespace assignment3
 			T3 third;
 		};
 		std::stack<third_pair<T, T, T>> mStack;
+		//double mTotalSum;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
+		//: mTotalSum(0)
 	{
 	}
 
@@ -53,6 +55,24 @@ namespace assignment3
 		st_min = mStack.empty() ? value : std::min(value, mStack.top().second);
 		st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
 		mStack.push({ value, st_min, st_max });
+
+		//// variance
+		//double average = GetAverage();
+		//double powSum = 0.;
+
+		//double backup;
+
+		//size_t length = mStack.size();
+		//std::stack<third_pair<T, T, T>> bS(mStack);
+
+		//backup = static_cast<double>(bS.top().first);
+		//backup -= average;
+		//backup *= backup;
+		//powSum += backup;
+
+		//bS.pop();
+
+		//mTotalSum += powSum;
 		
 		//mStack.push(value);
 	}
@@ -187,6 +207,9 @@ namespace assignment3
 			bS.pop();
 		}
 		return powSum / length;
+
+		//size_t length = mStack.size();
+		//return mStack.top().fourth / length;
 	}
 
 	template<typename T>
