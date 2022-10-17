@@ -2,6 +2,7 @@
 #include <queue>
 
 #include "SmartStack.h"
+#include "SmartQueue.h"
 
 namespace assignment3
 {
@@ -11,41 +12,43 @@ namespace assignment3
 	public:
 		QueueStack(unsigned int maxStackSize);
 		QueueStack(const QueueStack<T>& other);
-		//QueueStack<T> operator=(const QueueStack<T>& other)
-		//{
-		//	if (this == &other)
-		//	{
-		//		return *this;
-		//	}
+		QueueStack<T>& operator=(const QueueStack<T>& other)
+		{
+			if (this == &other)
+			{
+				return *this;
+			}
 
-		//	mMaxStackSize = other.mMaxStackSize;
-		//	size_t length = mQueue.size();
-		//	
-		//	for (size_t i = 0; i < length; i++)
-		//	{
-		//		delete mQueue.front();
-		//		mQueue.pop();
-		//	}
+			mMaxStackSize = other.mMaxStackSize;
+			size_t length = mQueue.GetCount();
+			
+			for (size_t i = 0; i < length; i++)
+			{
+				delete mQueue.Peek();
+				mQueue.Dequeue();
+			}
 
-		//	length = other.mQueue.size();
-		//	std::queue<SmartStack<T>*> bQ(other.mQueue);
+			SmartQueue<SmartStack<T>*> bQ(other.mQueue);
+			length = bQ.GetCount();
 
-		//	for (size_t i = 0; i < length; i++)
-		//	{
-		//		mQueue.push(new SmartStack<T>(*bQ.front()));
-		//		bQ.pop();
-		//	}
-		//}
+			for (size_t i = 0; i < length; i++)
+			{
+				mQueue.Enqueue(new SmartStack<T>(*bQ.Peek()));
+				bQ.Dequeue();
+			}
 
-		//~QueueStack()
-		//{
-		//	size_t length = mQueue.size();
-		//	for (size_t i = 0; i < length; i++)
-		//	{
-		//		delete mQueue.front();
-		//		mQueue.pop();
-		//	}
-		//}
+			return *this;
+		}
+
+		~QueueStack()
+		{
+			size_t length = mQueue.GetCount();
+			for (size_t i = 0; i < length; i++)
+			{
+				delete mQueue.Peek();
+				mQueue.Dequeue();
+			}
+		}
 
 		void Enqueue(T value);
 		T Peek();
@@ -58,8 +61,8 @@ namespace assignment3
 		unsigned int GetStackCount();
 
 	private:
-		//std::queue<std::vector<T>*> mQueue;
-		std::queue<SmartStack<T>*> mQueue;
+		//std::queue<SmartStack<T>*> mQueue;
+		SmartQueue<SmartStack<T>*> mQueue;
 		unsigned int mMaxStackSize;
 	};
 	template<typename T>
@@ -69,19 +72,21 @@ namespace assignment3
 		//mQueue.push(new std::vector<T>());
 
 	}
+
 	template<typename T>
 	inline QueueStack<T>::QueueStack(const QueueStack<T>& other)
 		: mMaxStackSize(other.mMaxStackSize)
 	{
-		std::queue<SmartStack<T>*> bQ(other.mQueue);
-		size_t length = other.mQueue.size();
+		SmartQueue<SmartStack<T>*> bQ(other.mQueue);
+		size_t length = bQ.GetCount();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			mQueue.push(new SmartStack<T>(*bQ.front()));
-			bQ.pop();
+			mQueue.Enqueue(new SmartStack<T>(*bQ.Peek()));
+			bQ.Dequeue();
 		}
 	}
+
 	template<typename T>
 	inline void QueueStack<T>::Enqueue(T value)
 	{
@@ -96,84 +101,82 @@ namespace assignment3
 			return;
 		}
 
-		if (mQueue.empty())
+		if (mQueue.GetCount() == 0)
 		{
-			mQueue.push(new SmartStack<T>());
-			mQueue.back()->Push(value);
+			mQueue.Enqueue(new SmartStack<T>());
+			mQueue.Back()->Push(value);
 			return;
 		}
 
-		if (mQueue.back()->GetCount() >= mMaxStackSize)
+		if (mQueue.Back()->GetCount() >= mMaxStackSize)
 		{
-			mQueue.push(new SmartStack<T>());
+			mQueue.Enqueue(new SmartStack<T>());
 		}
-		mQueue.back()->Push(value);
+		mQueue.Back()->Push(value);
 	}
 	template<typename T>
 	inline T QueueStack<T>::Peek()
 	{
-		return mQueue.front()->Peek();
+		return mQueue.Peek()->Peek();
 	}
 	template<typename T>
 	inline T QueueStack<T>::Dequeue()
 	{
-		T value = mQueue.front()->Pop();
-		if (mQueue.front()->GetCount() == 0)
+		T value = mQueue.Peek()->Pop();
+		if (mQueue.Peek()->GetCount() == 0)
 		{
-			mQueue.pop();
+			mQueue.Dequeue();
 		}
 		return value;
 	}
 	template<typename T>
 	inline T QueueStack<T>::GetMax()
 	{
-		if (mQueue.empty())
+		if (mQueue.GetCount() == 0)
 		{
 			return std::numeric_limits<T>::lowest();
 		}
 
-		T maxValue = mQueue.front()->GetMax();
-		size_t length = mQueue.size();
+		T maxValue = mQueue.Peek()->GetMax();
+		size_t length = mQueue.GetCount();
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
-		mQueue.pop();
+		SmartQueue<SmartStack<T>*> bQ(mQueue);
+		bQ.Dequeue();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front()->GetMax() > maxValue)
+			if (bQ.Peek()->GetMax() > maxValue)
 			{
-				maxValue = mQueue.front()->GetMax();
-				mQueue.pop();
+				maxValue = bQ.Peek()->GetMax();
+				bQ.Dequeue();
 			}
 		}
 
-		mQueue = bQ;
 		return maxValue;
 	}
 	template<typename T>
 	inline T QueueStack<T>::GetMin()
 	{
-		if (mQueue.empty())
+		if (mQueue.GetCount() == 0)
 		{
 			return std::numeric_limits<T>::max();
 		}
 
-		T minValue = mQueue.front()->GetMin();
-		size_t length = mQueue.size();
+		T minValue = mQueue.Peek()->GetMin();
+		size_t length = mQueue.GetCount();
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
-		mQueue.pop();
+		SmartQueue<SmartStack<T>*> bQ = mQueue;
+		bQ.Dequeue();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front()->GetMin() < minValue)
+			if (bQ.Peek()->GetMin() < minValue)
 			{
-				minValue = mQueue.front()->GetMin();
-				mQueue.pop();
+				minValue = bQ.Peek()->GetMin();
+				bQ.Dequeue();
 			}
 		}
 
-		mQueue = bQ;
 		return minValue;
 	}
 	template<typename T>
@@ -184,51 +187,49 @@ namespace assignment3
 	template<typename T>
 	inline T QueueStack<T>::GetSum()
 	{
-		if (mQueue.empty())
+		if (mQueue.GetCount() == 0)
 		{
 			return 0;
 		}
 
 		double sum = 0.;
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
-		size_t length = mQueue.size();
+		SmartQueue<SmartStack<T>*> bQ = mQueue;
+		size_t length = mQueue.GetCount();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			sum += mQueue.front()->GetSum();
-			mQueue.pop();
+			sum += bQ.Peek()->GetSum();
+			bQ.Dequeue();
 		}
 
-		mQueue = bQ;
 		return static_cast<T>(sum);
 	}
 	template<typename T>
 	inline unsigned int QueueStack<T>::GetCount()
 	{
-		size_t length = mQueue.size();
+		size_t length = mQueue.GetCount();
 		size_t totalLength = 0;
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		SmartQueue<SmartStack<T>*> bQ = mQueue;
 
 		for (size_t i = 0; i < length; i++)
 		{
-			totalLength += mQueue.front()->GetCount();
-			mQueue.pop();
+			totalLength += bQ.Peek()->GetCount();
+			bQ.Dequeue();
 		}
 
-		mQueue = bQ;
 		return totalLength;
 	}
 	template<typename T>
 	inline unsigned int QueueStack<T>::GetStackCount()
 	{
-		size_t length = mQueue.size();
+		size_t length = mQueue.GetCount();
 		size_t stackCount = 0;
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		SmartQueue<SmartStack<T>*> bQ = mQueue;
 
 		for (size_t i = 0; i < length; i++)
 		{
-			bQ.pop();
+			bQ.Dequeue();
 			stackCount++;
 		}
 

@@ -2,6 +2,7 @@
 #include <stack>
 #include <cmath>
 
+
 namespace assignment3
 {
 	template<typename T>
@@ -9,7 +10,12 @@ namespace assignment3
 	{
 	public:
 		SmartStack();
+		SmartStack(const SmartStack<T>& other)
+			: mStack(other.mStack)
+		{
 
+		}
+		
 		void Push(T value);
 		T Pop();
 		T Peek();
@@ -23,12 +29,14 @@ namespace assignment3
 
 	private:
 		std::stack<T> mStack;
-		T mMax = T();
-		T mMin = T();
+		T mMax;
+		T mMin;
 	};
 
 	template<typename T>
 	inline SmartStack<T>::SmartStack()
+		: mMax(std::numeric_limits<T>::lowest())
+		, mMin(std::numeric_limits<T>::max())
 	{
 	}
 
@@ -37,6 +45,15 @@ namespace assignment3
 	{
 		// O(1)
 		mStack.push(value);
+		if (value > mMax)
+		{
+			mMax = value;
+		}
+
+		if (value < mMin)
+		{
+			mMin = value;
+		}
 	}
 
 	template<typename T>
@@ -45,6 +62,18 @@ namespace assignment3
 		// O(1)
 		T value = mStack.top();
 		mStack.pop();
+
+		//T value2 = mStack.top();
+		//if (value2 > mMax)
+		//{
+		//	mMax = value2;
+		//}
+
+		//if (value2 < mMin)
+		//{
+		//	mMin = value2;
+		//}
+
 		return value;
 	}
 
@@ -78,6 +107,8 @@ namespace assignment3
 		}
 
 		return maxValue;
+
+		//return mMax;
 	}
 
 	template<typename T>
@@ -103,6 +134,8 @@ namespace assignment3
 		}
 
 		return minValue;
+
+		//return mMin;
 	}
 
 	template<typename T>

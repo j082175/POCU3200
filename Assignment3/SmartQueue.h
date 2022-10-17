@@ -8,9 +8,29 @@ namespace assignment3
 	{
 	public:
 		SmartQueue();
+		SmartQueue(const SmartQueue& other)
+		{
+			size_t length = other.mQueue.size();
+			std::queue<T*> bQ(other.mQueue);
+
+			for (size_t i = 0; i < length; i++)
+			{
+				mQueue.push(new T(*bQ.front()));
+				bQ.pop();
+			}
+		}
+
+		~SmartQueue()
+		{
+			for (size_t i = 0; i < mQueue.size(); i++)
+			{
+				delete mQueue.front();
+				mQueue.pop();
+			}
+		}
 
 		void Enqueue(T value);
-		T Peek();
+		T& Peek();
 		T Dequeue();
 		T GetMax();
 		T GetMin();
@@ -20,8 +40,13 @@ namespace assignment3
 		double GetStandardDeviation();
 		unsigned int GetCount();
 
+		T& Back()
+		{
+			return *mQueue.back();
+		}
+
 	private:
-		std::queue<T> mQueue;
+		std::queue<T*> mQueue;
 		enum { MAX_SIZE = 128 };
 	};
 
@@ -32,19 +57,23 @@ namespace assignment3
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T value)
 	{
-		mQueue.push(value);
+		//mQueue.push(value);
+		mQueue.push(new T(value));
 	}
 
 	template<typename T>
-	inline T SmartQueue<T>::Peek()
+	inline T& SmartQueue<T>::Peek()
 	{
-		return mQueue.front();
+		//return mQueue.front();
+		return *mQueue.front();
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		T value = mQueue.front();
+		//T value = mQueue.front();
+		T value = *mQueue.front();
+
 		mQueue.pop();
 		return value;
 	}
@@ -58,21 +87,24 @@ namespace assignment3
 		}
 
 		size_t length = mQueue.size();
-		std::queue<T> bQ = mQueue;
 
-		T maxValue = mQueue.front();
-		mQueue.pop();
+		//std::queue<T> bQ = mQueue;
+		std::queue<T*> bQ = mQueue;
+
+		//T maxValue = bQ.front();
+		T maxValue = *bQ.front();
+
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front() > maxValue)
+			if (*bQ.front() > maxValue)
 			{
-				maxValue = mQueue.front();
+				maxValue = *bQ.front();
 			}
-			mQueue.pop();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return maxValue;
 	}
 
@@ -85,21 +117,20 @@ namespace assignment3
 		}
 
 		size_t length = mQueue.size();
-		std::queue<T> bQ = mQueue;
+		std::queue<T*> bQ = mQueue;
 
-		T minValue = mQueue.front();
-		mQueue.pop();
+		T minValue = *bQ.front();
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front() < minValue)
+			if (*bQ.front() < minValue)
 			{
-				minValue = mQueue.front();
+				minValue = *bQ.front();
 			}
-			mQueue.pop();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return minValue;
 	}
 
@@ -122,17 +153,16 @@ namespace assignment3
 			return 0;
 		}
 
-		std::queue<T> bQ = mQueue;
+		std::queue<T*> bQ = mQueue;
 		size_t length = mQueue.size();
 		T sum = T();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			sum += mQueue.front();
-			mQueue.pop();
+			sum += *bQ.front();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return sum;
 	}
 
@@ -144,20 +174,18 @@ namespace assignment3
 
 		double backup;
 
-		std::queue<T> bQ = mQueue;
+		std::queue<T*> bQ = mQueue;
 		size_t length = mQueue.size();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			backup = static_cast<double>(mQueue.front());
+			backup = static_cast<double>(*bQ.front());
 			backup -= average;
 			backup *= backup;
 			powSum += backup;
 
-			mQueue.pop();
+			bQ.pop();
 		}
-
-		mQueue = bQ;
 
 		return powSum / length;
 	}

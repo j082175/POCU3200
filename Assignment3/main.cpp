@@ -562,12 +562,29 @@ void TestMinMaxWhenEmpty()
 
 int main()
 {
-	test0();
+
 	test1();
 
 	TestSmartStack();
 	TestSmartQueue();
 	TestQueueStack();
 	TestMinMaxWhenEmpty();
+
+	QueueStack<int> q1(10);
+	
+	for (size_t i = 0; i < 11; i++)
+	{
+		q1.Enqueue(i);
+	}
+
+	QueueStack<int> q2(5);
+
+	for (size_t i = 0; i < 3; i++)
+	{
+		q2.Enqueue(i);
+	}
+
+	q2 = q1;
+	q1.Dequeue();
 
 }
