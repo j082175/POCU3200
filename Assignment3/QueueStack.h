@@ -235,4 +235,3 @@ namespace assignment3
 		return stackCount;
 	}
 }
-

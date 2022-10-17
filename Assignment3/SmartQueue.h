@@ -142,17 +142,17 @@ namespace assignment3
 		double average = GetAverage();
 		double powSum = 0.;
 
-		double backupArr[MAX_SIZE] = { 0. };
+		double backup;
 
 		std::queue<T> bQ = mQueue;
 		size_t length = mQueue.size();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			backupArr[i] = static_cast<double>(mQueue.front());
-			backupArr[i] -= average;
-			backupArr[i] *= backupArr[i];
-			powSum += backupArr[i];
+			backup = static_cast<double>(mQueue.front());
+			backup -= average;
+			backup *= backup;
+			powSum += backup;
 
 			mQueue.pop();
 		}

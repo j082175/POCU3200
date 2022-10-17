@@ -25,7 +25,6 @@ namespace assignment3
 		std::stack<T> mStack;
 		T mMax = T();
 		T mMin = T();
-		enum { MAX_SIZE = 128 };
 	};
 
 	template<typename T>
@@ -139,21 +138,20 @@ namespace assignment3
 		double average = GetAverage();
 		double powSum = 0.;
 
-		double backupArr[MAX_SIZE] = { 0. };
+		double backup;
 
 		size_t length = mStack.size();
 		std::stack<T>bS(mStack);
 
 		for (size_t i = 0; i < length; i++)
 		{
-			backupArr[i] = static_cast<double>(bS.top());
-			backupArr[i] -= average;
-			backupArr[i] *= backupArr[i];
-			powSum += backupArr[i];
+			backup = static_cast<double>(bS.top());
+			backup -= average;
+			backup *= backup;
+			powSum += backup;
 
 			bS.pop();
 		}
-
 		return powSum / length;
 	}
 
