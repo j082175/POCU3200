@@ -1,7 +1,9 @@
 #include "Lab6.h"
+#include "SortSystem.h"
 
 namespace lab6
 {
+
 	int Sum(const std::vector<int>& v)
 	{
 		int sum = 0;
@@ -110,16 +112,9 @@ namespace lab6
 			return;
 		}
 		
-		for (size_t i = 0; i < v.size() - 1; i++)
-		{
-			for (size_t j = 0; j < v.size() - 1 - i; j++)
-			{
-				if (v[j] < v[j + 1])
-				{
-					std::swap(v[j], v[j + 1]);
-				}
-			}
-		}
+		//bubbleSort(v);
+		quickSort(v);
+		
 	}
 
 }
