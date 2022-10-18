@@ -401,111 +401,111 @@ void TestQueueStack()
 	assert(qs.GetCount() == 3u);
 	assert(qs.GetStackCount() == 2u);
 
-	//assert(qs.Dequeue() == 7);
-	//assert(qs.Peek() == -3);
-	//assert(qs.GetMax() == 5);
-	//assert(qs.GetMin() == -3);
-	//assert(qs.GetSum() == 2);
-	//assert(qs.GetAverage() == 1);
-	//assert(qs.GetCount() == 2u);
-	//assert(qs.GetStackCount() == 2u);
+	assert(qs.Dequeue() == 7);
+	assert(qs.Peek() == -3);
+	assert(qs.GetMax() == 5);
+	assert(qs.GetMin() == -3);
+	assert(qs.GetSum() == 2);
+	assert(qs.GetAverage() == 1);
+	assert(qs.GetCount() == 2u);
+	assert(qs.GetStackCount() == 2u);
 
-	//qs.Enqueue(-6);
-	//assert(qs.Peek() == -3);
-	//assert(qs.GetMax() == 5);
-	//assert(qs.GetMin() == -6);
-	//assert(qs.GetSum() == -4);
-	//assert(std::abs(qs.GetAverage() - (-1.33333333)) <= EPSILON);
-	//assert(qs.GetCount() == 3u);
-	//assert(qs.GetStackCount() == 2u);
+	qs.Enqueue(-6);
+	assert(qs.Peek() == -3);
+	assert(qs.GetMax() == 5);
+	assert(qs.GetMin() == -6);
+	assert(qs.GetSum() == -4);
+	assert(std::abs(qs.GetAverage() - (-1.33333333)) <= EPSILON);
+	assert(qs.GetCount() == 3u);
+	assert(qs.GetStackCount() == 2u);
 
-	//qs.Enqueue(-8);
-	//assert(qs.Peek() == -3);
-	//assert(qs.GetMax() == 5);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == -12);
-	//assert(qs.GetAverage() == -3);
-	//assert(qs.GetCount() == 4u);
-	//assert(qs.GetStackCount() == 3u);
+	qs.Enqueue(-8);
+	assert(qs.Peek() == -3);
+	assert(qs.GetMax() == 5);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == -12);
+	assert(qs.GetAverage() == -3);
+	assert(qs.GetCount() == 4u);
+	assert(qs.GetStackCount() == 3u);
 
-	//qs.Enqueue(10);
-	//assert(qs.Peek() == -3);
-	//assert(qs.GetMax() == 10);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == -2);
-	//assert(qs.GetAverage() == -0.4);
-	//assert(qs.GetCount() == 5u);
-	//assert(qs.GetStackCount() == 3u);
+	qs.Enqueue(10);
+	assert(qs.Peek() == -3);
+	assert(qs.GetMax() == 10);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == -2);
+	assert(qs.GetAverage() == -0.4);
+	assert(qs.GetCount() == 5u);
+	assert(qs.GetStackCount() == 3u);
 
-	//assert(qs.Dequeue() == -3);
-	//assert(qs.Peek() == -6);
-	//assert(qs.GetMax() == 10);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == 1);
-	//assert(qs.GetAverage() == 0.25);
-	//assert(qs.GetCount() == 4u);
-	//assert(qs.GetStackCount() == 2u);
+	assert(qs.Dequeue() == -3);
+	assert(qs.Peek() == -6);
+	assert(qs.GetMax() == 10);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == 1);
+	assert(qs.GetAverage() == 0.25);
+	assert(qs.GetCount() == 4u);
+	assert(qs.GetStackCount() == 2u);
 
-	//assert(qs.Dequeue() == -6);
-	//assert(qs.Peek() == 5);
-	//assert(qs.GetMax() == 10);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == 7);
-	//assert(std::abs(qs.GetAverage() - 2.33333333) <= EPSILON);
-	//assert(qs.GetCount() == 3u);
-	//assert(qs.GetStackCount() == 2u);
+	assert(qs.Dequeue() == -6);
+	assert(qs.Peek() == 5);
+	assert(qs.GetMax() == 10);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == 7);
+	assert(std::abs(qs.GetAverage() - 2.33333333) <= EPSILON);
+	assert(qs.GetCount() == 3u);
+	assert(qs.GetStackCount() == 2u);
 
-	//assert(qs.Dequeue() == 5);
-	//assert(qs.Peek() == 10);
-	//assert(qs.GetMax() == 10);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == 2);
-	//assert(qs.GetAverage() == 1);
-	//assert(qs.GetCount() == 2u);
-	//assert(qs.GetStackCount() == 1u);
+	assert(qs.Dequeue() == 5);
+	assert(qs.Peek() == 10);
+	assert(qs.GetMax() == 10);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == 2);
+	assert(qs.GetAverage() == 1);
+	assert(qs.GetCount() == 2u);
+	assert(qs.GetStackCount() == 1u);
 
-	//assert(qs.Dequeue() == 10);
-	//assert(qs.Peek() == -8);
-	//assert(qs.GetMax() == -8);
-	//assert(qs.GetMin() == -8);
-	//assert(qs.GetSum() == -8);
-	//assert(qs.GetAverage() == -8);
-	//assert(qs.GetCount() == 1u);
-	//assert(qs.GetStackCount() == 1u);
+	assert(qs.Dequeue() == 10);
+	assert(qs.Peek() == -8);
+	assert(qs.GetMax() == -8);
+	assert(qs.GetMin() == -8);
+	assert(qs.GetSum() == -8);
+	assert(qs.GetAverage() == -8);
+	assert(qs.GetCount() == 1u);
+	assert(qs.GetStackCount() == 1u);
 
-	//assert(qs.Dequeue() == -8);
-	//assert(qs.GetMax() == std::numeric_limits<int>::min());
-	//assert(qs.GetMin() == std::numeric_limits<int>::max());
-	//assert(qs.GetSum() == 0);
-	//assert(qs.GetCount() == 0u);
-	//assert(qs.GetStackCount() == 0u);
+	assert(qs.Dequeue() == -8);
+	assert(qs.GetMax() == std::numeric_limits<int>::min());
+	assert(qs.GetMin() == std::numeric_limits<int>::max());
+	assert(qs.GetSum() == 0);
+	assert(qs.GetCount() == 0u);
+	assert(qs.GetStackCount() == 0u);
 
-	//// test assignment operator
-	//assert(qs2.GetMax() != std::numeric_limits<int>::min());
-	//assert(qs2.GetMin() != std::numeric_limits<int>::max());
-	//assert(qs2.GetSum() != 0);
-	//assert(qs2.GetCount() != 0u);
-	//assert(qs2.GetStackCount() != 0u);
-	//
-	//qs2 = qs;
+	// test assignment operator
+	assert(qs2.GetMax() != std::numeric_limits<int>::min());
+	assert(qs2.GetMin() != std::numeric_limits<int>::max());
+	assert(qs2.GetSum() != 0);
+	assert(qs2.GetCount() != 0u);
+	assert(qs2.GetStackCount() != 0u);
+	
+	qs2 = qs;
 
-	//assert(qs2.GetMax() == std::numeric_limits<int>::min());
-	//assert(qs2.GetMin() == std::numeric_limits<int>::max());
-	//assert(qs2.GetSum() == 0);
-	//assert(qs2.GetCount() == 0u);
-	//assert(qs2.GetStackCount() == 0u);
+	assert(qs2.GetMax() == std::numeric_limits<int>::min());
+	assert(qs2.GetMin() == std::numeric_limits<int>::max());
+	assert(qs2.GetSum() == 0);
+	assert(qs2.GetCount() == 0u);
+	assert(qs2.GetStackCount() == 0u);
 
-	//// test max stack count 0
-	//qs = QueueStack<int>(0);
-	//qs.Enqueue(1);
-	//qs.Enqueue(2);
-	//qs.Enqueue(3);
+	// test max stack count 0
+	qs = QueueStack<int>(0);
+	qs.Enqueue(1);
+	qs.Enqueue(2);
+	qs.Enqueue(3);
 
-	//assert(qs.GetMax() == std::numeric_limits<int>::min());
-	//assert(qs.GetMin() == std::numeric_limits<int>::max());
-	//assert(qs.GetSum() == 0);
-	//assert(qs.GetCount() == 0u);
-	//assert(qs.GetStackCount() == 0u);
+	assert(qs.GetMax() == std::numeric_limits<int>::min());
+	assert(qs.GetMin() == std::numeric_limits<int>::max());
+	assert(qs.GetSum() == 0);
+	assert(qs.GetCount() == 0u);
+	assert(qs.GetStackCount() == 0u);
 };
 
 void TestMinMaxWhenEmpty()

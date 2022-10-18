@@ -300,16 +300,16 @@ namespace assignment3
 
 		for (size_t i = 0; i < length; i++)
 		{
-			delete mQueue.front();
+			//delete mQueue.front();
 			mQueue.pop();
 		}
 
 		length = other.mQueue.size();
-		std::queue<SmartStack<T>*> bQ(other.mQueue);
+		std::queue<SmartStack<T>> bQ(other.mQueue);
 
 		for (size_t i = 0; i < length; i++)
 		{
-			mQueue.push(new SmartStack<T>(*bQ.front()));
+			mQueue.push(SmartStack<T>(bQ.front()));
 			bQ.pop();
 		}
 
