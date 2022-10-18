@@ -56,8 +56,8 @@ namespace assignment3
 
 		st_min = mStack.empty() ? value : std::min(value, mStack.top().second);
 		st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
-		//mStack.push({ value, st_min, st_max });
-		mStack.push(ThirdPair(value, st_min, st_max));
+
+		mStack.push({ value, st_min, st_max });
 
 		//// variance
 		//double average = GetAverage();
