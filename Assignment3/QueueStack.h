@@ -264,7 +264,7 @@ namespace assignment3
 		unsigned int GetStackCount();
 
 	private:
-		std::queue<SmartStack<T>*> mQueue;
+		std::queue<SmartStack<T>> mQueue;
 		unsigned int mMaxStackSize;
 	};
 	template<typename T>
@@ -277,12 +277,12 @@ namespace assignment3
 	inline QueueStack<T>::QueueStack(const QueueStack<T>& other)
 		: mMaxStackSize(other.mMaxStackSize)
 	{
-		std::queue<SmartStack<T>*> bQ(other.mQueue);
+		std::queue<SmartStack<T>> bQ(other.mQueue);
 		size_t length = other.mQueue.size();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			mQueue.push(new SmartStack<T>(*bQ.front()));
+			mQueue.push(SmartStack<T>(bQ.front()));
 			bQ.pop();
 		}
 	}
@@ -319,12 +319,12 @@ namespace assignment3
 	template<typename T>
 	QueueStack<T>::~QueueStack()
 	{
-		size_t length = mQueue.size();
-		for (size_t i = 0; i < length; i++)
-		{
-			delete mQueue.front();
-			mQueue.pop();
-		}
+		//size_t length = mQueue.size();
+		//for (size_t i = 0; i < length; i++)
+		//{
+		//	delete mQueue.front();
+		//	mQueue.pop();
+		//}
 	}
 
 	template<typename T>
@@ -343,29 +343,29 @@ namespace assignment3
 
 		if (mQueue.empty())
 		{
-			mQueue.push(new SmartStack<T>());
-			mQueue.back()->Push(value);
+			mQueue.push(SmartStack<T>());
+			mQueue.back().Push(value);
 			return;
 		}
 
-		if (mQueue.back()->GetCount() >= mMaxStackSize)
+		if (mQueue.back().GetCount() >= mMaxStackSize)
 		{
-			mQueue.push(new SmartStack<T>());
+			mQueue.push(SmartStack<T>());
 		}
-		mQueue.back()->Push(value);
+		mQueue.back().Push(value);
 	}
 
 	template<typename T>
 	inline T QueueStack<T>::Peek()
 	{
-		return mQueue.front()->Peek();
+		return mQueue.front().Peek();
 	}
 
 	template<typename T>
 	inline T QueueStack<T>::Dequeue()
 	{
-		T value = mQueue.front()->Pop();
-		if (mQueue.front()->GetCount() == 0)
+		T value = mQueue.front().Pop();
+		if (mQueue.front().GetCount() == 0)
 		{
 			mQueue.pop();
 		}
@@ -380,17 +380,17 @@ namespace assignment3
 			return std::numeric_limits<T>::lowest();
 		}
 
-		T maxValue = mQueue.front()->GetMax();
+		T maxValue = mQueue.front().GetMax();
 		size_t length = mQueue.size();
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		std::queue<SmartStack<T>> bQ = mQueue;
 		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (bQ.front()->GetMax() > maxValue)
+			if (bQ.front().GetMax() > maxValue)
 			{
-				maxValue = bQ.front()->GetMax();
+				maxValue = bQ.front().GetMax();
 				bQ.pop();
 			}
 		}
@@ -406,17 +406,17 @@ namespace assignment3
 			return std::numeric_limits<T>::max();
 		}
 
-		T minValue = mQueue.front()->GetMin();
+		T minValue = mQueue.front().GetMin();
 		size_t length = mQueue.size();
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		std::queue<SmartStack<T>> bQ = mQueue;
 		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (bQ.front()->GetMin() < minValue)
+			if (bQ.front().GetMin() < minValue)
 			{
-				minValue = bQ.front()->GetMin();
+				minValue = bQ.front().GetMin();
 				bQ.pop();
 			}
 		}
@@ -440,16 +440,15 @@ namespace assignment3
 
 		double sum = 0.;
 
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		std::queue<SmartStack<T>> bQ = mQueue;
 		size_t length = mQueue.size();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			sum += mQueue.front()->GetSum();
-			mQueue.pop();
+			sum += bQ.front().GetSum();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return static_cast<T>(sum);
 	}
 
@@ -458,15 +457,14 @@ namespace assignment3
 	{
 		size_t length = mQueue.size();
 		size_t totalLength = 0;
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		std::queue<SmartStack<T>> bQ = mQueue;
 
 		for (size_t i = 0; i < length; i++)
 		{
-			totalLength += mQueue.front()->GetCount();
-			mQueue.pop();
+			totalLength += bQ.front().GetCount();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return totalLength;
 	}
 
@@ -475,7 +473,7 @@ namespace assignment3
 	{
 		size_t length = mQueue.size();
 		size_t stackCount = 0;
-		std::queue<SmartStack<T>*> bQ = mQueue;
+		std::queue<SmartStack<T>> bQ = mQueue;
 
 		for (size_t i = 0; i < length; i++)
 		{

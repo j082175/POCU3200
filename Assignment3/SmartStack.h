@@ -51,11 +51,8 @@ namespace assignment3
 	inline void SmartStack<T>::Push(T value)
 	{
 		// O(1)
-		T st_min;
-		T st_max;
-
-		st_min = mStack.empty() ? value : std::min(value, mStack.top().second);
-		st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
+		T st_min = mStack.empty() ? value : std::min(value, mStack.top().second);
+		T st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
 
 		mStack.push({ value, st_min, st_max });
 
