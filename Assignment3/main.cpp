@@ -569,13 +569,15 @@ struct third_pair
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	_CrtSetBreakAlloc(598);
 
-	test1();
+	//test1();
 
-	TestSmartStack();
-	TestSmartQueue();
+	//TestSmartStack();
+	//TestSmartQueue();
 	TestQueueStack();
-	TestMinMaxWhenEmpty();
+	//TestMinMaxWhenEmpty();
 
 	QueueStack<int> q1(10);
 
@@ -589,7 +591,5 @@ int main()
 	
 	int value = q1.GetMax();
 	int value2 = q1.GetMin();
-
-
 	
 }
