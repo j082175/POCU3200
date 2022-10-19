@@ -61,7 +61,6 @@ namespace assignment3
 		T st_max = mStack.empty() ? value : std::max(value, mStack.top().third);
 
 		mStack.push({ value, st_min, st_max });
-
 		// variance 
 		// ºÐ»êÀº  'Á¦°öÀÇ Æò±Õ' »©±â 'Æò±ÕÀÇ Á¦°ö'
 
