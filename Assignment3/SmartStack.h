@@ -10,7 +10,7 @@ namespace assignment3
 	{
 	public:
 		SmartStack();
-		SmartStack(const SmartStack<T>& other);
+		//SmartStack(const SmartStack<T>& other);
 
 		void Push(T value);
 		T Pop();
@@ -24,12 +24,12 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		template<typename T1, typename T2, typename T3>
+		//template<typename T1, typename T2, typename T3>
 		struct ThirdPair 
 		{
-			T1 first;
-			T2 second;
-			T3 third;
+			T first;
+			T second;
+			T third;
 			double sum;
 			double powSum;
 		};
@@ -37,7 +37,7 @@ namespace assignment3
 		double mTotalSum;
 		double mTotalPowSum;
 
-		std::stack<ThirdPair<T, T, T>> mStack;
+		std::stack<ThirdPair> mStack;
 	};
 
 	template<typename T>
@@ -47,11 +47,13 @@ namespace assignment3
 	{
 	}
 
-	template<typename T>
-	inline SmartStack<T>::SmartStack(const SmartStack<T>& other)
-		: mStack(other.mStack)
-	{
-	}
+	//template<typename T>
+	//inline SmartStack<T>::SmartStack(const SmartStack<T>& other)
+	//	: mStack(other.mStack)
+	//	, mTotalSum(other.mTotalSum)
+	//	, mTotalPowSum(other.mTotalPowSum)
+	//{
+	//}
 
 	template<typename T>
 	inline void SmartStack<T>::Push(T value)
@@ -66,24 +68,15 @@ namespace assignment3
 
 		double powSum = 0.;
 
-		double backup;
-
 		size_t length = mStack.size();
-		std::stack<ThirdPair<T, T, T>> bS(mStack);
 
-		backup = static_cast<double>(bS.top().first);
-		//backup -= average;
-		//backup *= backup;
-		powSum += backup;
-
-		//bS.pop();
+		powSum += static_cast<double>(mStack.top().first);
 
 		mTotalSum += powSum;
 		mTotalPowSum += powSum * powSum;
 
 		mStack.top().sum = mTotalSum;
 		mStack.top().powSum += mTotalPowSum;
-
 	}
 
 	template<typename T>
@@ -141,41 +134,13 @@ namespace assignment3
 			return 0;
 		}
 
-		double sum = 0.;
-		size_t length = mStack.size();
-		std::stack<ThirdPair<T, T, T>> bS(mStack);
-
-		for (size_t i = 0; i < length; i++)
-		{
-			sum += bS.top().first;
-			bS.pop();
-		}
-
-		return static_cast<T>(sum);
+		return static_cast<T>(mStack.top().sum);
 	}
 
 	template<typename T>
 	inline double SmartStack<T>::GetVariance()
 	{
 		size_t length = mStack.size();
-
-		//double average = GetAverage();
-		//double powSum = 0.;
-
-		//double backup;
-
-		//std::stack<ThirdPair<T, T, T>> bS(mStack);
-
-		//for (size_t i = 0; i < length; i++)
-		//{
-		//	backup = static_cast<double>(bS.top().first);
-		//	backup -= average;
-		//	backup *= backup;
-		//	powSum += backup;
-
-		//	bS.pop();
-		//}
-		////return powSum / length;
 
 		double result = (mStack.top().powSum / length) - ((mStack.top().sum / length) * (mStack.top().sum / length));
 		return result;
