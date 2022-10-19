@@ -228,25 +228,55 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		std::queue<T> mQueue;
+		struct ThirdPair
+		{
+			T first;
+			T second;
+			T third;
+			double sum;
+			double powSum;
+		};
+
+		double mTotalSum;
+		double mTotalPowSum;
+
+		std::queue<ThirdPair> mQueue;
 	};
 
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T value)
 	{
-		mQueue.push(value);
+		mQueue.push({ value });
+		// variance 
+		// ºÐ»êÀº  'Á¦°öÀÇ Æò±Õ' »©±â 'Æò±ÕÀÇ Á¦°ö'
+
+		double powSum = 0.;
+
+		size_t length = mQueue.size();
+
+		powSum += static_cast<double>(mQueue.back().first);
+
+		mTotalSum += powSum;
+		mTotalPowSum += powSum * powSum;
+
+		mQueue.back().sum = mTotalSum;
+		mQueue.back().powSum += mTotalPowSum;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Peek()
 	{
-		return mQueue.front();
+		return mQueue.front().first;
 	}
 
 	template<typename T>
 	inline T SmartQueue<T>::Dequeue()
 	{
-		T value = mQueue.front();
+		T value = mQueue.front().first;
+
+		mTotalSum = mQueue.back().sum - mQueue.front().sum;
+		mTotalPowSum = mQueue.back().powSum - mQueue.front().powSum;
+
 		mQueue.pop();
 		return value;
 	}
@@ -260,21 +290,20 @@ namespace assignment3
 		}
 
 		size_t length = mQueue.size();
-		std::queue<T> bQ = mQueue;
+		std::queue<ThirdPair> bQ = mQueue;
 
-		T maxValue = mQueue.front();
-		mQueue.pop();
+		T maxValue = bQ.front().first;
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front() > maxValue)
+			if (bQ.front().first > maxValue)
 			{
-				maxValue = mQueue.front();
+				maxValue = bQ.front().first;
 			}
-			mQueue.pop();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return maxValue;
 	}
 
@@ -287,21 +316,20 @@ namespace assignment3
 		}
 
 		size_t length = mQueue.size();
-		std::queue<T> bQ = mQueue;
+		std::queue<ThirdPair> bQ = mQueue;
 
-		T minValue = mQueue.front();
-		mQueue.pop();
+		T minValue = bQ.front().first;
+		bQ.pop();
 
 		for (size_t i = 1; i < length; i++)
 		{
-			if (mQueue.front() < minValue)
+			if (bQ.front().first < minValue)
 			{
-				minValue = mQueue.front();
+				minValue = bQ.front().first;
 			}
-			mQueue.pop();
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return minValue;
 	}
 
@@ -324,44 +352,26 @@ namespace assignment3
 			return 0;
 		}
 
-		std::queue<T> bQ = mQueue;
-		size_t length = mQueue.size();
+		std::queue<ThirdPair> bQ = mQueue;
+		size_t length = bQ.size();
 		T sum = T();
 
 		for (size_t i = 0; i < length; i++)
 		{
-			sum += mQueue.front();
-			mQueue.pop();
+			sum += bQ.front().first;
+			bQ.pop();
 		}
 
-		mQueue = bQ;
 		return sum;
 	}
 
 	template<typename T>
 	inline double SmartQueue<T>::GetVariance()
 	{
-		double average = GetAverage();
-		double powSum = 0.;
-
-		double backup;
-
-		std::queue<T> bQ = mQueue;
 		size_t length = mQueue.size();
 
-		for (size_t i = 0; i < length; i++)
-		{
-			backup = static_cast<double>(mQueue.front());
-			backup -= average;
-			backup *= backup;
-			powSum += backup;
-
-			mQueue.pop();
-		}
-
-		mQueue = bQ;
-
-		return powSum / length;
+		double result = (mTotalPowSum / length) - ((mTotalSum / length) * (mTotalSum / length));
+		return result;
 	}
 
 	template<typename T>
