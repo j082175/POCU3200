@@ -249,8 +249,8 @@ namespace assignment3
 	{
 	public:
 		QueueStack(unsigned int maxStackSize);
-		QueueStack(const QueueStack<T>& other);
-		QueueStack<T>& operator=(const QueueStack<T>& other);
+		/*QueueStack(const QueueStack<T>& other);
+		QueueStack<T>& operator=(const QueueStack<T>& other);*/
 
 		void Enqueue(T value);
 		T Peek();
@@ -272,48 +272,48 @@ namespace assignment3
 	{
 	}
 
-	template<typename T>
-	inline QueueStack<T>::QueueStack(const QueueStack<T>& other)
-		: mMaxStackSize(other.mMaxStackSize)
-	{
-		std::queue<SmartStack<T>> bQ(other.mQueue);
-		size_t length = other.mQueue.size();
+	//template<typename T>
+	//inline QueueStack<T>::QueueStack(const QueueStack<T>& other)
+	//	: mMaxStackSize(other.mMaxStackSize)
+	//{
+	//	std::queue<SmartStack<T>> bQ(other.mQueue);
+	//	size_t length = other.mQueue.size();
 
-		for (size_t i = 0; i < length; i++)
-		{
-			mQueue.push(SmartStack<T>(bQ.front()));
-			bQ.pop();
-		}
-	}
+	//	for (size_t i = 0; i < length; i++)
+	//	{
+	//		mQueue.push(SmartStack<T>(bQ.front()));
+	//		bQ.pop();
+	//	}
+	//}
 
-	template<typename T>
-	inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& other)
-	{
-		if (this == &other)
-		{
-			return *this;
-		}
+	//template<typename T>
+	//inline QueueStack<T>& QueueStack<T>::operator=(const QueueStack<T>& other)
+	//{
+	//	if (this == &other)
+	//	{
+	//		return *this;
+	//	}
 
-		mMaxStackSize = other.mMaxStackSize;
-		size_t length = mQueue.size();
+	//	mMaxStackSize = other.mMaxStackSize;
+	//	size_t length = mQueue.size();
 
-		for (size_t i = 0; i < length; i++)
-		{
-			//delete mQueue.front();
-			mQueue.pop();
-		}
+	//	for (size_t i = 0; i < length; i++)
+	//	{
+	//		//delete mQueue.front();
+	//		mQueue.pop();
+	//	}
 
-		length = other.mQueue.size();
-		std::queue<SmartStack<T>> bQ(other.mQueue);
+	//	length = other.mQueue.size();
+	//	std::queue<SmartStack<T>> bQ(other.mQueue);
 
-		for (size_t i = 0; i < length; i++)
-		{
-			mQueue.push(SmartStack<T>(bQ.front()));
-			bQ.pop();
-		}
+	//	for (size_t i = 0; i < length; i++)
+	//	{
+	//		mQueue.push(SmartStack<T>(bQ.front()));
+	//		bQ.pop();
+	//	}
 
-		return *this;
-	}
+	//	return *this;
+	//}
 
 	template<typename T>
 	inline void QueueStack<T>::Enqueue(T value)
@@ -415,7 +415,7 @@ namespace assignment3
 	template<typename T>
 	inline double QueueStack<T>::GetAverage()
 	{
-		return static_cast<double>(GetSum() / GetCount());
+		return static_cast<double>(GetSum()) / GetCount();
 	}
 
 	template<typename T>

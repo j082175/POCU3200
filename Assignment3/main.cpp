@@ -547,12 +547,12 @@ int main()
 	TestQueueStack();
 	TestMinMaxWhenEmpty();
 
-	SmartQueue<int> sq;
+	QueueStack<int> qs(2);
 	for (size_t i = 0; i < 10; i++)
 	{
-		sq.Enqueue(i * 2);
+		qs.Enqueue(i);
 	}
-	
-	double v = sq.GetVariance();
-	double sd = sq.GetStandardDeviation();
+
+	QueueStack<int> qs2(qs);
+
 }
