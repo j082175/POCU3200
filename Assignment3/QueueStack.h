@@ -251,7 +251,6 @@ namespace assignment3
 		QueueStack(unsigned int maxStackSize);
 		QueueStack(const QueueStack<T>& other);
 		QueueStack<T>& operator=(const QueueStack<T>& other);
-		~QueueStack();
 
 		void Enqueue(T value);
 		T Peek();
@@ -314,17 +313,6 @@ namespace assignment3
 		}
 
 		return *this;
-	}
-
-	template<typename T>
-	QueueStack<T>::~QueueStack()
-	{
-		//size_t length = mQueue.size();
-		//for (size_t i = 0; i < length; i++)
-		//{
-		//	delete mQueue.front();
-		//	mQueue.pop();
-		//}
 	}
 
 	template<typename T>
@@ -427,7 +415,7 @@ namespace assignment3
 	template<typename T>
 	inline double QueueStack<T>::GetAverage()
 	{
-		return static_cast<double>(GetSum()) / GetCount();
+		return static_cast<double>(GetSum() / GetCount());
 	}
 
 	template<typename T>
