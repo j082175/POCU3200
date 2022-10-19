@@ -214,7 +214,7 @@ namespace assignment3
 	class SmartQueue
 	{
 	public:
-		SmartQueue() = default;
+		SmartQueue();
 
 		void Enqueue(T value);
 		T Peek();
@@ -242,6 +242,13 @@ namespace assignment3
 
 		std::queue<ThirdPair> mQueue;
 	};
+
+	template<typename T>
+	inline SmartQueue<T>::SmartQueue()
+		: mTotalSum(0)
+		, mTotalPowSum(0)
+	{
+	}
 
 	template<typename T>
 	inline void SmartQueue<T>::Enqueue(T value)
@@ -383,8 +390,7 @@ namespace assignment3
 	template<typename T>
 	inline unsigned int SmartQueue<T>::GetCount()
 	{
-		return mQueue.size();
+		return static_cast<unsigned int>(mQueue.size());
 	}
-
 }
 

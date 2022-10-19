@@ -10,7 +10,6 @@ namespace assignment3
 	{
 	public:
 		SmartStack();
-		//SmartStack(const SmartStack<T>& other);
 
 		void Push(T value);
 		T Pop();
@@ -24,7 +23,6 @@ namespace assignment3
 		unsigned int GetCount();
 
 	private:
-		//template<typename T1, typename T2, typename T3>
 		struct ThirdPair 
 		{
 			T first;
@@ -46,14 +44,6 @@ namespace assignment3
 		, mTotalPowSum(0)
 	{
 	}
-
-	//template<typename T>
-	//inline SmartStack<T>::SmartStack(const SmartStack<T>& other)
-	//	: mStack(other.mStack)
-	//	, mTotalSum(other.mTotalSum)
-	//	, mTotalPowSum(other.mTotalPowSum)
-	//{
-	//}
 
 	template<typename T>
 	inline void SmartStack<T>::Push(T value)
@@ -84,8 +74,8 @@ namespace assignment3
 	{
 		// O(1)
 		T value = mStack.top().first;
-		mStack.pop();
 
+		mStack.pop();
 		return value;
 	}
 
@@ -143,6 +133,7 @@ namespace assignment3
 		size_t length = mStack.size();
 
 		double result = (mStack.top().powSum / length) - ((mStack.top().sum / length) * (mStack.top().sum / length));
+
 		return result;
 	}
 
