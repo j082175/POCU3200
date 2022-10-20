@@ -2,7 +2,6 @@
 #include <stack>
 #include <cmath>
 
-
 namespace assignment3
 {
 	template<typename T>

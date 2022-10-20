@@ -41,8 +41,8 @@ void TestQueueStack2()
 	assert(ss.Peek() == 4.6555f);
 	assert(ss.GetMax() == 10.2f);
 	assert(ss.GetMin() == -12.4f);
-	assert(std::abs(ss.GetSum() - 19.1853008f) <= EPSILON);
-	assert(std::abs(ss.GetAverage() - 2.398) <= EPSILON);
+	assert(std::abs(ss.GetSum() - 11.2854) <= EPSILON);
+	assert(std::abs(ss.GetAverage() - 1.410675) <= EPSILON);
 }
 
 void test1()
@@ -492,7 +492,7 @@ void TestQueueStack()
 	assert(qs2.GetSum() != 0);
 	assert(qs2.GetCount() != 0u);
 	assert(qs2.GetStackCount() != 0u);
-	
+
 	qs2 = qs;
 
 	assert(qs2.GetMax() == std::numeric_limits<int>::min());
