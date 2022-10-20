@@ -578,20 +578,12 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc(158);
 
-	/*test1();
+	test1();
 
 	TestSmartStack();
-	TestSmartQueue();*/
+	TestSmartQueue();
 	TestQueueStack();
 	TestMinMaxWhenEmpty();
 
 	TestQueueStack2();
-
-	QueueStack<double> qs(1);
-	qs.Enqueue(1.1);
-	qs.Enqueue(1.11);
-	//qs.Dequeue();
-
-	double max = qs.GetMax();
-
 }
