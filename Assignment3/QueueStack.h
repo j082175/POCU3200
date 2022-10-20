@@ -379,8 +379,8 @@ namespace assignment3
 			if (bQ.front().GetMax() > maxValue)
 			{
 				maxValue = bQ.front().GetMax();
-				bQ.pop();
 			}
+			bQ.pop();
 		}
 
 		return maxValue;
@@ -405,8 +405,8 @@ namespace assignment3
 			if (bQ.front().GetMin() < minValue)
 			{
 				minValue = bQ.front().GetMin();
-				bQ.pop();
 			}
+			bQ.pop();
 		}
 
 		return minValue;
