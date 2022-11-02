@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <set>
 
 namespace lab7
 {
@@ -80,23 +81,30 @@ namespace lab7
 		vec2.reserve(100);
 		vec1 = v1;
 		vec2 = v2;
+
+		std::set<T> overlap1;
+
+		for (size_t i = 0; i < vec1.size(); i++)
+		{
+			overlap1.insert(vec1[i]);
+		}
 		
 
-		size_t vec1Length = vec1.size();
-		for (size_t i = 0; i < vec1Length - 1; i++)
-		{
-			for (size_t j = i + 1; j < vec1Length; j++)
-			{
-				if (vec1[vec1Length - i - 1] == vec1[vec1Length - j - 1])
-				{
-					for (size_t k = vec1Length - i - 1; k < vec1Length - 1; k++)
-					{
-						vec1[k] = vec1[k + 1];
-					}
-					vec1.pop_back();
-				}
-			}
-		}
+		//size_t vec1Length = vec1.size();
+		//for (size_t i = 0; i < vec1Length - 1; i++)
+		//{
+		//	for (size_t j = i + 1; j < vec1Length; j++)
+		//	{
+		//		if (vec1[vec1Length - i - 1] == vec1[vec1Length - j - 1])
+		//		{
+		//			for (size_t k = vec1Length - i - 1; k < vec1Length - 1; k++)
+		//			{
+		//				vec1[k] = vec1[k + 1];
+		//			}
+		//			vec1.pop_back();
+		//		}
+		//	}
+		//}
 
 		/*for (size_t i = 0; i < vec1.size() - 1; i++)
 		{
@@ -111,20 +119,27 @@ namespace lab7
 
 		vec1.erase(std::unique(vec1.begin(), vec1.end()), vec1.end());*/
 
-		size_t vec2Length = vec2.size();
-		for (size_t i = 0; i < vec2Length - 1; i++)
+		//size_t vec2Length = vec2.size();
+		//for (size_t i = 0; i < vec2Length - 1; i++)
+		//{
+		//	for (size_t j = i + 1; j < vec2Length; j++)
+		//	{
+		//		if (vec2[vec2Length - i - 1] == vec2[vec2Length - j - 1])
+		//		{
+		//			for (size_t k = vec2Length - i - 1; k < vec2Length - 1; k++)
+		//			{
+		//				vec2[k] = vec2[k + 1];
+		//			}
+		//			vec2.pop_back();
+		//		}
+		//	}
+		//}
+
+		std::set<T> overlap2;
+
+		for (size_t i = 0; i < vec2.size(); i++)
 		{
-			for (size_t j = i + 1; j < vec2Length; j++)
-			{
-				if (vec2[vec2Length - i - 1] == vec2[vec2Length - j - 1])
-				{
-					for (size_t k = vec2Length - i - 1; k < vec2Length - 1; k++)
-					{
-						vec2[k] = vec2[k + 1];
-					}
-					vec2.pop_back();
-				}
-			}
+			overlap2.insert(vec2[i]);
 		}
 
 		/*for (size_t i = 0; i < vec2.size() - 1; i++)
@@ -144,8 +159,8 @@ namespace lab7
 		std::vector<T> combined;
 		combined.reserve(100);
 
-		typename std::vector<T>::const_iterator iter1 = vec1.begin();
-		typename std::vector<T>::const_iterator iter2 = vec2.begin();
+		typename std::set<T>::const_iterator iter1 = overlap1.begin();
+		typename std::set<T>::const_iterator iter2 = overlap2.begin();
 		
 		/*bool isChecked = false;
 
@@ -206,19 +221,19 @@ namespace lab7
 
 
 
-		for (size_t i = 0; i < vec1.size(); i++)
+		for (size_t i = 0; i < overlap1.size(); i++)
 		{
 			combined.push_back(*iter1++);
 		}
 
-		while (iter2 != vec2.end())
+		while (iter2 != overlap2.end())
 		{
 			for (size_t i = 0; i < combined.size(); i++)
 			{
 				if (combined[i] == *iter2)
 				{
 					iter2++;
-					if (iter2 == vec2.end())
+					if (iter2 == overlap2.end())
 					{
 						goto label1;
 					}
