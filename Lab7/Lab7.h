@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 namespace lab7
 {
@@ -81,21 +82,21 @@ namespace lab7
 		vec2 = v2;
 		
 
-		size_t vec1Length = vec1.size();
-		for (size_t i = 0; i < vec1Length - 1; i++)
-		{
-			for (size_t j = i + 1; j < vec1Length; j++)
-			{
-				if (vec1[vec1Length - i - 1] == vec1[vec1Length - j - 1])
-				{
-					for (size_t k = vec1Length - i - 1; k < vec1Length - 1; k++)
-					{
-						vec1[k] = vec1[k + 1];
-					}
-					vec1.pop_back();
-				}
-			}
-		}
+		//size_t vec1Length = vec1.size();
+		//for (size_t i = 0; i < vec1Length - 1; i++)
+		//{
+		//	for (size_t j = i + 1; j < vec1Length; j++)
+		//	{
+		//		if (vec1[vec1Length - i - 1] == vec1[vec1Length - j - 1])
+		//		{
+		//			for (size_t k = vec1Length - i - 1; k < vec1Length - 1; k++)
+		//			{
+		//				vec1[k] = vec1[k + 1];
+		//			}
+		//			vec1.pop_back();
+		//		}
+		//	}
+		//}
 
 		for (size_t i = 0; i < vec1.size() - 1; i++)
 		{
@@ -106,24 +107,25 @@ namespace lab7
 					std::swap(vec1[j], vec1[j + 1]);
 				}
 			}
-
 		}
 
-		size_t vec2Length = vec2.size();
-		for (size_t i = 0; i < vec2Length - 1; i++)
-		{
-			for (size_t j = i + 1; j < vec2Length; j++)
-			{
-				if (vec2[vec2Length - i - 1] == vec2[vec2Length - j - 1])
-				{
-					for (size_t k = vec2Length - i - 1; k < vec2Length - 1; k++)
-					{
-						vec2[k] = vec2[k + 1];
-					}
-					vec2.pop_back();
-				}
-			}
-		}
+		vec1.erase(std::unique(vec1.begin(), vec1.end()), vec1.end());
+
+		//size_t vec2Length = vec2.size();
+		//for (size_t i = 0; i < vec2Length - 1; i++)
+		//{
+		//	for (size_t j = i + 1; j < vec2Length; j++)
+		//	{
+		//		if (vec2[vec2Length - i - 1] == vec2[vec2Length - j - 1])
+		//		{
+		//			for (size_t k = vec2Length - i - 1; k < vec2Length - 1; k++)
+		//			{
+		//				vec2[k] = vec2[k + 1];
+		//			}
+		//			vec2.pop_back();
+		//		}
+		//	}
+		//}
 
 		for (size_t i = 0; i < vec2.size() - 1; i++)
 		{
@@ -135,6 +137,8 @@ namespace lab7
 				}
 			}
 		}
+
+		vec2.erase(std::unique(vec2.begin(), vec2.end()), vec2.end());
 
 
 		std::vector<T> combined;
