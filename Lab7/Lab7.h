@@ -32,6 +32,7 @@ namespace lab7
 	std::vector<K> GetKeys(const std::map<K, V>& m)
 	{
 		std::vector<K> v;
+		v.reserve(100);
 
 		for (typename std::map<K, V>::const_iterator iter = m.begin(); iter != m.end(); iter++)
 		{
@@ -45,6 +46,7 @@ namespace lab7
 	std::vector<V> GetValues(const std::map<K, V>& m)
 	{
 		std::vector<V> v;
+		v.reserve(100);
 
 		for (typename std::map<K, V>::const_iterator iter = m.begin(); iter != m.end(); iter++)
 		{
@@ -58,6 +60,7 @@ namespace lab7
 	std::vector<T> Reverse(const std::vector<T>& v)
 	{
 		std::vector<T> rv;
+		rv.reserve(100);
 
 		for (int i = static_cast<int>(v.size()) - 1; i >= 0; i--)
 		{
@@ -70,9 +73,12 @@ namespace lab7
 	template <typename T>
 	std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 	{
-		std::vector<T> vec1 = v1;
-		std::vector<T> vec2 = v2;
-
+		std::vector<T> vec1;
+		std::vector<T> vec2;
+		vec1.reserve(100);
+		vec2.reserve(100);
+		vec1 = v1;
+		vec2 = v2;
 		
 
 		size_t vec1Length = vec1.size();
@@ -100,6 +106,7 @@ namespace lab7
 					std::swap(vec1[j], vec1[j + 1]);
 				}
 			}
+
 		}
 
 		size_t vec2Length = vec2.size();
@@ -131,6 +138,7 @@ namespace lab7
 
 
 		std::vector<T> combined;
+		combined.reserve(100);
 
 		typename std::vector<T>::const_iterator iter1 = vec1.begin();
 		typename std::vector<T>::const_iterator iter2 = vec2.begin();
