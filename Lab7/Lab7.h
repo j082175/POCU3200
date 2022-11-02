@@ -98,18 +98,18 @@ namespace lab7
 		//	}
 		//}
 
-		//for (size_t i = 0; i < vec1.size() - 1; i++)
-		//{
-		//	for (size_t j = 0; j < vec1.size() - 1 - i; j++)
-		//	{
-		//		if (vec1[j] > vec1[j + 1])
-		//		{
-		//			std::swap(vec1[j], vec1[j + 1]);
-		//		}
-		//	}
-		//}
+		for (size_t i = 0; i < vec1.size() - 1; i++)
+		{
+			for (size_t j = 0; j < vec1.size() - 1 - i; j++)
+			{
+				if (vec1[j] > vec1[j + 1])
+				{
+					std::swap(vec1[j], vec1[j + 1]);
+				}
+			}
+		}
 
-		//vec1.erase(std::unique(vec1.begin(), vec1.end()), vec1.end());
+		vec1.erase(std::unique(vec1.begin(), vec1.end()), vec1.end());
 
 		//size_t vec2Length = vec2.size();
 		//for (size_t i = 0; i < vec2Length - 1; i++)
@@ -127,18 +127,18 @@ namespace lab7
 		//	}
 		//}
 
-		//for (size_t i = 0; i < vec2.size() - 1; i++)
-		//{
-		//	for (size_t j = 0; j < vec2.size() - 1 - i; j++)
-		//	{
-		//		if (vec2[j] > vec2[j + 1])
-		//		{
-		//			std::swap(vec2[j], vec2[j + 1]);
-		//		}
-		//	}
-		//}
+		for (size_t i = 0; i < vec2.size() - 1; i++)
+		{
+			for (size_t j = 0; j < vec2.size() - 1 - i; j++)
+			{
+				if (vec2[j] > vec2[j + 1])
+				{
+					std::swap(vec2[j], vec2[j + 1]);
+				}
+			}
+		}
 
-		//vec2.erase(std::unique(vec2.begin(), vec2.end()), vec2.end());
+		vec2.erase(std::unique(vec2.begin(), vec2.end()), vec2.end());
 
 
 		std::vector<T> combined;
@@ -213,21 +213,36 @@ namespace lab7
 
 		while (iter2 != vec2.end())
 		{
-			combined.push_back(*iter2++);
-		}
-
-		for (size_t i = 0; i < combined.size() - 1; i++)
-		{
-			for (size_t j = 0; j < combined.size() - 1 - i; j++)
+			for (size_t i = 0; i < combined.size(); i++)
 			{
-				if (combined[j] > combined[j + 1])
+				if (combined[i] == *iter2)
 				{
-					std::swap(combined[j], combined[j + 1]);
+					iter2++;
+					if (iter2 == vec2.end())
+					{
+						goto label1;
+					}
 				}
 			}
+
+			combined.push_back(*iter2);
+			iter2++;
 		}
 
-		combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
+	label1:
+
+		//for (size_t i = 0; i < combined.size() - 1; i++)
+		//{
+		//	for (size_t j = 0; j < combined.size() - 1 - i; j++)
+		//	{
+		//		if (combined[j] > combined[j + 1])
+		//		{
+		//			std::swap(combined[j], combined[j + 1]);
+		//		}
+		//	}
+		//}
+
+		//combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
 
 		return combined;
 	}

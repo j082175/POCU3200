@@ -4,7 +4,10 @@
 using namespace lab7;
 using namespace std;
 
-
+enum eCapacityForMain
+{
+	DEFAULT_CAPACITY = 16
+};
 
 int main()
 {
@@ -161,4 +164,29 @@ int main()
 	std::cout << v1 << std::endl;
 	std::cout << m1 << std::endl;
 
+
+
+	{
+		std::vector<int> vector1;
+		vector1.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+		for (size_t i = 0; i < 6; i++)
+		{
+			vector1.push_back(7 + i);
+		}
+
+		std::vector<int> vector2;
+		vector2.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+		vector2.push_back(7);
+		vector2.push_back(8);
+		vector2.push_back(9);
+		vector2.push_back(1);
+		vector2.push_back(2);
+		vector2.push_back(3);
+
+		std::vector<int> combinedVector = vector1 + vector2;
+		assert(combinedVector.size() == 9);
+
+	}
 }
