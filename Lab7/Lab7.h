@@ -15,10 +15,10 @@ namespace lab7
 		std::map<K, V> m;
 
 		size_t minSize = (keys.size() < values.size()) ? keys.size() : values.size();
-
+		
 		for (size_t i = 0; i < minSize; i++)
 		{
-			if (m.contains(keys[i]))
+			if (m.find(keys[i]) != m.end())
 			{
 				continue;
 			}
@@ -210,7 +210,7 @@ namespace lab7
 
 		while (iter2 != m2.end())
 		{
-			if (!combined.contains((*iter2).first))
+			if (combined.find(iter2->first) == combined.end())
 			{
 				combined.insert(*iter2);
 			}
