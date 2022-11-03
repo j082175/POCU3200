@@ -13,11 +13,11 @@ namespace lab7
 	{
 		// V는 기본 자료형
 		// Key 는 중복되지 않음
-		
+
 		std::map<K, V> m;
 
 		size_t minSize = (keys.size() < values.size()) ? keys.size() : values.size();
-		
+
 		for (size_t i = 0; i < minSize; i++)
 		{
 			if (m.find(keys[i]) != m.end())
@@ -75,113 +75,11 @@ namespace lab7
 	template <typename T>
 	std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 	{
-
-		/*std::vector<T> overlap1;
-		std::vector<T> overlap2;
-
-		bool bCheck = true;
-
-		for (size_t i = 0; i < v1.size(); i++)
-		{
-			bCheck = true;
-
-			for (size_t j = 0; j < overlap1.size(); j++)
-			{
-				if (overlap1[j] == v1[i])
-				{
-					bCheck = false;
-				}
-			}
-
-			if (bCheck)
-			{
-				overlap1.push_back(v1[i]);
-			}
-
-		}
-
-
-		for (size_t i = 0; i < v2.size(); i++)
-		{
-			bCheck = true;
-
-			for (size_t j = 0; j < overlap2.size(); j++)
-			{
-				if (overlap2[j] == v2[i])
-				{
-					bCheck = false;
-				}
-			}
-
-			if (bCheck)
-			{
-				overlap2.push_back(v2[i]);
-			}
-
-		}*/
-
 		std::vector<T> combined;
 		combined.reserve(16);
 
 		typename std::vector<T>::const_iterator iter1 = v1.begin();
 		typename std::vector<T>::const_iterator iter2 = v2.begin();
-		
-		/*bool isChecked = false;
-
-		while (iter1 != vec1.end() || iter2 != vec2.end())
-		{
-			if (iter1 != vec1.end() && !isChecked)
-			{
-				if (*iter1 < *iter2)
-				{
-					combined.push_back(*iter1++);
-					continue;
-				}
-			}
-			else
-			{
-				isChecked = true;
-			}
-
-			if (iter2 != vec2.end() && !isChecked)
-			{
-				if (*iter1 > *iter2)
-				{
-					combined.push_back(*iter2++);
-					continue;
-				}
-			}
-			else
-			{
-				isChecked = true;
-			}
-
-			if (iter1 == vec1.end())
-			{
-				combined.push_back(*iter2++);
-				continue;
-			}
-
-			if (iter2 == vec2.end())
-			{
-				combined.push_back(*iter1++);
-				continue;
-			}
-
-			if (*iter1 == *iter2)
-			{
-				T value = *iter1;
-				combined.push_back(value);
-				iter1++;
-				iter2++;
-			}
-
-			if (iter1 == vec1.end() || iter2 == vec2.end())
-			{
-				isChecked = true;
-			}
-		}*/
-
 
 		for (size_t i = 0; i < v1.size(); i++)
 		{
@@ -193,11 +91,8 @@ namespace lab7
 			combined.push_back(*iter2++);
 		}
 
-
 		for (size_t i = 0; i < combined.size() - 1; i++)
 		{
-
-
 			for (size_t j = 1 + i; j < combined.size(); j++)
 			{
 				if (combined[i] == combined[j])
@@ -210,28 +105,7 @@ namespace lab7
 					--j;
 				}
 			}
-
 		}
-
-		/*while (iter2 != overlap2.end())
-		{
-			for (size_t i = 0; i < combined.size(); i++)
-			{
-				if (combined[i] == *iter2)
-				{
-					iter2++;
-					if (iter2 == overlap2.end())
-					{
-						goto label1;
-					}
-				}
-			}
-
-			combined.push_back(*iter2);
-			iter2++;
-		}
-
-	label1:*/
 
 		return combined;
 	}
