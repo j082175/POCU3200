@@ -82,85 +82,57 @@ namespace lab7
 		vec1 = v1;
 		vec2 = v2;
 
-		std::set<T> overlap1;
+
+		std::vector<T> overlap1;
+		bool bCheck = true;
 
 		for (size_t i = 0; i < vec1.size(); i++)
 		{
-			overlap1.insert(vec1[i]);
-		}
-		
+			bCheck = true;
 
-		//size_t vec1Length = vec1.size();
-		//for (size_t i = 0; i < vec1Length - 1; i++)
-		//{
-		//	for (size_t j = i + 1; j < vec1Length; j++)
-		//	{
-		//		if (vec1[vec1Length - i - 1] == vec1[vec1Length - j - 1])
-		//		{
-		//			for (size_t k = vec1Length - i - 1; k < vec1Length - 1; k++)
-		//			{
-		//				vec1[k] = vec1[k + 1];
-		//			}
-		//			vec1.pop_back();
-		//		}
-		//	}
-		//}
-
-		/*for (size_t i = 0; i < vec1.size() - 1; i++)
-		{
-			for (size_t j = 0; j < vec1.size() - 1 - i; j++)
+			for (size_t j = 0; j < overlap1.size(); j++)
 			{
-				if (vec1[j] > vec1[j + 1])
+				if (overlap1[j] == vec1[i])
 				{
-					std::swap(vec1[j], vec1[j + 1]);
+					bCheck = false;
 				}
 			}
+
+			if (bCheck)
+			{
+				overlap1.push_back(vec1[i]);
+			}
+
 		}
+	
 
-		vec1.erase(std::unique(vec1.begin(), vec1.end()), vec1.end());*/
-
-		//size_t vec2Length = vec2.size();
-		//for (size_t i = 0; i < vec2Length - 1; i++)
-		//{
-		//	for (size_t j = i + 1; j < vec2Length; j++)
-		//	{
-		//		if (vec2[vec2Length - i - 1] == vec2[vec2Length - j - 1])
-		//		{
-		//			for (size_t k = vec2Length - i - 1; k < vec2Length - 1; k++)
-		//			{
-		//				vec2[k] = vec2[k + 1];
-		//			}
-		//			vec2.pop_back();
-		//		}
-		//	}
-		//}
-
-		std::set<T> overlap2;
+		std::vector<T> overlap2;
 
 		for (size_t i = 0; i < vec2.size(); i++)
 		{
-			overlap2.insert(vec2[i]);
-		}
+			bCheck = true;
 
-		/*for (size_t i = 0; i < vec2.size() - 1; i++)
-		{
-			for (size_t j = 0; j < vec2.size() - 1 - i; j++)
+			for (size_t j = 0; j < overlap2.size(); j++)
 			{
-				if (vec2[j] > vec2[j + 1])
+				if (overlap2[j] == vec2[i])
 				{
-					std::swap(vec2[j], vec2[j + 1]);
+					bCheck = false;
 				}
 			}
-		}
 
-		vec2.erase(std::unique(vec2.begin(), vec2.end()), vec2.end());*/
+			if (bCheck)
+			{
+				overlap2.push_back(vec2[i]);
+			}
+
+		}
 
 
 		std::vector<T> combined;
 		combined.reserve(100);
 
-		typename std::set<T>::const_iterator iter1 = overlap1.begin();
-		typename std::set<T>::const_iterator iter2 = overlap2.begin();
+		typename std::vector<T>::const_iterator iter1 = overlap1.begin();
+		typename std::vector<T>::const_iterator iter2 = overlap2.begin();
 		
 		/*bool isChecked = false;
 

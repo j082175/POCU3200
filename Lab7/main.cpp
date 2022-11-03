@@ -110,7 +110,7 @@ int main()
 		assert(reversedV1[2] == v1[0]);
 	}
 
-	std::vector<int> combinedVector = v1 + v3;
+	/*std::vector<int> combinedVector = v1 + v3;
 	{
 		assert(combinedVector.size() == 6);
 		assert(combinedVector[0] == 1);
@@ -119,7 +119,7 @@ int main()
 		assert(combinedVector[3] == 4);
 		assert(combinedVector[4] == 5);
 		assert(combinedVector[5] == 6);
-	}
+	}*/
 
 	std::vector<int> v4plusv5 = v4 + v5;   // v4에 중복된 원소가 있을 경우
 	{
@@ -188,5 +188,43 @@ int main()
 		std::vector<int> combinedVector = vector1 + vector2;
 		assert(combinedVector.size() == 9);
 
+	}
+
+	{
+		std::vector<int> vector1;
+		vector1.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+		vector1.push_back(3);
+		vector1.push_back(6);
+		vector1.push_back(4);
+		vector1.push_back(7);
+		vector1.push_back(2);
+		vector1.push_back(2);
+
+		std::vector<int> vector2;
+		vector2.reserve(eCapacityForMain::DEFAULT_CAPACITY);
+
+		vector2.push_back(2);
+		vector2.push_back(3);
+		vector2.push_back(5);
+		vector2.push_back(1);
+		vector2.push_back(7);
+		vector2.push_back(4);
+
+		std::vector<int> combinedVector = vector1 + vector2;
+	}
+
+	{
+		std::vector<int> v1 = { 3, 1, 2, 3, 3 };
+		std::vector<int> v2 = { 3, 4, 4 };
+		std::vector<int> result = v1 + v2;
+		std::vector<int> expected = { 3, 1, 2, 4 };
+		for (size_t i = 0; i < expected.size(); ++i)
+		{
+			assert(result[i] == expected[i]);
+		}
+		std::string strExpected = "3, 1, 2, 4";
+		std::cout << strExpected << std::endl;
+		std::cout << result << std::endl;
 	}
 }
