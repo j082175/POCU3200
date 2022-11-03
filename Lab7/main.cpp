@@ -227,4 +227,18 @@ int main()
 		std::cout << strExpected << std::endl;
 		std::cout << result << std::endl;
 	}
+
+	{
+		std::vector<int> v1 = { 3, 1, 2, 3, 3, 5, 3, 1, 2, 2, 1, 6, 3, 2 };
+		std::vector<int> v2 = { 3, 4, 4, 4, 1, 2, 3, 4, 5, 7, 2, 1 };
+		std::vector<int> result = v1 + v2;
+		std::vector<int> expected = { 3, 1, 2, 4 };
+		for (size_t i = 0; i < expected.size(); ++i)
+		{
+			assert(result[i] == expected[i]);
+		}
+		std::string strExpected = "3, 1, 2, 4";
+		std::cout << strExpected << std::endl;
+		std::cout << result << std::endl;
+	}
 }

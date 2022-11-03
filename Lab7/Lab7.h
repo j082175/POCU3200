@@ -75,24 +75,19 @@ namespace lab7
 	template <typename T>
 	std::vector<T> operator+(const std::vector<T>& v1, const std::vector<T>& v2)
 	{
-		std::vector<T> vec1;
-		std::vector<T> vec2;
-		vec1.reserve(100);
-		vec2.reserve(100);
-		vec1 = v1;
-		vec2 = v2;
 
+		/*std::vector<T> overlap1;
+		std::vector<T> overlap2;
 
-		std::vector<T> overlap1;
 		bool bCheck = true;
 
-		for (size_t i = 0; i < vec1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 		{
 			bCheck = true;
 
 			for (size_t j = 0; j < overlap1.size(); j++)
 			{
-				if (overlap1[j] == vec1[i])
+				if (overlap1[j] == v1[i])
 				{
 					bCheck = false;
 				}
@@ -100,21 +95,19 @@ namespace lab7
 
 			if (bCheck)
 			{
-				overlap1.push_back(vec1[i]);
+				overlap1.push_back(v1[i]);
 			}
 
 		}
-	
 
-		std::vector<T> overlap2;
 
-		for (size_t i = 0; i < vec2.size(); i++)
+		for (size_t i = 0; i < v2.size(); i++)
 		{
 			bCheck = true;
 
 			for (size_t j = 0; j < overlap2.size(); j++)
 			{
-				if (overlap2[j] == vec2[i])
+				if (overlap2[j] == v2[i])
 				{
 					bCheck = false;
 				}
@@ -122,17 +115,16 @@ namespace lab7
 
 			if (bCheck)
 			{
-				overlap2.push_back(vec2[i]);
+				overlap2.push_back(v2[i]);
 			}
 
-		}
-
+		}*/
 
 		std::vector<T> combined;
-		combined.reserve(100);
+		combined.reserve(16);
 
-		typename std::vector<T>::const_iterator iter1 = overlap1.begin();
-		typename std::vector<T>::const_iterator iter2 = overlap2.begin();
+		typename std::vector<T>::const_iterator iter1 = v1.begin();
+		typename std::vector<T>::const_iterator iter2 = v2.begin();
 		
 		/*bool isChecked = false;
 
@@ -191,14 +183,42 @@ namespace lab7
 		}*/
 
 
-
-
-		for (size_t i = 0; i < overlap1.size(); i++)
+		for (size_t i = 0; i < v1.size(); i++)
 		{
 			combined.push_back(*iter1++);
 		}
 
-		while (iter2 != overlap2.end())
+		for (size_t i = 0; i < v2.size(); i++)
+		{
+			combined.push_back(*iter2++);
+		}
+
+
+		bool bCheck = true;
+
+		for (size_t i = 0; i < combined.size() - 1; i++)
+		{
+			bCheck = true;
+
+			for (size_t j = 1 + i; j < combined.size(); j++)
+			{
+				if (combined[i] == combined[j])
+				{
+					for (size_t k = i; k < combined.size() - 2; k++)
+					{
+						combined[k] = combined[k + 1];
+					}
+				}
+			}
+
+			if (bCheck)
+			{
+				combined.push_back(v1[i]);
+			}
+
+		}
+
+		/*while (iter2 != overlap2.end())
 		{
 			for (size_t i = 0; i < combined.size(); i++)
 			{
@@ -216,20 +236,7 @@ namespace lab7
 			iter2++;
 		}
 
-	label1:
-
-		//for (size_t i = 0; i < combined.size() - 1; i++)
-		//{
-		//	for (size_t j = 0; j < combined.size() - 1 - i; j++)
-		//	{
-		//		if (combined[j] > combined[j + 1])
-		//		{
-		//			std::swap(combined[j], combined[j + 1]);
-		//		}
-		//	}
-		//}
-
-		//combined.erase(std::unique(combined.begin(), combined.end()), combined.end());
+	label1:*/
 
 		return combined;
 	}
