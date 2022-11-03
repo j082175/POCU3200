@@ -194,26 +194,21 @@ namespace lab7
 		}
 
 
-		bool bCheck = true;
-
 		for (size_t i = 0; i < combined.size() - 1; i++)
 		{
-			bCheck = true;
+
 
 			for (size_t j = 1 + i; j < combined.size(); j++)
 			{
 				if (combined[i] == combined[j])
 				{
-					for (size_t k = i; k < combined.size() - 2; k++)
+					for (size_t k = j; k < combined.size() - 1; k++)
 					{
 						combined[k] = combined[k + 1];
 					}
+					combined.pop_back();
+					--j;
 				}
-			}
-
-			if (bCheck)
-			{
-				combined.push_back(v1[i]);
 			}
 
 		}
