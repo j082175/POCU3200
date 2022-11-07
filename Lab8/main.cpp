@@ -317,6 +317,9 @@ int main()
 	testFixedBoolVector();
 	testFixedVector();
 
-	return 0;
+	
+
+	FixedVector<bool, 5> v1;
+
 }
 

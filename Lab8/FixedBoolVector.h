@@ -7,76 +7,21 @@ namespace lab8
 	class FixedVector<bool, N>
 	{
 	public:
-		FixedVector()
-			: mCurrentPosition(0)
-			, mArr{ 0 }
-		{}
+		FixedVector();
 
-		bool Add(bool t)
-		{
-			if (mCurrentPosition >= N)
-			{
-				return false;
-			}
+		bool Add(bool t);
 
-			mArr[mCurrentPosition++] = t;
-			return true;
-		}
+		bool Remove(bool t);
 
-		bool Remove(bool t)
-		{
+		bool Get(unsigned int index);
 
-			for (size_t i = 0; i < mCurrentPosition; i++)
-			{
-				if (mArr[i] == t)
-				{
-					for (size_t j = i; j < mCurrentPosition - 1; j++)
-					{
-						mArr[j] = mArr[j + 1];
-					}
-					--mCurrentPosition;
-					return true;
-				}
-			}
+		bool operator[](unsigned int index);
 
-			return false;
-		}
+		int GetIndex(bool t);
 
-		bool Get(unsigned int index)
-		{
-			// index 의 값은 항상 범위 내라 가정
+		size_t GetSize();
 
-			return mArr[index];
-		}
-
-		bool operator[](unsigned int index)
-		{
-			return mArr[index];
-		}
-
-		int GetIndex(bool t)
-		{
-
-			for (size_t i = 0; i < mCurrentPosition; i++)
-			{
-				if (mArr[i] == t)
-				{
-					return i;
-				}
-			}
-
-			return -1;
-		}
-
-		size_t GetSize()
-		{
-			return mCurrentPosition;
-		}
-
-		size_t GetCapacity()
-		{
-			return N;
-		}
+		size_t GetCapacity();
 
 
 	private:
@@ -84,4 +29,82 @@ namespace lab8
 		bool mArr[N];
 	};
 
+	template<size_t N>
+	inline FixedVector<bool, N>::FixedVector()
+		: mCurrentPosition(0)
+		, mArr{ 0 }
+	{}
+
+	template<size_t N>
+	inline bool FixedVector<bool, N>::Add(bool t)
+	{
+		if (mCurrentPosition >= N)
+		{
+			return false;
+		}
+
+		mArr[mCurrentPosition++] = t;
+		return true;
+	}
+
+	template<size_t N>
+	inline bool FixedVector<bool, N>::Remove(bool t)
+	{
+
+		for (size_t i = 0; i < mCurrentPosition; i++)
+		{
+			if (mArr[i] == t)
+			{
+				for (size_t j = i; j < mCurrentPosition - 1; j++)
+				{
+					mArr[j] = mArr[j + 1];
+				}
+				--mCurrentPosition;
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	template<size_t N>
+	inline bool FixedVector<bool, N>::Get(unsigned int index)
+	{
+		// index 의 값은 항상 범위 내라 가정
+
+		return mArr[index];
+	}
+
+	template<size_t N>
+	inline int FixedVector<bool, N>::GetIndex(bool t)
+	{
+
+		for (size_t i = 0; i < mCurrentPosition; i++)
+		{
+			if (mArr[i] == t)
+			{
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	template<size_t N>
+	inline size_t FixedVector<bool, N>::GetSize()
+	{
+		return mCurrentPosition;
+	}
+
+	template<size_t N>
+	inline size_t FixedVector<bool, N>::GetCapacity()
+	{
+		return N;
+	}
+
+	template<size_t N>
+	inline bool FixedVector<bool, N>::operator[](unsigned int index)
+	{
+		return mArr[index];
+	}
 }
