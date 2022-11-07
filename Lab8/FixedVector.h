@@ -8,7 +8,7 @@ namespace lab8
 	public:
 		FixedVector()
 			: mCurrentPosition(0)
-			, mArr{ 0 }
+			, mArr{ T() }
 		{}
 
 		bool Add(T t)
