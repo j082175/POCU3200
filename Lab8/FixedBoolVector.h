@@ -8,15 +8,15 @@ namespace lab8
 	public:
 		FixedVector();
 
-		bool Add(int32_t t);
+		bool Add(bool t);
 
-		bool Remove(int32_t t);
+		bool Remove(bool t);
 
-		int32_t Get(unsigned int index);
+		bool Get(unsigned int index);
 
-		int32_t operator[](unsigned int index);
+		bool operator[](unsigned int index);
 
-		int32_t GetIndex(int32_t t);
+		int GetIndex(bool t);
 
 		size_t GetSize();
 
@@ -35,24 +35,24 @@ namespace lab8
 	{}
 
 	template<size_t N>
-	inline bool FixedVector<bool, N>::Add(int32_t t)
+	inline bool FixedVector<bool, N>::Add(bool t)
 	{
 		if (mCurrentPosition >= N)
 		{
 			return false;
 		}
 
-		mArr[mCurrentPosition++] = t;
+		mArr[mCurrentPosition++] = static_cast<int32_t>(t);
 		return true;
 	}
 
 	template<size_t N>
-	inline bool FixedVector<bool, N>::Remove(int32_t t)
+	inline bool FixedVector<bool, N>::Remove(bool t)
 	{
 
 		for (size_t i = 0; i < mCurrentPosition; i++)
 		{
-			if (mArr[i] == t)
+			if (mArr[i] == static_cast<int32_t>(t))
 			{
 				for (size_t j = i; j < mCurrentPosition - 1; j++)
 				{
@@ -67,20 +67,20 @@ namespace lab8
 	}
 
 	template<size_t N>
-	inline int32_t FixedVector<bool, N>::Get(unsigned int index)
+	inline bool FixedVector<bool, N>::Get(unsigned int index)
 	{
 		// index 의 값은 항상 범위 내라 가정
 
-		return mArr[index];
+		return static_cast<bool>(mArr[index]);
 	}
 
 	template<size_t N>
-	inline int32_t FixedVector<bool, N>::GetIndex(int32_t t)
+	inline int FixedVector<bool, N>::GetIndex(bool t)
 	{
 
 		for (size_t i = 0; i < mCurrentPosition; i++)
 		{
-			if (mArr[i] == t)
+			if (mArr[i] == static_cast<int32_t>(t))
 			{
 				return i;
 			}
@@ -102,8 +102,8 @@ namespace lab8
 	}
 
 	template<size_t N>
-	inline int32_t FixedVector<bool, N>::operator[](unsigned int index)
+	inline bool FixedVector<bool, N>::operator[](unsigned int index)
 	{
-		return mArr[index];
+		return static_cast<bool>(mArr[index]);
 	}
 }
