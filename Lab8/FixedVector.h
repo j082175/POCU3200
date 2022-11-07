@@ -8,12 +8,6 @@ namespace lab8
 	public:
 		FixedVector();
 
-		//FixedVector(const FixedVector<T, N>& other)
-		//	: mCurrentPosition(other.mCurrentPosition)
-		//	, mArr(other.mArr)
-		//{}
-
-
 		bool Add(const T& t);
 
 		bool Remove(const T& t);

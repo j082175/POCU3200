@@ -26,7 +26,7 @@ namespace lab8
 
 	private:
 		size_t mCurrentPosition;
-		bool mArr[N];
+		unsigned char mArr[N];
 	};
 
 	template<size_t N>
@@ -53,7 +53,7 @@ namespace lab8
 
 		for (size_t i = 0; i < mCurrentPosition; i++)
 		{
-			if (mArr[i] == t)
+			if (mArr[i] == static_cast<unsigned char>(t))
 			{
 				for (size_t j = i; j < mCurrentPosition - 1; j++)
 				{
@@ -81,7 +81,7 @@ namespace lab8
 
 		for (size_t i = 0; i < mCurrentPosition; i++)
 		{
-			if (mArr[i] == t)
+			if (mArr[i] == static_cast<unsigned char>(t))
 			{
 				return i;
 			}
