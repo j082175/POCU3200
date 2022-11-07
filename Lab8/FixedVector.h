@@ -8,8 +8,15 @@ namespace lab8
 	public:
 		FixedVector()
 			: mCurrentPosition(0)
-			, mArr{ T() }
+		{
+			mArr = new T[N]{T()};
+		}
+
+		FixedVector(const FixedVector<T, N>& other)
+			: mCurrentPosition(other.mCurrentPosition)
+			, mArr(other.mArr)
 		{}
+
 
 		bool Add(T t)
 		{
@@ -80,7 +87,7 @@ namespace lab8
 
 	private:
 		size_t mCurrentPosition;
-		T mArr[N];
+		T* mArr;
 	};
 
 }
