@@ -48,7 +48,7 @@ namespace lab8
 			return false;
 		}
 
-		T Get(unsigned int index)
+		const T& Get(unsigned int index)
 		{
 			// index 의 값은 항상 범위 내라 가정
 
