@@ -1,5 +1,5 @@
 #pragma once
-#include "FixedVector.h"
+
 
 namespace lab8
 {
@@ -72,7 +72,7 @@ namespace lab8
 	{
 		// index 의 값은 항상 범위 내라 가정
 
-		return mArr[index];
+		return static_cast<bool>(mArr[index]);
 	}
 
 	template<size_t N>
@@ -105,6 +105,6 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](unsigned int index)
 	{
-		return mArr[index];
+		return static_cast<bool>(mArr[index]);
 	}
 }
