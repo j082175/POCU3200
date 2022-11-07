@@ -8,17 +8,17 @@ namespace lab8
 	public:
 		FixedVector()
 			: mCurrentPosition(0)
+			, mArr { T() }
 		{
-			mArr = new T[N]{T()};
 		}
 
-		FixedVector(const FixedVector<T, N>& other)
-			: mCurrentPosition(other.mCurrentPosition)
-			, mArr(other.mArr)
-		{}
+		//FixedVector(const FixedVector<T, N>& other)
+		//	: mCurrentPosition(other.mCurrentPosition)
+		//	, mArr(other.mArr)
+		//{}
 
 
-		bool Add(T t)
+		bool Add(const T& t)
 		{
 			if (mCurrentPosition >= N)
 			{
@@ -29,7 +29,7 @@ namespace lab8
 			return true;
 		}
 
-		bool Remove(T t)
+		bool Remove(const T& t)
 		{
 
 			for (size_t i = 0; i < mCurrentPosition; i++)
@@ -60,7 +60,7 @@ namespace lab8
 			return mArr[index];
 		}
 
-		int GetIndex(T t)
+		int GetIndex(const T& t)
 		{
 
 			for (size_t i = 0; i < mCurrentPosition; i++)
@@ -87,7 +87,7 @@ namespace lab8
 
 	private:
 		size_t mCurrentPosition;
-		T* mArr;
+		T mArr[N];
 	};
 
 }
