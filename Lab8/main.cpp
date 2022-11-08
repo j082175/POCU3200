@@ -430,23 +430,24 @@ void testFixedVector()
 
 int main()
 {
-	FixedVector<bool, 20> v1;
+	FixedVector<bool, 17> v1;
 
 	v1.Add(true);
 	v1.Add(true);
-	v1.Add(false);
-	v1.Add(false);
 	v1.Add(true);
 	v1.Add(true);
 	v1.Add(false);
+	v1.Add(false);
+	v1.Add(false);
+	v1.Add(false);
+
+	v1.Add(false);
+	v1.Add(true);
 	v1.Add(false);
 	v1.Add(true);
 
-	int8_t myflags = 0b10000101;
-	int8_t option4 = 0b00010000;
 
-	if (myflags & option4)
-		std::cout << "myflags has option 4 set";
+	v1.Remove(false);
 
 	//int integerArray1[] = { 23, 25, 10, -4, 70 };
 	//enum { INTEGER_VECTOR1_SIZE = 4 };

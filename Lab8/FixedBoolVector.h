@@ -33,7 +33,7 @@ namespace lab8
 
 		size_t mCount;
 		// 8∫Ò∆Æ
-		int32_t mArr[N / CONTROL_POINT + 1];
+		int32_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0)];
 
 		const unsigned char option0 = 1 << 0; // 0000 0001 
 		const unsigned char option1 = 1 << 1; // 0000 0010
@@ -79,14 +79,13 @@ namespace lab8
 
 		for (size_t i = 0; i < mCount / CONTROL_POINT + mCount % CONTROL_POINT; i++)
 		{
-			for (size_t j = 0; j < CONTROL_POINT; j++)
-			{
-				if (mArr[mCount / CONTROL_POINT] & move)
-				{
 
-				}
-				move = move << 1;
+			if (mArr[mCount / CONTROL_POINT] & move)
+			{
+
 			}
+			move = move << 1;
+
 		}
 
 
