@@ -33,7 +33,7 @@ namespace lab8
 
 		size_t mCount;
 		// 8∫Ò∆Æ
-		int32_t mArr[N];
+		int32_t mArr[N / CONTROL_POINT + 1];
 
 		const unsigned char option0 = 1 << 0; // 0000 0001 
 		const unsigned char option1 = 1 << 1; // 0000 0010
