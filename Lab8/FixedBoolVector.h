@@ -35,14 +35,14 @@ namespace lab8
 		// 8∫Ò∆Æ
 		int32_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0)];
 
-		const unsigned char option0 = 1 << 0; // 0000 0001 
-		const unsigned char option1 = 1 << 1; // 0000 0010
-		const unsigned char option2 = 1 << 2; // 0000 0100
-		const unsigned char option3 = 1 << 3; // 0000 1000
-		const unsigned char option4 = 1 << 4; // 0001 0000
-		const unsigned char option5 = 1 << 5; // 0010 0000
-		const unsigned char option6 = 1 << 6; // 0100 0000
-		const unsigned char option7 = 1 << 7; // 1000 0000
+		//const unsigned char option0 = 1 << 0; // 0000 0001 
+		//const unsigned char option1 = 1 << 1; // 0000 0010
+		//const unsigned char option2 = 1 << 2; // 0000 0100
+		//const unsigned char option3 = 1 << 3; // 0000 1000
+		//const unsigned char option4 = 1 << 4; // 0001 0000
+		//const unsigned char option5 = 1 << 5; // 0010 0000
+		//const unsigned char option6 = 1 << 6; // 0100 0000
+		//const unsigned char option7 = 1 << 7; // 1000 0000
 	};
 
 	template<size_t N>
@@ -82,6 +82,7 @@ namespace lab8
 
 			if (mArr[mCount / CONTROL_POINT] & move)
 			{
+				int32_t backup = mArr[mCount / CONTROL_POINT] >> i + 1;
 
 			}
 			move = move << 1;
