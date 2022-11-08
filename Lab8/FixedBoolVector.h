@@ -82,7 +82,7 @@ namespace lab8
 
 			if (mArr[mCount / CONTROL_POINT] & move)
 			{
-				int32_t backup = mArr[mCount / CONTROL_POINT] >> i + 1;
+				int32_t backup = (mArr[mCount / CONTROL_POINT] >> i + 1);
 
 			}
 			move = move << 1;
