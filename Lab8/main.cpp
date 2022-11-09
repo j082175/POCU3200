@@ -471,6 +471,7 @@ int main()
 	v1.Remove(false);
 
 	v1.Get(23);
+	v1.GetIndex(false);
 
 	//int integerArray1[] = { 23, 25, 10, -4, 70 };
 	//enum { INTEGER_VECTOR1_SIZE = 4 };

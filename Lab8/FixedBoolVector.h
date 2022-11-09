@@ -175,13 +175,30 @@ namespace lab8
 	template<size_t N>
 	inline int FixedVector<bool, N>::GetIndex(bool t)
 	{
+		size_t length = (mCount % CONTROL_POINT ? 1 : 0);
 
-		for (size_t i = 0; i < mCount; i++)
+		size_t i;
+		size_t count = 0;
+
+		for (i = 0; i < mCount / CONTROL_POINT; i++)
 		{
-			if (mArr[i] == static_cast<int32_t>(t))
+			for (size_t j = 0; j < CONTROL_POINT; j++)
 			{
-				return i;
+				if ((mArr[i] & static_cast<int8_t>(std::powl(2, j))) == static_cast<int8_t>(t))
+				{
+					return count;
+				}
+				++count;
 			}
+		}
+
+		for (size_t k = 0; k < length; k++)
+		{
+			if ((mArr[i] & static_cast<int8_t>(std::powl(2, k))) == static_cast<int8_t>(t))
+			{
+				return count;
+			}
+			++count;
 		}
 
 		return -1;
@@ -202,6 +219,11 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::operator[](unsigned int index)
 	{
-		return static_cast<bool>(mArr[index]);
+		size_t idx = index / CONTROL_POINT;
+		size_t idx2 = index % CONTROL_POINT;
+
+		int8_t result = mArr[idx] & static_cast<int8_t>(std::powl(2, idx2));
+
+		return static_cast<bool>(result);
 	}
 }
