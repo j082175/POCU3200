@@ -240,7 +240,7 @@ namespace lab8
 	template<size_t N>
 	inline int FixedVector<bool, N>::GetIndex(bool t)
 	{
-		size_t length = (mCount % CONTROL_POINT ? 1 : 0);
+		size_t length = mCount % CONTROL_POINT;
 
 		size_t i;
 		size_t count = 0;

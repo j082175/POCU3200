@@ -432,45 +432,45 @@ int main()
 {
 	FixedVector<bool, 100> v111;
 
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
 
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
 
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(false);
-	v111.Add(false);
-	v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(false);
+	//v111.Add(false);
+	//v111.Add(false);
 
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
-	v111.Add(true);
-	v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
+	//v111.Add(true);
+	//v111.Add(false);
 
 	//------------------
 
-	v111.Add(true);
+	//v111.Add(true);
 	//v111.Add(true);
 	//v111.Add(true);
 	//v111.Add(true);
