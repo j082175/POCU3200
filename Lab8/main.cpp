@@ -430,7 +430,25 @@ void testFixedVector()
 
 int main()
 {
-	FixedVector<bool, 17> v1;
+	FixedVector<bool, 100> v1;
+
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+	v1.Add(true);
+
+	v1.Add(true);
+	v1.Add(false);
+	v1.Add(true);
+	v1.Add(false);
+	v1.Add(true);
+	v1.Add(false);
+	v1.Add(true);
+	v1.Add(false);
 
 	v1.Add(true);
 	v1.Add(true);
@@ -441,10 +459,14 @@ int main()
 	v1.Add(false);
 	v1.Add(false);
 
+	v1.Add(true);
+	v1.Add(false);
+	v1.Add(true);
 	v1.Add(false);
 	v1.Add(true);
 	v1.Add(false);
 	v1.Add(true);
+	v1.Add(false);
 
 
 	v1.Remove(false);

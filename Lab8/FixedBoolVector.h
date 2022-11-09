@@ -33,7 +33,9 @@ namespace lab8
 
 		size_t mCount;
 		// 8ºñÆ®
-		int32_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0)];
+
+		// 4·Î ³ª´²¾ßµÊ
+		int8_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0)];
 
 		//const unsigned char option0 = 1 << 0; // 0000 0001 
 		//const unsigned char option1 = 1 << 1; // 0000 0010
@@ -75,17 +77,73 @@ namespace lab8
 	inline bool FixedVector<bool, N>::Remove(bool t)
 	{
 		unsigned char move = 1;
+		size_t length = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
 
-
-		for (size_t i = 0; i < mCount / CONTROL_POINT + mCount % CONTROL_POINT; i++)
+		for (size_t i = 0; i < length; i++)
 		{
+			move = 1;
 
-			if (mArr[mCount / CONTROL_POINT] & move)
+			for (size_t j = 0; j < CONTROL_POINT; j++)
 			{
-				int32_t backup = (mArr[mCount / CONTROL_POINT] >> i + 1);
+				if (t && mArr[i % CONTROL_POINT] & move)
+				{
+					int32_t left = (mArr[i] >> j + 1);
+					//int32_t right = mArr[i] << CONTROL_POINT - j;
 
+
+
+					return true;
+				}
+
+				if (!t && !(mArr[i % CONTROL_POINT] & move))
+				{
+					int32_t left = (mArr[i] >> j + 1);
+					int32_t right = mArr[i] << CONTROL_POINT - j;
+					right = right >> CONTROL_POINT - j;
+
+					left = left << j;
+
+					mArr[i] = left | right;
+
+					unsigned char b = 0;
+
+					if (mCount / CONTROL_POINT)
+					{
+						b = mArr[i / CONTROL_POINT + 1] & 0b00000001;
+					}
+
+					if (b)
+					{
+						left |= 0b10000000;
+					}
+
+					mArr[i] = left | mArr[i];
+
+					unsigned char c;
+					size_t k;
+
+					for (k = i; k < length - 1; k++)
+					{
+						c = mArr[k + 1] & 0b00000001;
+
+						mArr[k] = mArr[k] >> 1;
+
+						if (c)
+						{
+							mArr[k] = mArr[k] | 0b10000000;
+						}
+
+					}
+
+					c = mArr[k] & 0b00000001;
+
+					mArr[k] = mArr[k] >> 1;
+
+					return true;
+				}
+
+				move = move << 1;
 			}
-			move = move << 1;
 
 		}
 
