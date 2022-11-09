@@ -48,7 +48,7 @@ namespace lab8
 		//const unsigned char option6 = 1 << 6; // 0100 0000
 		//const unsigned char option7 = 1 << 7; // 1000 0000
 	};
-
+	
 	template<size_t N>
 	inline FixedVector<bool, N>::FixedVector()
 		: mCount(0)
