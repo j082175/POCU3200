@@ -52,7 +52,7 @@ namespace lab8
 	template<size_t N>
 	inline FixedVector<bool, N>::FixedVector()
 		: mCount(0)
-		, mArr{ 0 }
+		//, mArr{ 0 }
 	{}
 
 	template<size_t N>
