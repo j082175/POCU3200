@@ -79,23 +79,30 @@ namespace lab8
 	{
 		int32_t move = 1;
 		size_t length = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
+		size_t length2 = CONTROL_POINT;
 
 		for (size_t i = 0; i < length; i++)
 		{
 			move = 1;
 
-			for (size_t j = 0; j < CONTROL_POINT; j++)
+			if (length == 1)
+			{
+				length2 = mCount;
+			}
+
+			for (size_t j = 0; j < length2; j++)
 			{
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
 					uint32_t left = (mArr[i] >> (j + 1));
+
 					uint32_t right = (mArr[i] << (CONTROL_POINT - j));
 
 					right = (right >> (CONTROL_POINT - j));
 
-					if (right < 0)
+					if (j == 0)
 					{
-						right *= -1;
+						right = 0;
 					}
 
 					left = left << j;
@@ -148,9 +155,9 @@ namespace lab8
 
 					right = (right >> (CONTROL_POINT - j));
 					
-					if (right < 0)
+					if (j == 0)
 					{
-						right *= -1;
+						right = 0;
 					}
 
 					left = left << j;
@@ -174,6 +181,12 @@ namespace lab8
 
 					unsigned char c;
 					size_t k;
+
+					if (length == 1)
+					{
+						--mCount;
+						return true;
+					}
 
 					for (k = i + 1; k < length - 1; k++)
 					{
