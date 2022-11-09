@@ -643,7 +643,7 @@ int main()
 
 	testFixedBoolVector();
 	testFixedVector();
-	//test1();
+	test1();
 
 }
 
