@@ -87,7 +87,7 @@ namespace lab8
 			{
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
-					int32_t left = (mArr[i] >> j + 1);
+					int8_t left = (mArr[i] >> j + 1);
 					//int32_t right = mArr[i] << CONTROL_POINT - j;
 
 
@@ -97,13 +97,19 @@ namespace lab8
 
 				if (!t && !(mArr[i % CONTROL_POINT] & move))
 				{
-					int32_t left = (mArr[i] >> j + 1);
-					int32_t right = mArr[i] << CONTROL_POINT - j;
+					int8_t left = (mArr[i] >> j + 1);
+					int8_t right = mArr[i] << CONTROL_POINT - j;
+
 					right = right >> CONTROL_POINT - j;
+					
+					if (right < 0)
+					{
+						right *= -1;
+					}
 
 					left = left << j;
 
-					mArr[i] = left | right;
+					left = left | right;
 
 					unsigned char b = 0;
 
@@ -117,12 +123,13 @@ namespace lab8
 						left |= 0b10000000;
 					}
 
-					mArr[i] = left | mArr[i];
+					//mArr[i] = left | mArr[i];
+					mArr[i] = left;
 
 					unsigned char c;
 					size_t k;
 
-					for (k = i; k < length - 1; k++)
+					for (k = i + 1; k < length - 1; k++)
 					{
 						c = mArr[k + 1] & 0b00000001;
 
