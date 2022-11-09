@@ -37,7 +37,7 @@ namespace lab8
 
 		// 4·Î ³ª´²¾ßµÊ
 		//uint32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
-		uint32_t mArr[N / 32 + 1];
+		uint32_t mArr[N / 32 + 2];
 
 		//const unsigned char option0 = 1 << 0; // 0000 0001 
 		//const unsigned char option1 = 1 << 1; // 0000 0010
