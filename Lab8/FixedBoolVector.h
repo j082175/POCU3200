@@ -113,7 +113,10 @@ namespace lab8
 
 					if (mCount / CONTROL_POINT)
 					{
-						b = mArr[i / CONTROL_POINT + 1] & 0b00000000'00000000'00000000'00000001;
+						if (i < length)
+						{
+							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+						}
 					}
 
 					if (b)
@@ -171,7 +174,10 @@ namespace lab8
 
 					if (mCount / CONTROL_POINT)
 					{
-						b = mArr[i / CONTROL_POINT + 1] & 0b00000000'00000000'00000000'00000001;
+						if (i < length)
+						{
+							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+						}
 					}
 
 					if (b)
