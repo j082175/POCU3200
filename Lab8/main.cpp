@@ -430,48 +430,48 @@ void testFixedVector()
 
 int main()
 {
-	FixedVector<bool, 100> v1;
+	FixedVector<bool, 100> v111;
 
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
 
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
 
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(false);
-	v1.Add(false);
-	v1.Add(false);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
 
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
-	v1.Add(true);
-	v1.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
 
-	v1.Remove(false);
+	v111.Remove(false);
 
-	v1.Get(23);
-	v1.GetIndex(false);
+	v111.Get(23);
+	v111.GetIndex(false);
 
 	//int integerArray1[] = { 23, 25, 10, -4, 70 };
 	//enum { INTEGER_VECTOR1_SIZE = 4 };
@@ -603,9 +603,9 @@ int main()
 	//assert(boolVector2.GetIndex(true) == -1);
 	//std::cout << "Test FixedBoolVector GetIndex(): PASS" << std::endl;
 
-	//testFixedBoolVector();
-	//testFixedVector();
-	//test1();
+	testFixedBoolVector();
+	testFixedVector();
+	test1();
 
 }
 

@@ -36,7 +36,7 @@ namespace lab8
 		// 8ºñÆ®
 
 		// 4·Î ³ª´²¾ßµÊ
-		int8_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0)];
+		int32_t mArr[N / CONTROL_POINT + (N % CONTROL_POINT ? 1 : 0) / 4];
 
 		//const unsigned char option0 = 1 << 0; // 0000 0001 
 		//const unsigned char option1 = 1 << 1; // 0000 0010
@@ -89,10 +89,55 @@ namespace lab8
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
 					int8_t left = (mArr[i] >> (j + 1));
-					//int32_t right = mArr[i] << CONTROL_POINT - j;
+					int8_t right = (mArr[i] << (CONTROL_POINT - j));
 
+					right = (right >> (CONTROL_POINT - j));
 
+					if (right < 0)
+					{
+						right *= -1;
+					}
 
+					left = left << j;
+
+					left = left | right;
+
+					unsigned char b = 0;
+
+					if (mCount / CONTROL_POINT)
+					{
+						b = mArr[i / CONTROL_POINT + 1] & 0b00000001;
+					}
+
+					if (b)
+					{
+						left |= 0b10000000;
+					}
+
+					//mArr[i] = left | mArr[i];
+					mArr[i] = left;
+
+					unsigned char c;
+					size_t k;
+
+					for (k = i + 1; k < length - 1; k++)
+					{
+						c = mArr[k + 1] & 0b00000001;
+
+						mArr[k] = mArr[k] >> 1;
+
+						if (c)
+						{
+							mArr[k] = mArr[k] | 0b10000000;
+						}
+
+					}
+
+					c = mArr[k] & 0b00000001;
+
+					mArr[k] = mArr[k] >> 1;
+
+					--mCount;
 					return true;
 				}
 
@@ -146,7 +191,8 @@ namespace lab8
 					c = mArr[k] & 0b00000001;
 
 					mArr[k] = mArr[k] >> 1;
-
+					
+					--mCount;
 					return true;
 				}
 
