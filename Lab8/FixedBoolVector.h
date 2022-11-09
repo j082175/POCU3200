@@ -36,7 +36,8 @@ namespace lab8
 		// 8ºñÆ®
 
 		// 4·Î ³ª´²¾ßµÊ
-		uint32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
+		//uint32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
+		uint32_t mArr[N / 32 + 1];
 
 		//const unsigned char option0 = 1 << 0; // 0000 0001 
 		//const unsigned char option1 = 1 << 1; // 0000 0010
@@ -115,7 +116,7 @@ namespace lab8
 					{
 						if (i < length)
 						{
-							//b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
 						}
 					}
 
@@ -132,10 +133,10 @@ namespace lab8
 
 					for (k = i + 1; k < length; k++)
 					{
-						//if (k + 1 <= length)
-						//{
-						//	c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
-						//}
+						if (k + 1 <= length)
+						{
+							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+						}
 
 						mArr[k] = mArr[k] >> 1;
 
@@ -199,10 +200,10 @@ namespace lab8
 
 					for (k = i + 1; k < length; k++)
 					{
-						//if (k + 1 <= length)
-						//{
-						//	c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
-						//}
+						if (k + 1 <= length)
+						{
+							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+						}
 
 						mArr[k] = mArr[k] >> 1;
 

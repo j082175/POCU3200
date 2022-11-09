@@ -430,6 +430,10 @@ void testFixedVector()
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	//_CrtSetBreakAlloc(160); // Ãß°¡
+
+
 	FixedVector<bool, 100> v111;
 
 	//for (size_t i = 0; i < 8; i++)
@@ -479,7 +483,7 @@ int main()
 	/// 
 	/// 
 
-	assert(v111.Remove(false));
+	//assert(v111.Remove(false));
 
 
 	/*v111.Add(true);
@@ -695,7 +699,7 @@ int main()
 	std::cout << "Test FixedBoolVector GetIndex(): PASS" << std::endl;
 
 	testFixedBoolVector();
-	testFixedVector();
+	//testFixedVector();
 	test1();
 
 }
