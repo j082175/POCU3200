@@ -115,7 +115,7 @@ namespace lab8
 					{
 						if (i < length)
 						{
-							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+							//b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
 						}
 					}
 
@@ -127,15 +127,15 @@ namespace lab8
 					//mArr[i] = left | mArr[i];
 					mArr[i] = left;
 
-					unsigned char c;
+					unsigned char c = 0;
 					size_t k;
 
 					for (k = i + 1; k < length; k++)
 					{
-						if (k + 1 <= length)
-						{
-							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
-						}
+						//if (k + 1 <= length)
+						//{
+						//	c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+						//}
 
 						mArr[k] = mArr[k] >> 1;
 
@@ -199,10 +199,10 @@ namespace lab8
 
 					for (k = i + 1; k < length; k++)
 					{
-						if (k + 1 <= length)
-						{
-							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
-						}
+						//if (k + 1 <= length)
+						//{
+						//	c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+						//}
 
 						mArr[k] = mArr[k] >> 1;
 

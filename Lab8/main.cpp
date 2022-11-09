@@ -466,7 +466,7 @@ int main()
 	/// <returns></returns>
 	for (size_t i = 0; i < 32; i++)
 	{
-		v111.Add(false);
+		v111.Add(true);
 	}
 	for (size_t i = 0; i < 32; i++)
 	{
@@ -474,15 +474,12 @@ int main()
 	}
 	for (size_t i = 0; i < 32; i++)
 	{
-		v111.Add(false);
+		v111.Add(true);
 	}
 	/// 
 	/// 
-	for (size_t i = 0; i < 32; i++)
-	{
-		assert(v111.Remove(true));
-	}
-	assert(!v111.Remove(true));
+
+	assert(v111.Remove(false));
 
 
 	/*v111.Add(true);
