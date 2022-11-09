@@ -468,6 +468,44 @@ int main()
 	v111.Add(true);
 	v111.Add(false);
 
+	//------------------
+
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+
 	v111.Remove(false);
 
 	v111.Get(23);

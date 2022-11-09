@@ -29,14 +29,14 @@ namespace lab8
 	private:
 		enum
 		{
-			CONTROL_POINT = 8
+			CONTROL_POINT = 32
 		};
 
 		size_t mCount;
 		// 8ºñÆ®
 
 		// 4·Î ³ª´²¾ßµÊ
-		int32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
+		uint32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
 
 		//const unsigned char option0 = 1 << 0; // 0000 0001 
 		//const unsigned char option1 = 1 << 1; // 0000 0010
@@ -64,7 +64,7 @@ namespace lab8
 
 		if (t)
 		{
-			unsigned char move = 1;
+			int32_t move = 1;
 			move = move << mCount % CONTROL_POINT;
 
 			mArr[mCount / CONTROL_POINT] += move;
@@ -77,7 +77,7 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Remove(bool t)
 	{
-		unsigned char move = 1;
+		int32_t move = 1;
 		size_t length = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
 
 		for (size_t i = 0; i < length; i++)
@@ -88,8 +88,8 @@ namespace lab8
 			{
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
-					int8_t left = (mArr[i] >> (j + 1));
-					int8_t right = (mArr[i] << (CONTROL_POINT - j));
+					uint32_t left = (mArr[i] >> (j + 1));
+					uint32_t right = (mArr[i] << (CONTROL_POINT - j));
 
 					right = (right >> (CONTROL_POINT - j));
 
@@ -106,12 +106,12 @@ namespace lab8
 
 					if (mCount / CONTROL_POINT)
 					{
-						b = mArr[i / CONTROL_POINT + 1] & 0b00000001;
+						b = mArr[i / CONTROL_POINT + 1] & 0b00000000'00000000'00000000'00000001;
 					}
 
 					if (b)
 					{
-						left |= 0b10000000;
+						left |= 0b10000000'00000000'00000000'00000000;
 					}
 
 					//mArr[i] = left | mArr[i];
@@ -122,18 +122,18 @@ namespace lab8
 
 					for (k = i + 1; k < length - 1; k++)
 					{
-						c = mArr[k + 1] & 0b00000001;
+						c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
 
 						mArr[k] = mArr[k] >> 1;
 
 						if (c)
 						{
-							mArr[k] = mArr[k] | 0b10000000;
+							mArr[k] = mArr[k] | 0b10000000'00000000'00000000'00000000;
 						}
 
 					}
 
-					c = mArr[k] & 0b00000001;
+					c = mArr[k] & 0b00000000'00000000'00000000'00000001;
 
 					mArr[k] = mArr[k] >> 1;
 
@@ -143,8 +143,8 @@ namespace lab8
 
 				if (!t && !(mArr[i % CONTROL_POINT] & move))
 				{
-					int8_t left = (mArr[i] >> (j + 1));
-					int8_t right = (mArr[i] << (CONTROL_POINT - j));
+					uint32_t left = (mArr[i] >> (j + 1));
+					uint32_t right = (mArr[i] << (CONTROL_POINT - j));
 
 					right = (right >> (CONTROL_POINT - j));
 					
@@ -161,12 +161,12 @@ namespace lab8
 
 					if (mCount / CONTROL_POINT)
 					{
-						b = mArr[i / CONTROL_POINT + 1] & 0b00000001;
+						b = mArr[i / CONTROL_POINT + 1] & 0b00000000'00000000'00000000'00000001;
 					}
 
 					if (b)
 					{
-						left |= 0b10000000;
+						left |= 0b10000000'00000000'00000000'00000000;
 					}
 
 					//mArr[i] = left | mArr[i];
@@ -177,18 +177,18 @@ namespace lab8
 
 					for (k = i + 1; k < length - 1; k++)
 					{
-						c = mArr[k + 1] & 0b00000001;
+						c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
 
 						mArr[k] = mArr[k] >> 1;
 
 						if (c)
 						{
-							mArr[k] = mArr[k] | 0b10000000;
+							mArr[k] = mArr[k] | 0b10000000'00000000'00000000'00000000;
 						}
 
 					}
 
-					c = mArr[k] & 0b00000001;
+					c = mArr[k] & 0b00000000'00000000'00000000'00000001;
 
 					mArr[k] = mArr[k] >> 1;
 					
@@ -213,7 +213,7 @@ namespace lab8
 		size_t idx = index / CONTROL_POINT;
 		size_t idx2 = index % CONTROL_POINT;
 
-		int8_t result = mArr[idx] & static_cast<int8_t>(std::powl(2, idx2));
+		uint32_t result = mArr[idx] & static_cast<uint32_t>(std::powl(2, idx2));
 
 		return static_cast<bool>(result);
 	}
@@ -230,7 +230,7 @@ namespace lab8
 		{
 			for (size_t j = 0; j < CONTROL_POINT; j++)
 			{
-				if ((mArr[i] & static_cast<int8_t>(std::powl(2, j))) == static_cast<int8_t>(t))
+				if ((mArr[i] & static_cast<uint32_t>(std::powl(2, j))) == static_cast<uint32_t>(t))
 				{
 					return count;
 				}
@@ -240,7 +240,7 @@ namespace lab8
 
 		for (size_t k = 0; k < length; k++)
 		{
-			if ((mArr[i] & static_cast<int8_t>(std::powl(2, k))) == static_cast<int8_t>(t))
+			if ((mArr[i] & static_cast<uint32_t>(std::powl(2, k))) == static_cast<uint32_t>(t))
 			{
 				return count;
 			}
@@ -268,7 +268,7 @@ namespace lab8
 		size_t idx = index / CONTROL_POINT;
 		size_t idx2 = index % CONTROL_POINT;
 
-		int8_t result = mArr[idx] & static_cast<int8_t>(std::powl(2, idx2));
+		uint32_t result = mArr[idx] & static_cast<uint32_t>(std::powl(2, idx2));
 
 		return static_cast<bool>(result);
 	}
