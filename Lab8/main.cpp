@@ -432,84 +432,171 @@ int main()
 {
 	FixedVector<bool, 100> v111;
 
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
+	for (size_t i = 0; i < 8; i++)
+	{
+		v111.Add(true);
+		v111.Add(false);
+	}
 
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
+	for (size_t i = 0; i < 8; i++)
+	{
+		v111.Add(false);
+		v111.Add(true);
+	}
 
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(false);
-	//v111.Add(false);
-	//v111.Add(false);
+	for (size_t i = 0; i < 16; i++)
+	{
+		v111.Add(false);
+	}
 
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
+	for (size_t i = 0; i < 16; i++)
+	{
+		v111.Add(true);
+	}
 
-	//------------------
+	for (size_t i = 0; i < 16; i++)
+	{
+		v111.Add(true);
+		v111.Add(false);
+	}
 
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	assert(v111.GetIndex(true) == 0);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 1);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 2);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 3);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 4);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 5);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 6);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 7);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 9);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 10);
+	assert(v111.Remove(true));
+	assert(v111.GetIndex(true) == 11);
+	assert(v111.Remove(true));
 
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
 
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(false);
-	//v111.Add(false);
-	//v111.Add(false);
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <returns></returns>
+	for (size_t i = 0; i < 8; i++)
+	{
+		assert(v111.Remove(true));
+		assert(v111.Remove(false));
+	}
 
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
-	//v111.Add(true);
-	//v111.Add(false);
+	for (size_t i = 0; i < 8; i++)
+	{
+		assert(v111.Remove(false));
+		assert(v111.Remove(true));
+	}
 
-	v111.Remove(false);
+	for (size_t i = 0; i < 16; i++)
+	{
+		assert(v111.Remove(false));
+	}
+
+	for (size_t i = 0; i < 16; i++)
+	{
+		assert(v111.Remove(true));
+	}
+
+
+
+	/*v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+
+	------------------
+
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+	v111.Add(false);
+
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);
+	v111.Add(true);
+	v111.Add(false);*/
+
+	//v111.Remove(false);
 
 	v111.Get(23);
 	v111.GetIndex(false);
+	v111.GetIndex(true);
+	v111.GetIndex(true);
+
 
 	int integerArray1[] = { 23, 25, 10, -4, 70 };
 	enum { INTEGER_VECTOR1_SIZE = 4 };

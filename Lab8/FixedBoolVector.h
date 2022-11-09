@@ -249,7 +249,7 @@ namespace lab8
 		{
 			for (size_t j = 0; j < CONTROL_POINT; j++)
 			{
-				if ((mArr[i] & static_cast<uint32_t>(std::powl(2, j))) == static_cast<uint32_t>(t))
+				if (static_cast<bool>((mArr[i] & static_cast<uint32_t>(std::powl(2, j)))) == t)
 				{
 					return count;
 				}
@@ -259,7 +259,7 @@ namespace lab8
 
 		for (size_t k = 0; k < length; k++)
 		{
-			if ((mArr[i] & static_cast<uint32_t>(std::powl(2, k))) == static_cast<uint32_t>(t))
+			if (static_cast<bool>((mArr[i] & static_cast<uint32_t>(std::powl(2, k)))) == t)
 			{
 				return count;
 			}
