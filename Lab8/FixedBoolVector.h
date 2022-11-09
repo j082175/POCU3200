@@ -1,6 +1,7 @@
 #pragma once
 
 #include "FixedVector.h"
+#include <cmath>
 
 namespace lab8
 {
@@ -87,7 +88,7 @@ namespace lab8
 			{
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
-					int8_t left = (mArr[i] >> j + 1);
+					int8_t left = (mArr[i] >> (j + 1));
 					//int32_t right = mArr[i] << CONTROL_POINT - j;
 
 
@@ -97,10 +98,10 @@ namespace lab8
 
 				if (!t && !(mArr[i % CONTROL_POINT] & move))
 				{
-					int8_t left = (mArr[i] >> j + 1);
-					int8_t right = mArr[i] << CONTROL_POINT - j;
+					int8_t left = (mArr[i] >> (j + 1));
+					int8_t right = (mArr[i] << (CONTROL_POINT - j));
 
-					right = right >> CONTROL_POINT - j;
+					right = (right >> (CONTROL_POINT - j));
 					
 					if (right < 0)
 					{
@@ -163,7 +164,12 @@ namespace lab8
 	{
 		// index 의 값은 항상 범위 내라 가정
 
-		return static_cast<bool>(mArr[index]);
+		size_t idx = index / CONTROL_POINT;
+		size_t idx2 = index % CONTROL_POINT;
+
+		int8_t result = mArr[idx] & static_cast<int8_t>(std::powl(2, idx2));
+
+		return static_cast<bool>(result);
 	}
 
 	template<size_t N>
