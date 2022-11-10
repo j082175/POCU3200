@@ -1,6 +1,5 @@
 #pragma once
 
-#include "FixedVector.h"
 #include <cmath>
 
 namespace lab8
@@ -25,7 +24,6 @@ namespace lab8
 
 		size_t GetCapacity();
 
-
 	private:
 		enum
 		{
@@ -33,20 +31,7 @@ namespace lab8
 		};
 
 		size_t mCount;
-		// 8비트
-
-		// 4로 나눠야됨
 		uint32_t mArr[N / 32 + (N % CONTROL_POINT ? 1 : 0)];
-		//uint32_t mArr[N / 32 + 2];
-
-		//const unsigned char option0 = 1 << 0; // 0000 0001 
-		//const unsigned char option1 = 1 << 1; // 0000 0010
-		//const unsigned char option2 = 1 << 2; // 0000 0100
-		//const unsigned char option3 = 1 << 3; // 0000 1000
-		//const unsigned char option4 = 1 << 4; // 0001 0000
-		//const unsigned char option5 = 1 << 5; // 0010 0000
-		//const unsigned char option6 = 1 << 6; // 0100 0000
-		//const unsigned char option7 = 1 << 7; // 1000 0000
 	};
 	
 	template<size_t N>
@@ -65,7 +50,7 @@ namespace lab8
 
 		if (t)
 		{
-			int32_t move = 1;
+			uint32_t move = 1;
 			move = move << mCount % CONTROL_POINT;
 
 			mArr[mCount / CONTROL_POINT] += move;
@@ -78,31 +63,31 @@ namespace lab8
 	template<size_t N>
 	inline bool FixedVector<bool, N>::Remove(bool t)
 	{
-		int32_t move = 1;
-		size_t length = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
-		size_t length2 = CONTROL_POINT;
+		uint32_t move = 1;
+		size_t arrLength = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
+		size_t lastArrLength = CONTROL_POINT;
+		size_t C09checker = 0;
 
-		size_t count2 = 0;
+		const uint32_t _UINT32_MAX = 0b10000000'00000000'00000000'00000000;
+		const uint32_t _UINT32_MIN = 0b00000000'00000000'00000000'00000001;
 
-		for (size_t i = 0; i < length; i++)
+		for (size_t i = 0; i < arrLength; i++)
 		{
 			move = 1;
 
-
-
-			if (length == 1)
+			if (arrLength == 1)
 			{
-				length2 = mCount;
+				lastArrLength = mCount;
 			}
 
-			for (size_t j = 0; j < length2; j++)
+			for (size_t j = 0; j < lastArrLength; j++)
 			{
-				++count2;
+				++C09checker;
 
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
+					unsigned char isLSB = 0;
 					uint32_t left = (mArr[i] >> (j + 1));
-
 					uint32_t right = (mArr[i] << (CONTROL_POINT - j));
 
 					right = (right >> (CONTROL_POINT - j));
@@ -116,46 +101,39 @@ namespace lab8
 
 					left = left | right;
 
-					unsigned char b = 0;
-
 					if (mCount / CONTROL_POINT)
 					{
-						if (i < length)
+						if (i < arrLength)
 						{
-							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+							isLSB = mArr[i + 1] & _UINT32_MIN;
 						}
 					}
 
-					if (b)
+					if (isLSB)
 					{
-						left |= 0b10000000'00000000'00000000'00000000;
+						left |= _UINT32_MAX;
 					}
 
-					//mArr[i] = left | mArr[i];
 					mArr[i] = left;
 
-					unsigned char c = 0;
+					unsigned char isLSB2 = 0;
 					size_t k;
 
-					for (k = i + 1; k < length; k++)
+					for (k = i + 1; k < arrLength; k++)
 					{
-						if (k + 1 <= length)
+						if (k + 1 <= arrLength)
 						{
-							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+							isLSB2 = mArr[k + 1] & _UINT32_MIN;
 						}
 
 						mArr[k] = mArr[k] >> 1;
 
-						if (c)
+						if (isLSB2)
 						{
-							mArr[k] = mArr[k] | 0b10000000'00000000'00000000'00000000;
+							mArr[k] = mArr[k] | _UINT32_MAX;
 						}
 
 					}
-
-					//c = mArr[k] & 0b00000000'00000000'00000000'00000001;
-
-					//mArr[k] = mArr[k] >> 1;
 
 					--mCount;
 					return true;
@@ -163,6 +141,7 @@ namespace lab8
 
 				if (!t && !(mArr[i % CONTROL_POINT] & move))
 				{
+					unsigned char isLSB = 0;
 					uint32_t left = (mArr[i] >> (j + 1));
 					uint32_t right = (mArr[i] << (CONTROL_POINT - j));
 
@@ -177,58 +156,52 @@ namespace lab8
 
 					left = left | right;
 
-					unsigned char b = 0;
-
 					if (mCount / CONTROL_POINT)
 					{
-						if (i < length)
+						if (i < arrLength)
 						{
-							b = mArr[i + 1] & 0b00000000'00000000'00000000'00000001;
+							isLSB = mArr[i + 1] & _UINT32_MIN;
 						}
 					}
 
-					if (b)
+					if (isLSB)
 					{
-						left |= 0b10000000'00000000'00000000'00000000;
+						left |= _UINT32_MAX;
 					}
 
-					//mArr[i] = left | mArr[i];
 					mArr[i] = left;
 
-					unsigned char c = 0;
+					unsigned char isLSB2 = 0;
 					size_t k;
 
-					if (length == 1)
+					// 위의 코드와 다른점
+					if (arrLength == 1)
 					{
 						--mCount;
 						return true;
 					}
 
-					for (k = i + 1; k < length; k++)
+					for (k = i + 1; k < arrLength; k++)
 					{
-						if (k + 1 <= length)
+						if (k + 1 <= arrLength)
 						{
-							c = mArr[k + 1] & 0b00000000'00000000'00000000'00000001;
+							isLSB2 = mArr[k + 1] & _UINT32_MIN;
 						}
 
 						mArr[k] = mArr[k] >> 1;
 
-						if (c)
+						if (isLSB2)
 						{
-							mArr[k] = mArr[k] | 0b10000000'00000000'00000000'00000000;
+							mArr[k] = mArr[k] | _UINT32_MAX;
 						}
 
 					}
-
-					//c = mArr[k] & 0b00000000'00000000'00000000'00000001;
-
-					//mArr[k] = mArr[k] >> 1;
 					
 					--mCount;
 					return true;
 				}
 
-				if (count2 == mCount)
+				if (C09checker == mCount)
 				{
 					return false;
 				}
@@ -237,7 +210,6 @@ namespace lab8
 			}
 
 		}
-
 
 		return false;
 	}
