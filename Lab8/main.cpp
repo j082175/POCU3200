@@ -702,5 +702,14 @@ int main()
 	//testFixedVector();
 	test1();
 
+
+	FixedVector<bool, 80> v2;
+
+	for (int i = 0; i < 33; i++)
+	{
+		v2.Add(true);
+	}
+
+	assert(!v2.Remove(false));
 }
 

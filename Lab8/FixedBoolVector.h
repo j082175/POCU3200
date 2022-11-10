@@ -82,9 +82,13 @@ namespace lab8
 		size_t length = mCount / CONTROL_POINT + (mCount % CONTROL_POINT ? 1 : 0);
 		size_t length2 = CONTROL_POINT;
 
+		size_t count2 = 0;
+
 		for (size_t i = 0; i < length; i++)
 		{
 			move = 1;
+
+
 
 			if (length == 1)
 			{
@@ -93,6 +97,8 @@ namespace lab8
 
 			for (size_t j = 0; j < length2; j++)
 			{
+				++count2;
+
 				if (t && mArr[i % CONTROL_POINT] & move)
 				{
 					uint32_t left = (mArr[i] >> (j + 1));
@@ -220,6 +226,11 @@ namespace lab8
 					
 					--mCount;
 					return true;
+				}
+
+				if (count2 == mCount)
+				{
+					return false;
 				}
 
 				move = move << 1;
