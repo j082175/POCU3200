@@ -8,7 +8,7 @@ using namespace lab9;
 int main()
 {
 	{
-		Game g1(1, 10);
+		Game g1(1, 0);
 		
 		for (size_t i = 0; i < 10; i++)
 		{
@@ -19,7 +19,7 @@ int main()
 		g1.Spawn();
 	}
 
-	/*{
+	{
 		ObjectPool<IceCube> pool(3);
 
 		assert(pool.GetMaxFreeObjectCount() == 3);
@@ -80,8 +80,8 @@ int main()
 		auto& op2 = game.GetObjectPool();
 		IceCube* i6 = op2.Get();
 
-		assert(i6 == i5);
+		//assert(i6 == i5);
 
 		op2.Return(i6);
-	}*/
+	}
 }

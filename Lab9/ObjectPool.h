@@ -1,6 +1,7 @@
 #pragma once
 
 #include <queue>
+#include <memory>
 
 namespace lab9
 {
@@ -28,7 +29,7 @@ namespace lab9
 				return new T;
 			}
 
-			T* value = mQueue.front();
+			T* value = *mQueue.front().get();
 			mQueue.pop();
 			return value;
 		}
@@ -41,7 +42,9 @@ namespace lab9
 				return;
 			}
 			
-			mQueue.push(other);
+			//mQueue.push(other);
+
+			mQueue.push(std::make_unique<T*>(other));
 		}
 
 		size_t GetFreeObjectCount() const
@@ -56,6 +59,8 @@ namespace lab9
 
 	private:
 		size_t mMaxPoolSize;
-		std::queue<T*> mQueue;
+		//std::queue<T*> mQueue;
+		std::queue<std::unique_ptr<T*>> mQueue;
+
 	};
 }

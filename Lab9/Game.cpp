@@ -16,12 +16,12 @@ namespace lab9
 
 	Game::~Game()
 	{
-		for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it)
-		{
-			delete (*it);
-		}
+		//for (auto it = mActiveGameObjects.begin(); it != mActiveGameObjects.end(); ++it)
+		//{
+		//	delete (*it);
+		//}
 
-		mActiveGameObjects.clear();
+		//mActiveGameObjects.clear();
 	}
 
 	void Game::Spawn()
