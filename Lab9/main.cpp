@@ -8,17 +8,11 @@ using namespace lab9;
 int main()
 {
 	{
-		ObjectPool<IceCube> op(1);
+		ObjectPool<IceCube> op(20);
 		op.GetFreeObjectCount(); // 0을 반환
 
 		IceCube* i1 = op.Get();
 		IceCube* i2 = op.Get();
-
-		op.Return(i1);
-		op.GetFreeObjectCount(); // 1을 반환
-
-		op.Return(i2);
-		op.GetFreeObjectCount(); // 1을 반환
 	}
 
 	{

@@ -29,7 +29,7 @@ namespace lab9
 				return new T;
 			}
 
-			return mArr.front();
+			return mQueue.front();
 		}
 
 		void Return(T* other)
@@ -39,8 +39,8 @@ namespace lab9
 				delete other;
 				return;
 			}
-
-			mArr.push(other);
+			
+			mQueue.push(other);
 			mCurrentCount++;
 		}
 
@@ -57,6 +57,6 @@ namespace lab9
 	private:
 		size_t mMaxPoolSize;
 		size_t mCurrentCount;
-		std::queue<T*> mArr;
+		std::queue<T*> mQueue;
 	};
 }
