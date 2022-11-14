@@ -7,67 +7,83 @@ using namespace lab9;
 
 int main()
 {
-	ObjectPool<IceCube> pool(3);
+	{
+		ObjectPool<IceCube> op(1);
+		op.GetFreeObjectCount(); // 0을 반환
 
-	assert(pool.GetMaxFreeObjectCount() == 3);
-	assert(pool.GetFreeObjectCount() == 0);
+		IceCube* i1 = op.Get();
+		IceCube* i2 = op.Get();
 
-	IceCube* i1 = pool.Get();
+		op.Return(i1);
+		op.GetFreeObjectCount(); // 1을 반환
 
-	i1->Initialize(5);
+		op.Return(i2);
+		op.GetFreeObjectCount(); // 1을 반환
+	}
 
-	IceCube* i2 = pool.Get();
-	i2->Initialize(1);
+	{
+		ObjectPool<IceCube> pool(3);
 
-	IceCube* i3 = pool.Get();
-	i3->Initialize(4);
+		assert(pool.GetMaxFreeObjectCount() == 3);
+		assert(pool.GetFreeObjectCount() == 0);
 
-	assert(pool.GetFreeObjectCount() == 0);
-	i1->Reset();
-	pool.Return(i1);
-	assert(pool.GetFreeObjectCount() == 1);
+		IceCube* i1 = pool.Get();
 
-	IceCube* i4 = pool.Get();
+		i1->Initialize(5);
 
-	assert(i1 == i4);
-	assert(!(i4->IsActive()));
+		IceCube* i2 = pool.Get();
+		i2->Initialize(1);
 
-	pool.Return(i2);
-	pool.Return(i3);
-	pool.Return(i4);
+		IceCube* i3 = pool.Get();
+		i3->Initialize(4);
 
-	Game game(1, 4);
-	const std::vector<IceCube*>& activeGameObjects = game.GetActiveGameObjects();
-	assert(activeGameObjects.size() == 0);
+		assert(pool.GetFreeObjectCount() == 0);
+		i1->Reset();
+		pool.Return(i1);
+		assert(pool.GetFreeObjectCount() == 1);
 
-	game.Spawn();
-	game.Spawn();
-	game.Spawn();
-	game.Spawn();
-	game.Spawn();
+		IceCube* i4 = pool.Get();
 
-	assert(activeGameObjects.size() == 5);
-	assert(activeGameObjects[0]->IsActive());
-	assert(activeGameObjects[1]->IsActive());
-	assert(activeGameObjects[2]->IsActive());
-	assert(activeGameObjects[3]->IsActive());
-	assert(activeGameObjects[4]->IsActive());
+		assert(i1 == i4);
+		assert(!(i4->IsActive()));
 
-	const IceCube* i5 = activeGameObjects[3];
+		pool.Return(i2);
+		pool.Return(i3);
+		pool.Return(i4);
 
-	game.Update();
+		Game game(1, 4);
+		const std::vector<IceCube*>& activeGameObjects = game.GetActiveGameObjects();
+		assert(activeGameObjects.size() == 0);
 
-	const std::vector<IceCube*>& activeGameObjects2 = game.GetActiveGameObjects();
-	assert(activeGameObjects2.size() == 4);
-	assert(activeGameObjects[0] == activeGameObjects2[0]);
-	assert(activeGameObjects[1] == activeGameObjects2[1]);
-	assert(activeGameObjects[2] == activeGameObjects2[2]);
-	assert(activeGameObjects[3] == activeGameObjects2[3]);
+		game.Spawn();
+		game.Spawn();
+		game.Spawn();
+		game.Spawn();
+		game.Spawn();
 
-	auto& op2 = game.GetObjectPool();
-	IceCube* i6 = op2.Get();
+		assert(activeGameObjects.size() == 5);
+		assert(activeGameObjects[0]->IsActive());
+		assert(activeGameObjects[1]->IsActive());
+		assert(activeGameObjects[2]->IsActive());
+		assert(activeGameObjects[3]->IsActive());
+		assert(activeGameObjects[4]->IsActive());
 
-	assert(i6 == i5);
+		const IceCube* i5 = activeGameObjects[3];
 
-	op2.Return(i6);
+		game.Update();
+
+		const std::vector<IceCube*>& activeGameObjects2 = game.GetActiveGameObjects();
+		assert(activeGameObjects2.size() == 4);
+		assert(activeGameObjects[0] == activeGameObjects2[0]);
+		assert(activeGameObjects[1] == activeGameObjects2[1]);
+		assert(activeGameObjects[2] == activeGameObjects2[2]);
+		assert(activeGameObjects[3] == activeGameObjects2[3]);
+
+		auto& op2 = game.GetObjectPool();
+		IceCube* i6 = op2.Get();
+
+		assert(i6 == i5);
+
+		op2.Return(i6);
+	}
 }

@@ -37,6 +37,7 @@ namespace lab9
 			if (mCurrentCount == mMaxPoolSize)
 			{
 				delete other;
+				return;
 			}
 
 			mArr.push(other);
