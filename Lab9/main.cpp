@@ -8,11 +8,14 @@ using namespace lab9;
 int main()
 {
 	{
-		ObjectPool<IceCube> op(20);
-		op.GetFreeObjectCount(); // 0À» ¹ÝÈ¯
+		Game g1(1, 10);
+		
+		for (size_t i = 0; i < 10; i++)
+		{
+			g1.Spawn();
+		}
 
-		IceCube* i1 = op.Get();
-		IceCube* i2 = op.Get();
+		g1.Update();
 	}
 
 	{

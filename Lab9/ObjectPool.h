@@ -22,14 +22,16 @@ namespace lab9
 		ObjectPool(const ObjectPool& other) = delete;
 		ObjectPool& operator=(const ObjectPool& other) = delete;
 
-		T* Get() const
+		T* Get()
 		{
 			if (mCurrentCount == 0)
 			{
 				return new T;
 			}
 
-			return mQueue.front();
+			T* value = mQueue.front();
+			mQueue.pop();
+			return value;
 		}
 
 		void Return(T* other)
