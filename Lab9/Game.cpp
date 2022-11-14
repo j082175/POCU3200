@@ -62,9 +62,9 @@ namespace lab9
 
 			if (!iceCube->IsActive())
 			{
+				mObjectPool.Return(*it);
 				mActiveGameObjects.pop_back();
 				it = mActiveGameObjects.rbegin();
-				mObjectPool.Return(*it);
 				continue;
 			}
 

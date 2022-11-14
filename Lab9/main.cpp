@@ -16,9 +16,10 @@ int main()
 		}
 
 		g1.Update();
+		g1.Spawn();
 	}
 
-	{
+	/*{
 		ObjectPool<IceCube> pool(3);
 
 		assert(pool.GetMaxFreeObjectCount() == 3);
@@ -82,5 +83,5 @@ int main()
 		assert(i6 == i5);
 
 		op2.Return(i6);
-	}
+	}*/
 }

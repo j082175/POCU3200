@@ -10,7 +10,6 @@ namespace lab9
 	public:
 		ObjectPool(size_t maxPoolSize)
 			: mMaxPoolSize(maxPoolSize)
-			, mCurrentCount(0)
 		{
 		}
 
@@ -24,7 +23,7 @@ namespace lab9
 
 		T* Get()
 		{
-			if (mCurrentCount == 0)
+			if (mQueue.size() == 0)
 			{
 				return new T;
 			}
@@ -36,19 +35,18 @@ namespace lab9
 
 		void Return(T* other)
 		{
-			if (mCurrentCount == mMaxPoolSize)
+			if (mQueue.size() == mMaxPoolSize)
 			{
 				delete other;
 				return;
 			}
 			
 			mQueue.push(other);
-			mCurrentCount++;
 		}
 
 		size_t GetFreeObjectCount() const
 		{
-			return mCurrentCount;
+			return mQueue.size();
 		}
 
 		size_t GetMaxFreeObjectCount() const
@@ -58,7 +56,6 @@ namespace lab9
 
 	private:
 		size_t mMaxPoolSize;
-		size_t mCurrentCount;
 		std::queue<T*> mQueue;
 	};
 }
