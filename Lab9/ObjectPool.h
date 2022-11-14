@@ -16,7 +16,13 @@ namespace lab9
 
 		~ObjectPool()
 		{
-			//delete[] mArr;
+			size_t length = mQueue.size();
+			for (size_t i = 0; i < length; i++)
+			{
+				delete mQueue.front();
+				mQueue.front() = nullptr;
+				mQueue.pop();
+			}
 		}
 
 		ObjectPool(const ObjectPool& other) = delete;
@@ -29,7 +35,7 @@ namespace lab9
 				return new T;
 			}
 
-			T* value = *mQueue.front().get();
+			T* value = mQueue.front();
 			mQueue.pop();
 			return value;
 		}
@@ -42,9 +48,7 @@ namespace lab9
 				return;
 			}
 			
-			//mQueue.push(other);
-
-			mQueue.push(std::make_unique<T*>(other));
+			mQueue.push(other);
 		}
 
 		size_t GetFreeObjectCount() const
@@ -59,8 +63,7 @@ namespace lab9
 
 	private:
 		size_t mMaxPoolSize;
-		//std::queue<T*> mQueue;
-		std::queue<std::unique_ptr<T*>> mQueue;
+		std::queue<T*> mQueue;
 
 	};
 }
