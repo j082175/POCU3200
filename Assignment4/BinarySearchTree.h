@@ -119,7 +119,7 @@ namespace assignment4
 					{
 						std::shared_ptr<TreeNode<T>>& node3 = node2->Right;
 
-						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveLeft(node3.get());
+						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveLeft(node3);
 
 						std::swap(node2->Data, node4->Left->Data);
 						node4->Left.reset();
@@ -145,7 +145,7 @@ namespace assignment4
 					{
 						std::shared_ptr<TreeNode<T>>& node3 = node2->Left;
 
-						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveRight(node3.get());
+						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveRight(node3);
 
 						std::swap(node2->Data, node4->Right->Data);
 						node4->Right.reset();
@@ -200,30 +200,30 @@ namespace assignment4
 			return true;
 		}
 
-		std::shared_ptr<TreeNode<T>>& searchRecursiveLeft(TreeNode<T>* node)
+		std::shared_ptr<TreeNode<T>>& searchRecursiveLeft(std::shared_ptr<TreeNode<T>>& node)
 		{
 			//TreeNode<T>* node2 = node;
-			std::shared_ptr<TreeNode<T>> node2(node);
+			std::shared_ptr<TreeNode<T>>& node2(node);
 
 			if (node2->Left->Left == nullptr)
 			{
 				return node2;
 			}
 
-			return searchRecursiveLeft(node2->Left.get());
+			return searchRecursiveLeft(node2->Left);
 		}
 
-		std::shared_ptr<TreeNode<T>>& searchRecursiveRight(TreeNode<T>* node)
+		std::shared_ptr<TreeNode<T>>& searchRecursiveRight(std::shared_ptr<TreeNode<T>>& node)
 		{
 			//TreeNode<T>* node2 = node;
-			std::shared_ptr<TreeNode<T>> node2(node);
+			std::shared_ptr<TreeNode<T>>& node2(node);
 
 			if (node2->Right->Right == nullptr)
 			{
 				return node2;
 			}
 
-			return searchRecursiveRight(node2->Right.get());
+			return searchRecursiveRight(node2->Right);
 		}
 
 	private:
@@ -239,8 +239,7 @@ namespace assignment4
 	template<typename T>
 	const std::weak_ptr<TreeNode<T>> BinarySearchTree<T>::GetRootNode() const
 	{
-		std::shared_ptr<TreeNode<T>> n;
-		return n;
+		return mNode;
 	}
 
 	template<typename T>
