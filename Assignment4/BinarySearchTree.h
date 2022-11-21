@@ -227,6 +227,26 @@ namespace assignment4
 			return searchRecursiveRight(node2->Right);
 		}
 
+		static std::vector<T> traverseInOrder(const std::shared_ptr<TreeNode<T>> startNode, std::vector<T>& v)
+		{
+
+			if (startNode == nullptr)
+			{
+				return v;
+			}
+
+			//if (startNode == nullptr)
+			//{
+			//	vec.push_back(*startNode->Parent.lock()->Data);
+			//}
+
+			traverseInOrder(startNode->Left, v);
+			v.push_back(*startNode->Data);
+			traverseInOrder(startNode->Right, v);
+
+			return v;
+		}
+
 	private:
 		std::shared_ptr<TreeNode<T>> mNode;
 	};
@@ -263,7 +283,10 @@ namespace assignment4
 	template<typename T>
 	std::vector<T> BinarySearchTree<T>::TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode)
 	{
-		std::vector<T> v;
-		return v;
+		std::vector<T> vec;
+
+		traverseInOrder(startNode, vec);
+
+		return vec;
 	}
 }
