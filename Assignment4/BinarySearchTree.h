@@ -87,7 +87,7 @@ namespace assignment4
 			return searchRecursive2(node2->Left, data);
 		}
 
-		void insertRecursive(std::shared_ptr<TreeNode<T>>& node, std::unique_ptr<T> data)
+		void insertRecursive(std::shared_ptr<TreeNode<T>>& node, std::unique_ptr<T> data, std::shared_ptr<TreeNode<T>>& prevNode)
 		{
 			std::shared_ptr<TreeNode<T>>& node2 = node;
 			
@@ -95,15 +95,16 @@ namespace assignment4
 			{
 				//*node2 = new TreeNode<T>(std::make_unique<T>(data));
 				node2 = std::make_shared<TreeNode<T>>(std::move(data));
+				node2->Parent = prevNode;
 				return;
 			}
 
 			if (*node2->Data < *data)
 			{
-				return insertRecursive(node2->Right, std::make_unique<T>(*data));
+				return insertRecursive(node2->Right, std::make_unique<T>(*data), node2);
 			}
 
-			return insertRecursive(node2->Left, std::make_unique<T>(*data));
+			return insertRecursive(node2->Left, std::make_unique<T>(*data), node2);
 		}
 
 		bool deleteRecursive(std::shared_ptr<TreeNode<T>>& node, T data)
@@ -233,7 +234,7 @@ namespace assignment4
 	template<typename T>
 	void BinarySearchTree<T>::Insert(std::unique_ptr<T> data)
 	{
-		insertRecursive(mNode, std::move(data));
+		insertRecursive(mNode, std::move(data), mNode);
 	}
 
 	template<typename T>

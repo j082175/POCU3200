@@ -11,6 +11,14 @@ int main()
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	//_CrtSetBreakAlloc(76); // Ãß°¡
 
+	BinarySearchTree<int> tree2;
+	tree2.Insert(std::make_unique<int>(6));
+	tree2.Insert(std::make_unique<int>(4));
+	tree2.Insert(std::make_unique<int>(3));
+	tree2.Insert(std::make_unique<int>(5));
+
+
+
 	BinarySearchTree<int> tree;
 
 	tree.Insert(std::make_unique<int>(10));
