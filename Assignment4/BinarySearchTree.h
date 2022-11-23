@@ -24,6 +24,18 @@ namespace assignment4
 		static std::vector<T> TraverseInOrder(const std::shared_ptr<TreeNode<T>> startNode);
 
 	private:
+		std::shared_ptr<TreeNode<T>>& findMinValue(std::shared_ptr<TreeNode<T>>& node)
+		{
+			std::shared_ptr<TreeNode<T>>& currentNode = node;
+
+			while (currentNode->Left != nullptr)
+			{
+				currentNode = currentNode->Left;
+			}
+
+			return currentNode;
+		}
+
 		std::shared_ptr<TreeNode<T>>& searchRecursive(std::shared_ptr<TreeNode<T>>& node, T data)
 		{
 			//TreeNode<T>* node2 = node;
@@ -48,7 +60,7 @@ namespace assignment4
 		}
 
 
-		std::shared_ptr<TreeNode<T>>& searchRecursive2(std::shared_ptr<TreeNode<T>>& node, T data)
+		std::shared_ptr<TreeNode<T>>& searchRecursiveBefore(std::shared_ptr<TreeNode<T>>& node, T data)
 		{
 			std::shared_ptr<TreeNode<T>>& node2 = node;
 
@@ -58,6 +70,11 @@ namespace assignment4
 			//}
 
 			if (node2 == nullptr)
+			{
+				return node2;
+			}
+
+			if (*node2->Data == data)
 			{
 				return node2;
 			}
@@ -81,10 +98,10 @@ namespace assignment4
 
 			if (data > *(node2->Data))
 			{
-				return searchRecursive2(node2->Right, data);
+				return searchRecursiveBefore(node2->Right, data);
 			}
 
-			return searchRecursive2(node2->Left, data);
+			return searchRecursiveBefore(node2->Left, data);
 		}
 
 		void insertRecursive(std::shared_ptr<TreeNode<T>>& node, std::unique_ptr<T> data, std::shared_ptr<TreeNode<T>>& prevNode)
@@ -109,96 +126,186 @@ namespace assignment4
 
 		bool deleteRecursive(std::shared_ptr<TreeNode<T>>& node, T data)
 		{
-			// in-order successor 방식으로 할거임
-			std::shared_ptr<TreeNode<T>>& node2 = node;
+			//// in-order successor 방식으로 할거임
+			//std::shared_ptr<TreeNode<T>>& node2 = node;
 
-			if (*node2->Data == data)
-			{
-				if (node2->Right)
-				{
-					if (node2->Right->Left)
-					{
-						std::shared_ptr<TreeNode<T>>& node3 = node2->Right;
+			//if (*node2->Data == data)
+			//{
+			//	if (node2->Right)
+			//	{
+			//		if (node2->Right->Left)
+			//		{
+			//			std::shared_ptr<TreeNode<T>>& node3 = node2->Right;
 
-						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveLeft(node3);
+			//			std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveLeft(node3);
 
-						std::swap(node2->Data, node4->Left->Data);
-						node4->Left.reset();
-						//(*node4)->mLeft = nullptr;
-						return true;
+			//			std::swap(node2->Data, node4->Left->Data);
+			//			node4->Left.reset();
+			//			//(*node4)->mLeft = nullptr;
+			//			return true;
 
-					}
+			//		}
 
-					std::swap(node2->Data, node2->Right->Data);
-					if (*node2->Right->Data == data && node2->Right->Right == nullptr)
-					{
-						node2->Right.reset();
-						//(*node2)->mRight = nullptr;
-						return true;
-					}
-					return deleteRecursive(node2->Right, data);
-				}
+			//		std::swap(node2->Data, node2->Right->Data);
+			//		if (*node2->Right->Data == data && node2->Right->Right == nullptr)
+			//		{
+			//			node2->Right.reset();
+			//			//(*node2)->mRight = nullptr;
+			//			return true;
+			//		}
+			//		return deleteRecursive(node2->Right, data);
+			//	}
 
-				// 오른쪽 노드에 아무것도 없을때, 어쩔수 없이 in-order predecessor 방식 사용
-				if (node2->Left)
-				{
-					if (node2->Left->Right)
-					{
-						std::shared_ptr<TreeNode<T>>& node3 = node2->Left;
+			//	// 오른쪽 노드에 아무것도 없을때, 어쩔수 없이 in-order predecessor 방식 사용
+			//	if (node2->Left)
+			//	{
+			//		if (node2->Left->Right)
+			//		{
+			//			std::shared_ptr<TreeNode<T>>& node3 = node2->Left;
 
-						std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveRight(node3);
+			//			std::shared_ptr<TreeNode<T>>& node4 = searchRecursiveRight(node3);
 
-						std::swap(node2->Data, node4->Right->Data);
-						node4->Right.reset();
-						//(*node4)->mRight = nullptr;
-						return true;
-					}
+			//			std::swap(node2->Data, node4->Right->Data);
+			//			node4->Right.reset();
+			//			//(*node4)->mRight = nullptr;
+			//			return true;
+			//		}
 
-					std::swap(node2->Data, node2->Left->Data);
-					if (*node2->Left->Data == data && node2->Left->Left == nullptr)
-					{
-						node2->Left.reset();
-						//(*node2)->mLeft = nullptr;
-						return true;
-					}
-					return deleteRecursive(node2->Left, data);
-				}
+			//		std::swap(node2->Data, node2->Left->Data);
+			//		if (*node2->Left->Data == data && node2->Left->Left == nullptr)
+			//		{
+			//			node2->Left.reset();
+			//			//(*node2)->mLeft = nullptr;
+			//			return true;
+			//		}
+			//		return deleteRecursive(node2->Left, data);
+			//	}
 
-				// 왼쪽 노드 , 오른쪽 노드 아무것도 없을때
-				*node2->Data = -1;
-				node2->Left = nullptr;
-				node2->Right = nullptr;
-				return true;
-			}
+			//	// 왼쪽 노드 , 오른쪽 노드 아무것도 없을때
+			//	*node2->Data = -1;
+			//	node2->Left = nullptr;
+			//	node2->Right = nullptr;
+			//	return true;
+			//}
 
-			std::shared_ptr<TreeNode<T>>& result = searchRecursive(node2, data);
+			//std::shared_ptr<TreeNode<T>>& result = searchRecursive(node2, data);
 
-			if (result == nullptr)
+			//if (result == nullptr)
+			//{
+			//	return false;
+			//}
+
+			//std::shared_ptr<TreeNode<T>>& resultBefore = searchRecursiveBefore(node2, data);
+			//deleteRecursive(result, data);
+
+			//if (*result->Data == -1)
+			//{
+			//	if (resultBefore->Left != nullptr)
+			//	{
+			//		resultBefore->Left.reset();
+			//		//resultBefore->Left = nullptr;
+			//		return true;
+			//	}
+
+			//	if (resultBefore->Right != nullptr)
+			//	{
+			//		resultBefore->Right.reset();
+			//		//resultBefore->mRight = nullptr;
+			//		return true;
+			//	}
+			//}
+
+			//return true;
+
+			static mCheck check = IS_RIGHT;
+
+
+			// if root node has a data
+			// using in-order successor
+			// remember, always delete the leaf node
+
+			auto& resultNode = node;
+
+
+			// 중복검사
+			//////////////////////
+			//if (resultNode->Right != nullptr)
+			//{
+			//	if (*resultNode->Data == *resultNode->Right->Data)
+			//	{
+			//		resultNode->Parent.lock()->Right = resultNode->Right;
+			//		resultNode->Parent.lock()->Left = nullptr;
+			//		return true;
+			//	}
+			//}
+
+			//if (resultNode->Left != nullptr)
+			//{
+			//	if (*resultNode->Data < *resultNode->Left->Data)
+			//	{
+			//		resultNode->Parent.lock()->Left = resultNode->Left;
+			//		resultNode->Parent.lock()->Right = nullptr;
+			//		return true;
+			//	}
+			//}
+
+
+			/////////////////////
+
+
+			// if there isn't a node
+			if (resultNode == nullptr)
 			{
 				return false;
 			}
 
-			std::shared_ptr<TreeNode<T>>& resultBefore = searchRecursive2(node2, data);
-			deleteRecursive(result, data);
-
-			if (*result->Data == -1)
+			//if there is no leaf node
+			if (resultNode->Left == nullptr && resultNode->Right == nullptr)
 			{
-				if (resultBefore->Left != nullptr)
-				{
-					resultBefore->Left.reset();
-					//resultBefore->Left = nullptr;
-					return true;
-				}
-
-				if (resultBefore->Right != nullptr)
-				{
-					resultBefore->Right.reset();
-					//resultBefore->mRight = nullptr;
-					return true;
-				}
+				resultNode.reset();
+				return true;
 			}
 
-			return true;
+			//if there is a right node
+			if (resultNode->Left == nullptr && resultNode->Right != nullptr)
+			{
+				auto& result = searchRecursiveLeft(resultNode->Right);
+				std::swap(*resultNode->Data, *result->Data);
+				check = IS_RIGHT;
+				return deleteRecursive(result, data);
+			}
+
+			if (resultNode->Right == nullptr && resultNode->Left != nullptr)
+			{
+				auto& result = searchRecursiveRight(resultNode->Left);
+				std::swap(*resultNode->Data, *result->Data);
+				check = IS_LEFT;
+				return deleteRecursive(result, data);
+			}
+
+
+			// if there is a node
+
+			// if node has two leaf node
+
+			if (resultNode->Left != nullptr && resultNode->Right != nullptr)
+			{
+
+				auto& result = searchRecursiveLeft(resultNode->Right);
+				std::swap(*resultNode->Data, *result->Data);
+				return deleteRecursive(result, data);
+
+				if (check == IS_LEFT)
+				{
+
+				}
+
+				if (check == IS_RIGHT)
+				{
+
+				}
+
+			}
 		}
 
 		std::shared_ptr<TreeNode<T>>& searchRecursiveLeft(std::shared_ptr<TreeNode<T>>& node)
@@ -206,7 +313,7 @@ namespace assignment4
 			//TreeNode<T>* node2 = node;
 			std::shared_ptr<TreeNode<T>>& node2(node);
 
-			if (node2->Left->Left == nullptr)
+			if (node2->Left == nullptr)
 			{
 				return node2;
 			}
@@ -219,7 +326,7 @@ namespace assignment4
 			//TreeNode<T>* node2 = node;
 			std::shared_ptr<TreeNode<T>>& node2(node);
 
-			if (node2->Right->Right == nullptr)
+			if (node2->Right == nullptr)
 			{
 				return node2;
 			}
@@ -235,11 +342,6 @@ namespace assignment4
 				return v;
 			}
 
-			//if (startNode == nullptr)
-			//{
-			//	vec.push_back(*startNode->Parent.lock()->Data);
-			//}
-
 			traverseInOrder(startNode->Left, v);
 			v.push_back(*startNode->Data);
 			traverseInOrder(startNode->Right, v);
@@ -249,6 +351,12 @@ namespace assignment4
 
 	private:
 		std::shared_ptr<TreeNode<T>> mNode;
+
+		enum mCheck
+		{
+			IS_LEFT,
+			IS_RIGHT
+		};
 	};
 
 	template<typename T>
@@ -266,7 +374,7 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Search(const T& data)
 	{
-		std::shared_ptr<TreeNode<T>>& result = searchRecursive(mNode, data);
+		std::shared_ptr<TreeNode<T>> result = searchRecursive(mNode, data);
 		if (result)
 		{
 			return true;
@@ -277,7 +385,18 @@ namespace assignment4
 	template<typename T>
 	bool BinarySearchTree<T>::Delete(const T& data)
 	{
-		return deleteRecursive(mNode, data);
+		//return deleteRecursive(mNode, data);
+
+		auto& resultNode = searchRecursive(mNode, data);
+
+		auto result = deleteRecursive(resultNode, data);
+
+		if (result)
+		{
+			return true;
+		}
+
+		return false;
 	}
 
 	template<typename T>
