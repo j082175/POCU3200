@@ -179,6 +179,8 @@ namespace assignment4
 			std::swap(*resultNode->Data, *result->Data);
 			return deleteRecursive(result, data);
 		}
+
+		return false;
 	}
 
 	template<typename T>
