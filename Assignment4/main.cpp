@@ -396,10 +396,10 @@ int main()
 
 	Test_Random_Delete();
 	//Test_Delete_0hoo();
-	//Test_Insert_GetRoot();
-	//Test_Search();
+	Test_Insert_GetRoot();
+	Test_Search();
 	Test_Delete();
-	//Test_Traverse();
+	Test_Traverse();
 
 
 	test2();
