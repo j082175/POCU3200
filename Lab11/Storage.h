@@ -10,58 +10,12 @@ namespace lab11
 	public:
 		Storage(unsigned int length);
 		Storage(unsigned int length, const T& initialValue);
-		Storage(const Storage& other)
-			: mLength(other.mLength)
-			, mArr(new T())
-		{
-			for (size_t i = 0; i < mLength; i++)
-			{
-				mArr[i] = other.mArr[i];
-			}
-		}
 
-		Storage& operator=(const Storage& other)
-		{
-			if (this == &other)
-			{
-				return *this;
-			}
+		Storage(const Storage& other);
+		Storage& operator=(const Storage& other);
 
-			mLength = other.mLength;
-
-			for (size_t i = 0; i < mLength; i++)
-			{
-				mArr[i] = other.mArr[i];
-			}
-
-			return *this;
-		}
-
-		Storage(Storage&& other) noexcept
-			: mArr(std::move(other.mArr))
-			, mLength(other.mLength)
-		{
-			other.mArr = nullptr;
-			other.mLength = 0;
-		}
-
-		Storage& operator=(Storage&& other) noexcept
-		{
-			if (this == &other)
-			{
-				return *this;
-			}
-
-			//delete[] mArr;
-
-			mArr = std::move(other.mArr);
-			mLength = other.mLength;
-
-			other.mArr = nullptr;
-			other.mLength = 0;
-
-			return *this;
-		}
+		Storage(Storage&& other) noexcept;
+		Storage& operator=(Storage&& other) noexcept;
 
 		bool Update(unsigned int index, const T& data);
 		const std::unique_ptr<T[]>& GetData() const;
@@ -90,6 +44,65 @@ namespace lab11
 		{
 			mArr[i] = initialValue;
 		}
+	}
+
+	template<typename T>
+	Storage<T>::Storage(const Storage& other)
+		: mLength(other.mLength)
+		, mArr(new T[other.mLength])
+	{
+		for (size_t i = 0; i < mLength; i++)
+		{
+			mArr[i] = other.mArr[i];
+		}
+	}
+
+	template<typename T>
+	Storage<T>::Storage(Storage&& other) noexcept
+		: mArr(std::move(other.mArr))
+		, mLength(other.mLength)
+	{
+		other.mArr = nullptr;
+		other.mLength = 0;
+	}
+
+	template<typename T>
+	Storage<T>& Storage<T>::operator=(const Storage<T>& other)
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		mLength = other.mLength;
+		mArr.reset();
+		mArr = std::make_unique<T[]>(mLength);
+
+		for (size_t i = 0; i < mLength; i++)
+		{
+			mArr[i] = other.mArr[i];
+		}
+
+		return *this;
+	}
+
+	template<typename T>
+	Storage<T>& Storage<T>::operator=(Storage<T>&& other) noexcept
+	{
+		if (this == &other)
+		{
+			return *this;
+		}
+
+		//delete[] mArr;
+
+		mArr = std::move(other.mArr);
+		mLength = other.mLength;
+
+		other.mArr = nullptr;
+		other.mLength = 0;
+
+		return *this;
 	}
 
 	template<typename T>
