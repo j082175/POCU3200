@@ -12,6 +12,7 @@ namespace lab11
 		Storage(unsigned int length, const T& initialValue);
 		Storage(const Storage& other)
 			: mLength(other.mLength)
+			, mArr(new T())
 		{
 			for (size_t i = 0; i < mLength; i++)
 			{

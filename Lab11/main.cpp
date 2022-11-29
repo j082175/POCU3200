@@ -3,7 +3,7 @@
 #include <cassert>
 using namespace lab11;
 
-int main()
+void test()
 {
 	const unsigned int SIZE = 10000;
 
@@ -80,6 +80,19 @@ int main()
 		storage5.Update(i, SIZE2 - i - 1);
 		assert(data5[i] == SIZE2 - i - 1);
 	}
+}
+
+int main()
+{
+	test();
+
+	//Storage<int> s(10000, 33);
+
+	Storage<int> s2(10, 2);
+
+	Storage<int> s3(22 ,33);
+
+	s3 = s2;
 
 	return 0;
 }
