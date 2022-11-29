@@ -30,7 +30,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
 		: mLength(length)
-		, mArr(new T[length]{T()})
+		, mArr(new T[length]{ T() })
 	{
 		//mArr = new T[length];
 	}
