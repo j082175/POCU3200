@@ -162,6 +162,7 @@ namespace assignment4
 			return deleteRecursive(result, data);
 		}
 
+		//if there is a left node
 		if (resultNode->Right == nullptr && resultNode->Left != nullptr)
 		{
 			auto& result = searchRecursiveRight(resultNode->Left);
@@ -171,7 +172,7 @@ namespace assignment4
 
 		// if there is a node
 
-		// if node has two leaf node
+		// if node has two leaf nodes
 
 		if (resultNode->Left != nullptr && resultNode->Right != nullptr)
 		{
