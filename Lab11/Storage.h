@@ -10,6 +10,32 @@ namespace lab11
 	public:
 		Storage(unsigned int length);
 		Storage(unsigned int length, const T& initialValue);
+		Storage(const Storage& other)
+			: mLength(other.mLength)
+		{
+			for (size_t i = 0; i < mLength; i++)
+			{
+				mArr[i] = other.mArr[i];
+			}
+		}
+
+		Storage& operator=(const Storage& other)
+		{
+			if (this == &other)
+			{
+				return *this;
+			}
+
+			mLength = other.mLength;
+
+			for (size_t i = 0; i < mLength; i++)
+			{
+				mArr[i] = other.mArr[i];
+			}
+
+			return *this;
+		}
+
 		Storage(Storage&& other) noexcept
 			//: mArr(other.mArr)
 			: mArr(std::move(other.mArr))
