@@ -38,7 +38,6 @@ namespace lab11
 		}
 
 		Storage(Storage&& other) noexcept
-			//: mArr(other.mArr)
 			: mArr(std::move(other.mArr))
 			, mLength(other.mLength)
 		{
@@ -77,7 +76,7 @@ namespace lab11
 	template<typename T>
 	Storage<T>::Storage(unsigned int length)
 		: mLength(length)
-		, mArr(new T[length]{ T() })
+		, mArr(new T[length]{T()})
 	{
 		//mArr = new T[length];
 	}
